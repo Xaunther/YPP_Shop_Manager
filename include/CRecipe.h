@@ -26,6 +26,13 @@ public:
 	 */
 	explicit CRecipe( std::string_view aName, const items& aItems );
 
+	/**
+	 * @brief JSON constructor.
+	 * @param aJSON JSON object
+	 * @param aName Name of the item.
+	 */
+	explicit CRecipe( const json& aJSON, std::string_view aName );
+
 	//! Retrieves the \copybrief mItems
 	const items& GetItems() const noexcept;
 
