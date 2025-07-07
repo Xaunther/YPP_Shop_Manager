@@ -2,6 +2,8 @@
 
 #include "IJsonable.h"
 
+#include "CRecipeItem.h"
+
 #include "traits/CRecipes.h"
 #include "types/CRecipes.h"
 
@@ -18,6 +20,12 @@ protected:
 	using shop_recipes = types::CRecipes::shop_recipes;
 
 public:
+	/**
+	 * @brief Member constructor.
+	 * @param aShopRecipes \copybrief mShopRecipes
+	 */
+	explicit CRecipes( const shop_recipes& aShopRecipes );
+
 	//! Retrieves the \copybrief mShopRecipes
 	const shop_recipes& GetShopRecipes() const noexcept;
 
