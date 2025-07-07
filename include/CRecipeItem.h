@@ -26,6 +26,13 @@ public:
 	 */
 	explicit CRecipeItem( std::string_view aName, const count& aCount, const float& aPrice );
 
+	/**
+	 * @brief JSON constructor.
+	 * @param aJSON JSON object
+	 * @param aName Name of the item.
+	 */
+	explicit CRecipeItem( const json& aJSON, std::string_view aName );
+
 	//! Retrieves the \copybrief mCount
 	const count& GetCount() const noexcept;
 
