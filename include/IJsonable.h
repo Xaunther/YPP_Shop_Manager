@@ -29,12 +29,6 @@ private:
 	 * @copydoc ToJSON
 	*/
 	virtual void JSON( json& aJSON ) const noexcept = 0;
-
-public:
-	/**
-	 * @brief Define comparisor operators.
-	 */
-	auto operator<=>( const IJsonable& ) const = default;
 };
 
 } // ypp_sm namespace
