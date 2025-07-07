@@ -10,6 +10,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/traits/CRecipes.h
 	include/traits/default.h
 	include/traits/json.h
+	include/types/CRecipe.h
 	include/types/CRecipes.h
 	include/types/CRecipeItem.h
 	include/types/IJsonable.h
