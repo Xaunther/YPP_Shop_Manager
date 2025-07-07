@@ -19,6 +19,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
 	src/CRecipeItem.cpp
+	src/CRecipes.cpp
 	src/IJsonable.cpp
 )
 
