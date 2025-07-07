@@ -17,14 +17,14 @@ namespace ypp_sm
 class CRecipes : public IJsonable, protected json_traits<CRecipes>
 {
 protected:
-	using shop_recipes = types::CRecipes::shop_recipes;
+	using recipes_map = types::CRecipes::recipes_map;
 
 public:
 	/**
 	 * @brief Member constructor.
-	 * @param aShopRecipes \copybrief mShopRecipes
+	 * @param aRecipesMap \copybrief mRecipesMap
 	 */
-	explicit CRecipes( const shop_recipes& aShopRecipes );
+	explicit CRecipes( const recipes_map& aRecipesMap );
 
 	/**
 	 * @brief JSON constructor.
@@ -39,12 +39,12 @@ protected:
 	void JSON( json& aJSON ) const noexcept override;
 
 public:
-	//! Retrieves the \copybrief mShopRecipes
-	const shop_recipes& GetShopRecipes() const noexcept;
+	//! Retrieves the \copybrief mRecipesMap
+	const recipes_map& GetRecipesMap() const noexcept;
 
 private:
 	//! Recipes map classified by commodity type.
-	shop_recipes mShopRecipes;
+	recipes_map mRecipesMap;
 };
 
 } // ypp_sm namespace

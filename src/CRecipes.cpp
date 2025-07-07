@@ -6,8 +6,8 @@
 namespace ypp_sm
 {
 
-CRecipes::CRecipes( const shop_recipes& aShopRecipes ) try :
-	mShopRecipes( aShopRecipes )
+CRecipes::CRecipes( const recipes_map& aRecipesMap ) try :
+	mRecipesMap( aRecipesMap )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating the recipes." )
@@ -24,28 +24,28 @@ CRecipes::CRecipes( const json& aJSON ) try
 				recipeItems.emplace( item.value(), item.key() );
 			recipes.emplace( recipeJSON.key(), std::move( recipeItems ) );
 		}
-		mShopRecipes.emplace( commodityRecipesJSON.key(), std::move( recipes ) );
+		mRecipesMap.emplace( commodityRecipesJSON.key(), std::move( recipes ) );
 	}
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating from the JSON object " << aJSON.dump() << "." )
 
 void CRecipes::JSON( json& aJSON ) const noexcept
 {
-	for( const auto& [ shop, recipes ] : mShopRecipes )
+	for( const auto& [ key, recipes ] : mRecipesMap )
 	{
-		json& shopRecipesJSON = aJSON[ shop ];
+		json& keyRecipesJSON = aJSON[ key ];
 		for( const auto& [ outputItem, items ] : recipes )
 		{
-			json& recipeJSON = shopRecipesJSON[ outputItem ];
+			json& recipeJSON = keyRecipesJSON[ outputItem ];
 			for( const auto& item : items )
 				AddToJSONKey( recipeJSON, item, item.GetKey() );
 		}
 	}
 }
 
-const CRecipes::shop_recipes& CRecipes::GetShopRecipes() const noexcept
+const CRecipes::recipes_map& CRecipes::GetRecipesMap() const noexcept
 {
-	return mShopRecipes;
+	return mRecipesMap;
 }
 
 } // ypp_sm namespace

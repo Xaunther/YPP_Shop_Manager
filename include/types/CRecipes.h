@@ -20,8 +20,8 @@ namespace types::CRecipes
 using recipe_items = std::set<ypp_sm::CRecipeItem>;
 //! Type for recipes.
 using recipes = std::map<AKeyable::key_type, recipe_items>;
-//! Type for recipes classified by shop.
-using shop_recipes = std::map<AKeyable::key_type, recipes>;
+//! Type for recipes classified by some key.
+using recipes_map = std::map<AKeyable::key_type, recipes>;
 
 } // types::CRecipes namespace
 
