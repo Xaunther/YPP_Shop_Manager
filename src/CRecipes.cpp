@@ -1,8 +1,7 @@
 #include "CRecipes.h"
 
-#include <nlohmann/json.hpp>
-
 #include "ExceptionUtils.h"
+#include "JsonUtils.h"
 
 namespace ypp_sm
 {
@@ -29,6 +28,20 @@ CRecipes::CRecipes( const json& aJSON ) try
 	}
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating from the JSON object " << aJSON.dump() << "." )
+
+void CRecipes::JSON( json& aJSON ) const noexcept
+{
+	for( const auto& [ shop, recipes ] : mShopRecipes )
+	{
+		json& shopRecipesJSON = aJSON[ shop ];
+		for( const auto& [ outputItem, items ] : recipes )
+		{
+			json& recipeJSON = shopRecipesJSON[ outputItem ];
+			for( const auto& item : items )
+				AddToJSONKey( recipeJSON, item, item.GetKey() );
+		}
+	}
+}
 
 const CRecipes::shop_recipes& CRecipes::GetShopRecipes() const noexcept
 {
