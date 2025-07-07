@@ -6,6 +6,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/JsonUtils.h
 	include/traits/default.h
 	include/traits/json.h
+	include/types/CRecipeItem.h
 	include/types/IJsonable.h
 )
 
