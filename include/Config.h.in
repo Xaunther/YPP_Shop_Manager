@@ -1,0 +1,4 @@
+#pragma once
+
+// Version
+#define YPP_SM_VERSION @YPP_SM_VERSION@
