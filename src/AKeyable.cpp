@@ -8,6 +8,8 @@ AKeyable::AKeyable( std::string_view aKey ) :
 {
 }
 
+AKeyable::~AKeyable() = default;
+
 std::string_view AKeyable::GetKey() const noexcept
 {
 	return mKey;

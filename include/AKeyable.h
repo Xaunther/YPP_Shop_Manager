@@ -23,6 +23,9 @@ public:
 	//! Retrieves the \copybrief mKey
 	std::string_view GetKey() const noexcept;
 
+	//! Pure virtual destructor
+	virtual ~AKeyable() = 0;
+
 private:
 	//! Key of the class.
 	key_type mKey;
