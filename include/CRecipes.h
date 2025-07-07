@@ -26,6 +26,12 @@ public:
 	 */
 	explicit CRecipes( const shop_recipes& aShopRecipes );
 
+	/**
+	 * @brief JSON constructor.
+	 * @param aJSON JSON object
+	 */
+	explicit CRecipes( const json& aJSON );
+
 	//! Retrieves the \copybrief mShopRecipes
 	const shop_recipes& GetShopRecipes() const noexcept;
 
