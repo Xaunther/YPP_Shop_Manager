@@ -1,7 +1,9 @@
 #pragma once
 
 #include "AKeyable.h"
+#include "IJsonable.h"
 
+#include "traits/CRecipeItem.h"
 #include "types/CRecipeItem.h"
 
 namespace ypp_sm
@@ -10,7 +12,7 @@ namespace ypp_sm
 /**
  * @brief Class for a recipe item.
  */
-class CRecipeItem : public AKeyable
+class CRecipeItem : public IJsonable, public AKeyable, protected json_traits<CRecipeItem>
 {
 protected:
 	using count = types::CRecipeItem::count;
