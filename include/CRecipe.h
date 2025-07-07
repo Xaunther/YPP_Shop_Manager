@@ -19,6 +19,13 @@ protected:
 	using items = types::CRecipe::items;
 
 public:
+	/**
+	 * @brief Member constructor.
+	 * @param aName Name of the recipe.
+	 * @param aItems \copybrief mItems
+	 */
+	explicit CRecipe( std::string_view aName, const items& aItems );
+
 	//! Retrieves the \copybrief mItems
 	const items& GetItems() const noexcept;
 
