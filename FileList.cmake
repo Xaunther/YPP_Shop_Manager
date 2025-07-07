@@ -2,6 +2,7 @@
 SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/IJsonable.h
 	include/traits/default.h
+	include/traits/json.h
 	include/types/IJsonable.h
 )
 
