@@ -1,5 +1,6 @@
 # Core external headers
 SET(YPP_SM_CORE_EXTERNAL_HEADERS
+	include/CRecipeItem.h
 	include/IJsonable.h
 	include/JsonUtils.h
 	include/traits/default.h
@@ -9,6 +10,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 
 # Core source files
 SET(YPP_SM_CORE_SOURCE
+	src/CRecipeItem.cpp
 	src/IJsonable.cpp
 )
 
