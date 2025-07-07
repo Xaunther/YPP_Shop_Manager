@@ -33,6 +33,13 @@ public:
 	 */
 	explicit CRecipeItem( const json& aJSON, std::string_view aName );
 
+protected:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	void JSON( json& aJSON ) const noexcept override;
+
+public:
 	//! Retrieves the \copybrief mCount
 	const count& GetCount() const noexcept;
 

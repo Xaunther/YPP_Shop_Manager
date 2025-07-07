@@ -7,12 +7,13 @@
 namespace ypp_sm
 {
 
-CRecipeItem::CRecipeItem( std::string_view aName, const count& aCount, const float& aPrice ) :
+CRecipeItem::CRecipeItem( std::string_view aName, const count& aCount, const float& aPrice ) try :
 	AKeyable( aName ),
 	mCount( aCount ),
 	mPrice( CheckNonNegativeness( aPrice, "price of each item" ) )
 {
 }
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe item." )
 
 CRecipeItem::CRecipeItem( const json& aJSON, std::string_view aName ) try :
 	CRecipeItem( aName, ValueFromRequiredJSONKey<count>( aJSON, COUNT_KEY ),
@@ -20,6 +21,12 @@ CRecipeItem::CRecipeItem( const json& aJSON, std::string_view aName ) try :
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe item from JSON " << aJSON.dump() )
+
+void CRecipeItem::JSON( json& aJSON ) const noexcept
+{
+	AddToJSONKey( aJSON, mCount, COUNT_KEY );
+	AddToJSONKey( aJSON, mPrice, PRICE_KEY );
+}
 
 const CRecipeItem::count& CRecipeItem::GetCount() const noexcept
 {
