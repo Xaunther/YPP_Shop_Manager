@@ -2,6 +2,7 @@
 SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/AKeyable.h
 	include/CRecipeItem.h
+	include/CRecipes.h
 	include/ExceptionUtils.h
 	include/IJsonable.h
 	include/JsonUtils.h
