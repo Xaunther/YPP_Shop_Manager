@@ -16,6 +16,14 @@ protected:
 	using count = types::CRecipeItem::count;
 
 public:
+	/**
+	 * @brief Member constructor.
+	 * @param aName Name of the item.
+	 * @param aCount \copybrief mCount
+	 * @param aPrice \copybrief mPrice
+	 */
+	explicit CRecipeItem( std::string_view aName, const count& aCount, const float& aPrice );
+
 	//! Retrieves the \copybrief mCount
 	const count& GetCount() const noexcept;
 
