@@ -21,6 +21,11 @@ CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() <<"." )
 
+void CRecipe::JSON( json& aJSON ) const noexcept
+{
+	for( const auto& item : mItems )
+		AddToJSONKey( aJSON, item, item.GetKey() );
+}
 
 const CRecipe::items& CRecipe::GetItems() const noexcept
 {
