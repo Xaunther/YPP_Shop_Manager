@@ -26,6 +26,11 @@ public:
 	//! Pure virtual destructor
 	virtual ~AKeyable() = 0;
 
+	/**
+	 * @brief Define comparison operators.
+	 */
+	auto operator <=>( const AKeyable& ) const = default;
+
 private:
 	//! Key of the class.
 	key_type mKey;
