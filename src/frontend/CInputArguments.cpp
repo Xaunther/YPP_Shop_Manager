@@ -40,6 +40,11 @@ std::string_view CInputArguments::GetJSONFileName() const noexcept
 	return mJSONFileName;
 }
 
+bool CInputArguments::WillRun() const noexcept
+{
+	return mRun;
+}
+
 namespace
 {
 

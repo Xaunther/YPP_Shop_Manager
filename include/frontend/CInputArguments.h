@@ -24,6 +24,9 @@ public:
 	//! Retrieves the \copybrief mJSONFileName
 	std::string_view GetJSONFileName() const noexcept;
 
+	//! Retrieves \copybrief mRun
+	bool WillRun() const noexcept;
+
 private:
 	//! JSON file name.
 	std::string mJSONFileName;
