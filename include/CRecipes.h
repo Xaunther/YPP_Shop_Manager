@@ -2,7 +2,7 @@
 
 #include "IJsonable.h"
 
-#include "CRecipeItem.h"
+#include "CRecipe.h"
 
 #include "traits/CRecipes.h"
 #include "types/CRecipes.h"

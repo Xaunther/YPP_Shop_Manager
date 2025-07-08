@@ -18,12 +18,7 @@ CRecipes::CRecipes( const json& aJSON ) try
 	{
 		types::CRecipes::recipes recipes;
 		for( const auto& recipeJSON : commodityRecipesJSON.value().items() )
-		{
-			types::CRecipes::recipe_items recipeItems;
-			for( const auto& item : recipeJSON.value().items() )
-				recipeItems.emplace( item.value(), item.key() );
-			recipes.emplace( recipeJSON.key(), std::move( recipeItems ) );
-		}
+			recipes.emplace( recipeJSON.value(), recipeJSON.key() );
 		mRecipesMap.emplace( commodityRecipesJSON.key(), std::move( recipes ) );
 	}
 }
@@ -34,12 +29,8 @@ void CRecipes::JSON( json& aJSON ) const noexcept
 	for( const auto& [ key, recipes ] : mRecipesMap )
 	{
 		json& keyRecipesJSON = aJSON[ key ];
-		for( const auto& [ outputItem, items ] : recipes )
-		{
-			json& recipeJSON = keyRecipesJSON[ outputItem ];
-			for( const auto& item : items )
-				AddToJSONKey( recipeJSON, item, item.GetKey() );
-		}
+		for( const auto& recipe : recipes )
+			AddToJSONKey( keyRecipesJSON, recipe, recipe.GetKey() );
 	}
 }
 

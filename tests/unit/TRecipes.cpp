@@ -1,6 +1,5 @@
 #include "ATest.h"
 
-#include "CRecipeItem.h"
 #include "CRecipes.h"
 #include "JsonUtils.h"
 
@@ -21,7 +20,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 		{
 			"Iron Monger",
 			{
-				{
+				CRecipe{
 					"Small cannon balls",
 					{
 						CRecipeItem{ "Iron", 5 },
@@ -29,7 +28,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 						CRecipeItem{ "Basic labour", 3 },
 					},
 				},
-				{
+				CRecipe{
 					"Medium cannon balls",
 					{
 						CRecipeItem{ "Iron", 8 },
@@ -38,7 +37,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 						CRecipeItem{ "Skilled labour", 2 },
 					},
 				},
-				{
+				CRecipe{
 					"Large cannon balls",
 					{
 						CRecipeItem{ "Iron", 12 },
@@ -52,7 +51,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 		{
 			"Shipyard",
 			{
-				{
+				CRecipe{
 					"Lifeboats",
 					{
 						CRecipeItem{ "Iron", 30 },
