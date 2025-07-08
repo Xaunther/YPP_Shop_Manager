@@ -25,6 +25,8 @@ template <> struct json_traits<CRecipe>
 {
 	//! JSON key for the \copybrief CRecipe::mYield
 	static inline constexpr std::string_view YIELD_KEY = "Yield";
+	//! JSON key for the \copybrief CRecipe::mItems
+	static inline constexpr std::string_view INGREDIENTS_KEY = "Ingredients";
 };
 
 } // ypp_sm namespace
