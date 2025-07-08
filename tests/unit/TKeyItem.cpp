@@ -1,40 +1,40 @@
 #include "ATest.h"
 
-#include "CRecipeItem.h"
+#include "CKeyItem.h"
 #include "JsonUtils.h"
 
 #include <set>
 
 using namespace ypp_sm;
 
-INITIALIZE_TEST( TRecipeItem )
+INITIALIZE_TEST( TKeyItem )
 
-void TRecipeItem::TestExceptions()
+void TKeyItem::TestExceptions()
 {
 }
 
-std::vector<std::string> TRecipeItem::ObtainedResults() noexcept
+std::vector<std::string> TKeyItem::ObtainedResults() noexcept
 {
 	std::vector<std::string> result;
 
 	for( const auto& recipeItem : std::set{
-		CRecipeItem{ "White paint", 3 },
-		CRecipeItem{ "White paint", 4 },
-		CRecipeItem{ "Red paint", 1 },
-		CRecipeItem{ "Wood", 23 },
-		ValueFromJSONKeyString<CRecipeItem>( R"( {
+		CKeyItem<unsigned int>{ "White paint", 3 },
+		CKeyItem<unsigned int>{ "White paint", 4 },
+		CKeyItem<unsigned int>{ "Red paint", 1 },
+		CKeyItem<unsigned int>{ "Wood", 23 },
+		ValueFromJSONKeyString<CKeyItem<unsigned int>>( R"( {
 			"White paint": 2
 		} )", "White paint", "White paint" ),
-		ValueFromJSONKeyString<CRecipeItem>( R"( {
+		ValueFromJSONKeyString<CKeyItem<unsigned int>>( R"( {
 			"Yellow paint": 2
 		} )", "Yellow paint", "Yellow paint" ),
-		ValueFromJSONKeyString<CRecipeItem>( R"( {
+		ValueFromJSONKeyString<CKeyItem<unsigned int>>( R"( {
 			"Black paint": 1
 		} )", "Black paint", "Black paint" ),
 		} )
 	{
 		result.emplace_back( std::string{ recipeItem.GetKey() } + ":" );
-		result.emplace_back( " Quantity: " + std::to_string( recipeItem.GetCount() ) );
+		result.emplace_back( " Quantity: " + std::to_string( recipeItem.GetValue() ) );
 		ypp_sm::types::IJsonable::json outputJSON;
 		AddToJSONKey( outputJSON, recipeItem, recipeItem.GetKey() );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
@@ -43,7 +43,7 @@ std::vector<std::string> TRecipeItem::ObtainedResults() noexcept
 	return result;
 }
 
-std::vector<std::string> TRecipeItem::ExpectedResults() noexcept
+std::vector<std::string> TKeyItem::ExpectedResults() noexcept
 {
 	return {
 		"Black paint:",
