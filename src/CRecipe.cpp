@@ -6,9 +6,10 @@
 namespace ypp_sm
 {
 
-CRecipe::CRecipe( std::string_view aName, const items& aItems ) try :
+CRecipe::CRecipe( std::string_view aName, const items& aItems, count aYield ) try :
 	AKeyable( aName ),
-	mItems( aItems )
+	mItems( aItems ),
+	mYield( aYield )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a recipe." )

@@ -24,8 +24,9 @@ public:
 	 * @brief Member constructor.
 	 * @param aName Name of the recipe.
 	 * @param aItems \copybrief mItems
+	 * @param aYield \copybrief mYield
 	 */
-	explicit CRecipe( std::string_view aName, const items& aItems );
+	explicit CRecipe( std::string_view aName, const items& aItems, count aYield = 1 );
 
 	/**
 	 * @brief JSON constructor.
