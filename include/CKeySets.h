@@ -16,7 +16,8 @@ namespace ypp_sm
 template <typename T>
 class CKeySets : public IJsonable
 {
-protected:
+public:
+	using value_type = T;
 	using key_sets = types::CKeySets::key_sets<T>;
 
 public:
@@ -24,7 +25,7 @@ public:
 	 * @brief Member constructor.
 	 * @param aKeySets \copybrief mKeySets
 	 */
-	explicit CKeySets( const key_sets& aKeySets );
+	explicit CKeySets( const key_sets& aKeySets = {} );
 
 	/**
 	 * @brief JSON constructor.
