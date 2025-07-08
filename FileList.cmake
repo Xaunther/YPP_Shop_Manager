@@ -2,6 +2,7 @@
 SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/AKeyable.h
 	include/CKeyItem.h
+	include/CPrices.h
 	include/CRecipe.h
 	include/CRecipes.h
 	include/ExceptionUtils.h
@@ -22,6 +23,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 # Core source files
 SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
+	src/CPrices.cpp
 	src/CRecipe.cpp
 	src/CRecipes.cpp
 	src/IJsonable.cpp
