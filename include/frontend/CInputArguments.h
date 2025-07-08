@@ -17,6 +17,13 @@ public:
 	 * @param aArgs Passed arguments.
 	 */
 	explicit CInputArguments( const int& aArgsCount, const char** aArgs );
+
+	//! Retrieves the \copybrief mJSONFileName
+	std::string_view GetJSONFileName() const noexcept;
+
+private:
+	//! JSON file name.
+	std::string mJSONFileName;
 };
 
 } // namespace ypp_sm::frontend
