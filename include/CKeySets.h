@@ -16,7 +16,8 @@ namespace ypp_sm
 template <typename T>
 class CKeySets : public IJsonable
 {
-protected:
+public:
+	using value_type = T;
 	using key_sets = types::CKeySets::key_sets<T>;
 
 public:
