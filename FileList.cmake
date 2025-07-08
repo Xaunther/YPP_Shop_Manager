@@ -11,6 +11,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/traits/CRecipe.h
 	include/traits/default.h
 	include/traits/json.h
+	include/types/CDataBase.h
 	include/types/CKeySets.h
 	include/types/CRecipe.h
 	include/types/IJsonable.h
