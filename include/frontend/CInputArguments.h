@@ -10,6 +10,13 @@ namespace ypp_sm::frontend
  */
 class CInputArguments
 {
+public:
+	/**
+	 * @brief Constructor from executable arguments.
+	 * @param aArgsCount Argument count.
+	 * @param aArgs Passed arguments.
+	 */
+	explicit CInputArguments( const int& aArgsCount, const char** aArgs );
 };
 
 } // namespace ypp_sm::frontend
