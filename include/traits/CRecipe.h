@@ -3,7 +3,7 @@
 #include "traits/default.h"
 #include "traits/json.h"
 
-#include "types/CRecipeItem.h"
+#include "types/CRecipe.h"
 
 #include <string_view>
 
@@ -15,7 +15,7 @@ class CRecipe;
 template <> struct default_traits<CRecipe>
 {
 protected:
-	using count = types::CRecipeItem::count;
+	using count = types::CRecipe::count;
 public:
 	//! Default \copybrief CRecipe::mYield
 	static inline constexpr count DEFAULT_YIELD = 1;
