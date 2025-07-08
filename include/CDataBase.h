@@ -22,6 +22,13 @@ protected:
 	using prices = types::CDataBase::prices;
 
 public:
+	/**
+	 * @brief Member constructor.
+	 * @param aRecipes \copybrief mRecipes
+	 * @param aPrices \copybrief mPrices
+	 */
+	explicit CDataBase( const recipes& aRecipes, const prices& aPrices );
+
 	//! Retrieves the \copybrief mRecipes
 	const recipes& GetRecipes() const noexcept;
 	//! Retrieves the \copybrief mPrices

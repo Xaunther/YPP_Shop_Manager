@@ -3,6 +3,12 @@
 namespace ypp_sm
 {
 
+CDataBase::CDataBase( const recipes& aRecipes, const prices& aPrices ) :
+	mRecipes( aRecipes ),
+	mPrices( aPrices )
+{
+}
+
 const CDataBase::recipes& CDataBase::GetRecipes() const noexcept
 {
 	return mRecipes;
