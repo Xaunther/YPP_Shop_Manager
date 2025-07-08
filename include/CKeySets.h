@@ -73,9 +73,12 @@ void CKeySets<T>::JSON( json& aJSON ) const noexcept
 {
 	for( const auto& [ key, set ] : mKeySets )
 	{
-		json& keyRecipesJSON = aJSON[ key ];
-		for( const auto& setElement : set )
-			AddToJSONKey( keyRecipesJSON, setElement, setElement.GetKey() );
+		if( !set.empty() )
+		{
+			json& keyRecipesJSON = aJSON[ key ];
+			for( const auto& setElement : set )
+				AddToJSONKey( keyRecipesJSON, setElement, setElement.GetKey() );
+		}
 	}
 }
 
