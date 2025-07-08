@@ -3,7 +3,7 @@
 #include "AKeyable.h"
 #include "IJsonable.h"
 
-#include "CRecipeItem.h"
+#include "CKeyItem.h"
 
 #include "traits/CRecipe.h"
 #include "types/CRecipe.h"
@@ -18,7 +18,7 @@ class CRecipe : public IJsonable, public AKeyable, protected json_traits<CRecipe
 {
 protected:
 	using items = types::CRecipe::items;
-	using count = types::CRecipeItem::count;
+	using count = types::CRecipe::count;
 
 public:
 	/**

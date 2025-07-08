@@ -13,6 +13,7 @@ void TRecipes::TestExceptions()
 
 std::vector<std::string> TRecipes::ObtainedResults() noexcept
 {
+	using recipe_item = types::CRecipe::items::value_type;
 	std::vector<std::string> result;
 
 	for( const auto& recipes : {
@@ -23,27 +24,27 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 				CRecipe{
 					"Small cannon balls",
 					{
-						CRecipeItem{ "Iron", 5 },
-						CRecipeItem{ "Wood", 1 },
-						CRecipeItem{ "Basic labour", 3 },
+						recipe_item{ "Iron", 5 },
+						recipe_item{ "Wood", 1 },
+						recipe_item{ "Basic labour", 3 },
 					}, 10
 				},
 				CRecipe{
 					"Medium cannon balls",
 					{
-						CRecipeItem{ "Iron", 8 },
-						CRecipeItem{ "Wood", 3 },
-						CRecipeItem{ "Basic labour", 3 },
-						CRecipeItem{ "Skilled labour", 2 },
+						recipe_item{ "Iron", 8 },
+						recipe_item{ "Wood", 3 },
+						recipe_item{ "Basic labour", 3 },
+						recipe_item{ "Skilled labour", 2 },
 					}, 10
 				},
 				CRecipe{
 					"Large cannon balls",
 					{
-						CRecipeItem{ "Iron", 12 },
-						CRecipeItem{ "Wood", 4 },
-						CRecipeItem{ "Basic labour", 2 },
-						CRecipeItem{ "Skilled labour", 5 },
+						recipe_item{ "Iron", 12 },
+						recipe_item{ "Wood", 4 },
+						recipe_item{ "Basic labour", 2 },
+						recipe_item{ "Skilled labour", 5 },
 					}, 10
 				}
 			}
@@ -54,11 +55,11 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 				CRecipe{
 					"Lifeboats",
 					{
-						CRecipeItem{ "Iron", 30 },
-						CRecipeItem{ "Wood", 85 },
-						CRecipeItem{ "Grog", 15 },
-						CRecipeItem{ "Skilled labour", 50 },
-						CRecipeItem{ "Basic labour", 5 },
+						recipe_item{ "Iron", 30 },
+						recipe_item{ "Wood", 85 },
+						recipe_item{ "Grog", 15 },
+						recipe_item{ "Skilled labour", 50 },
+						recipe_item{ "Basic labour", 5 },
 					}, 10
 				}
 			}
