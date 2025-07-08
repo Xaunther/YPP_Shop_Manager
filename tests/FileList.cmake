@@ -6,5 +6,4 @@ SET(YPP_SM_TESTS_UNIT_CORE_SOURCE
 	unit/TPrices.cpp
 	unit/TRecipe.cpp
 	unit/TKeyItem.cpp
-	unit/TRecipes.cpp
 )

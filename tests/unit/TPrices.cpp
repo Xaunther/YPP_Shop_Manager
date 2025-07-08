@@ -1,6 +1,7 @@
 #include "ATest.h"
 
-#include "CPrices.h"
+#include "CKeyItem.h"
+#include "CKeySets.h"
 #include "JsonUtils.h"
 
 using namespace ypp_sm;
@@ -13,11 +14,12 @@ void TPrices::TestExceptions()
 
 std::vector<std::string> TPrices::ObtainedResults() noexcept
 {
-	using price_item = types::CPrices::prices::value_type;
+	using price_item = CKeyItem<float>;
+	using prices = CKeySets<price_item>;
 	std::vector<std::string> result;
 
 	for( const auto& prices : {
-		CPrices{ {
+		prices{ {
 		{
 			"Basic items",
 			{
@@ -33,7 +35,7 @@ std::vector<std::string> TPrices::ObtainedResults() noexcept
 			}
 		}
 		} },
-		ValueFromJSONKeyString<CPrices>( R"( {
+		ValueFromJSONKeyString<prices>( R"( {
 			"Prices": {
 				"Basic items": {
 					"Iron": 13,
@@ -44,11 +46,11 @@ std::vector<std::string> TPrices::ObtainedResults() noexcept
 					"Skilled labour": 30
 				}
 			}
-		} )" ),
+		} )", "Prices" ),
 	} )
 	{
 		ypp_sm::types::IJsonable::json outputJSON;
-		AddToJSONKey( outputJSON, prices );
+		AddToJSONKey( outputJSON, prices, "Prices" );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
 	}
 

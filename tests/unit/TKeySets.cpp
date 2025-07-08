@@ -1,6 +1,7 @@
 #include "ATest.h"
 
-#include "CRecipes.h"
+#include "CKeySets.h"
+#include "CRecipe.h"
 #include "JsonUtils.h"
 
 using namespace ypp_sm;
@@ -13,11 +14,12 @@ void TRecipes::TestExceptions()
 
 std::vector<std::string> TRecipes::ObtainedResults() noexcept
 {
+	using recipes = CKeySets<CRecipe>;
 	using recipe_item = types::CRecipe::items::value_type;
 	std::vector<std::string> result;
 
 	for( const auto& recipes : {
-		CRecipes{ {
+		recipes{ {
 		{
 			"Iron Monger",
 			{
@@ -65,7 +67,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 			}
 		}
 		} },
-		ValueFromJSONKeyString<CRecipes>( R"( {
+		ValueFromJSONKeyString<recipes>( R"( {
 			"Recipes": {
 				"Iron Monger": {
 					"Large cannon balls": {
@@ -108,11 +110,11 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 					}
 				}
 			}
-		} )" ),
+		} )", "Recipes" ),
 	} )
 	{
 		ypp_sm::types::IJsonable::json outputJSON;
-		AddToJSONKey( outputJSON, recipes );
+		AddToJSONKey( outputJSON, recipes, "Recipes" );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
 	}
 
