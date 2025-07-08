@@ -3,7 +3,7 @@ SET(YPP_SM_TESTS_ENGINE_SOURCE
 
 SET(YPP_SM_TESTS_UNIT_CORE_SOURCE
 	unit/TAKeyable.cpp
-	unit/TPrices.cpp
 	unit/TRecipe.cpp
 	unit/TKeyItem.cpp
+	unit/TKeySets.cpp
 )
