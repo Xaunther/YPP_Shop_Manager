@@ -1,7 +1,5 @@
 #pragma once
 
-#include "AKeyable.h"
-
 #include <set>
 
 /**
@@ -10,13 +8,15 @@
 namespace ypp_sm
 {
 
-class CRecipeItem;
+template <typename T> class CKeyItem;
 
 namespace types::CRecipe
 {
 
+//! Type for a number of items.
+using count = unsigned int;
 //! Type for a set of recipe items.
-using items = std::set<ypp_sm::CRecipeItem>;
+using items = std::set<ypp_sm::CKeyItem<count>>;
 
 } // types::CRecipe namespace
 

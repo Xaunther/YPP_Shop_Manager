@@ -12,7 +12,6 @@ namespace ypp_sm
 {
 
 class CRecipe;
-class CRecipeItem;
 
 namespace types::CRecipes
 {
