@@ -2,6 +2,10 @@
 
 #include "IJsonable.h"
 
+#include "CKeyItem.h"
+#include "CKeySets.h"
+#include "CRecipe.h"
+
 #include "types/CDataBase.h"
 
 namespace ypp_sm
@@ -12,6 +16,22 @@ namespace ypp_sm
  */
 class CDataBase : public IJsonable
 {
+protected:
+	using price = types::CDataBase::price;
+	using recipes = types::CDataBase::recipes;
+	using prices = types::CDataBase::prices;
+
+public:
+	//! Retrieves the \copybrief mRecipes
+	const recipes& GetRecipes() const noexcept;
+	//! Retrieves the \copybrief mPrices
+	const prices& GetPrices() const noexcept;
+
+private:
+	//! List of recipes, classified by a keyword
+	recipes mRecipes;
+	//! List of prices, classified by a keyword
+	prices mPrices;
 };
 
 } // ypp_sm namespace
