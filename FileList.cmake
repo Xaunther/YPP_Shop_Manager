@@ -1,13 +1,19 @@
 # Core external headers
 SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/AKeyable.h
+	include/CRecipe.h
 	include/CRecipeItem.h
+	include/CRecipes.h
 	include/ExceptionUtils.h
 	include/IJsonable.h
 	include/JsonUtils.h
 	include/NumberUtils.h
+	include/traits/CRecipe.h
+	include/traits/CRecipes.h
 	include/traits/default.h
 	include/traits/json.h
+	include/types/CRecipe.h
+	include/types/CRecipes.h
 	include/types/CRecipeItem.h
 	include/types/IJsonable.h
 )
@@ -15,7 +21,9 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 # Core source files
 SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
+	src/CRecipe.cpp
 	src/CRecipeItem.cpp
+	src/CRecipes.cpp
 	src/IJsonable.cpp
 )
 
