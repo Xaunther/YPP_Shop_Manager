@@ -6,6 +6,7 @@
 #include "CKeySets.h"
 #include "CRecipe.h"
 
+#include "traits/CDataBase.h"
 #include "types/CDataBase.h"
 
 namespace ypp_sm
@@ -14,7 +15,7 @@ namespace ypp_sm
 /**
  * @brief Class for a database.
  */
-class CDataBase : public IJsonable
+class CDataBase : public IJsonable, protected json_traits<CDataBase>
 {
 protected:
 	using price = types::CDataBase::price;
@@ -28,6 +29,12 @@ public:
 	 * @param aPrices \copybrief mPrices
 	 */
 	explicit CDataBase( const recipes& aRecipes, const prices& aPrices );
+
+	/**
+	 * @brief JSON constructor.
+	 * @param aJSON JSON object
+	 */
+	explicit CDataBase( const json& aJSON );
 
 	//! Retrieves the \copybrief mRecipes
 	const recipes& GetRecipes() const noexcept;
