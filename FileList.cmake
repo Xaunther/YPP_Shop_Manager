@@ -16,6 +16,11 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/types/IJsonable.h
 )
 
+# Frontend external headers
+SET(YPP_SM_FRONTEND_EXTERNAL_HEADERS
+	include/frontend/CInputArguments.h
+)
+
 # Core source files
 SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
@@ -23,7 +28,14 @@ SET(YPP_SM_CORE_SOURCE
 	src/IJsonable.cpp
 )
 
+
+# Frontend source files
+SET(YPP_SM_FRONTEND_SOURCE
+	src/frontend/CInputArguments.cpp
+)
+
 # External headers
 SET(YPP_SM_EXTERNAL_HEADERS
 	${YPP_SM_CORE_EXTERNAL_HEADERS}
+	${YPP_SM_FRONTEND_EXTERNAL_HEADERS}
 )

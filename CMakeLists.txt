@@ -90,6 +90,7 @@ link_directories(${YPP_SM_LIBS_DIR})
 # Build YPP Shop Manager modules
 set(YPP_SM_MODULES
 	CORE
+	FRONTEND
 )
 
 foreach(YPP_SM_MODULE ${YPP_SM_MODULES})
@@ -141,4 +142,4 @@ if(BUILD_TESTS)
 endif()
 
 # Compile solver binary
-add_executable(YPP_Shop_Manager ${CMAKE_SOURCE_DIR}/src/frontend/YPP_Shop_Manager.cpp ${YPP_SM_CORE_OBJECTS} )
+add_executable(YPP_Shop_Manager ${CMAKE_SOURCE_DIR}/src/frontend/YPP_Shop_Manager.cpp ${YPP_SM_CORE_OBJECTS} ${YPP_SM_FRONTEND_OBJECTS})
