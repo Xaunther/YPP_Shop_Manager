@@ -5,6 +5,7 @@
 
 #include "CRecipeItem.h"
 
+#include "traits/CRecipe.h"
 #include "types/CRecipe.h"
 
 namespace ypp_sm
@@ -13,7 +14,7 @@ namespace ypp_sm
 /**
  * @brief Class for a recipe.
  */
-class CRecipe : public IJsonable, public AKeyable
+class CRecipe : public IJsonable, public AKeyable, protected json_traits<CRecipe>, protected default_traits<CRecipe>
 {
 protected:
 	using items = types::CRecipe::items;
@@ -26,7 +27,7 @@ public:
 	 * @param aItems \copybrief mItems
 	 * @param aYield \copybrief mYield
 	 */
-	explicit CRecipe( std::string_view aName, const items& aItems, count aYield = 1 );
+	explicit CRecipe( std::string_view aName, const items& aItems, count aYield = DEFAULT_YIELD );
 
 	/**
 	 * @brief JSON constructor.

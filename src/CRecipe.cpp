@@ -2,6 +2,7 @@
 
 #include "ExceptionUtils.h"
 #include "JsonUtils.h"
+#include "NumberUtils.h"
 
 namespace ypp_sm
 {
@@ -9,13 +10,14 @@ namespace ypp_sm
 CRecipe::CRecipe( std::string_view aName, const items& aItems, count aYield ) try :
 	AKeyable( aName ),
 	mItems( aItems ),
-	mYield( aYield )
+	mYield( CheckPositiveness( aYield, "recipe yield" ) )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a recipe." )
 
 CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
-	AKeyable( aName )
+	AKeyable( aName ),
+	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) )
 {
 	for( const auto& itemJSON : aJSON.items() )
 		mItems.emplace( itemJSON.value(), itemJSON.key() );
@@ -24,6 +26,7 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recip
 
 void CRecipe::JSON( json& aJSON ) const noexcept
 {
+	AddToOptionalJSONKey( aJSON, mYield, YIELD_KEY, DEFAULT_YIELD );
 	for( const auto& item : mItems )
 		AddToJSONKey( aJSON, item, item.GetKey() );
 }
