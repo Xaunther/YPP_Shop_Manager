@@ -16,6 +16,14 @@ CDataBase::CDataBase( const json& aJSON ) try :
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() << "." )
 
+void CDataBase::JSON( json& aJSON ) const noexcept
+{
+	if( !mRecipes.GetKeySets().empty() )
+		AddToJSONKey( aJSON, mRecipes, RECIPES_KEY );
+	if( !mPrices.GetKeySets().empty() )
+		AddToJSONKey( aJSON, mPrices, PRICES_KEY );
+}
+
 const CDataBase::recipes& CDataBase::GetRecipes() const noexcept
 {
 	return mRecipes;
