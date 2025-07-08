@@ -26,7 +26,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 						CRecipeItem{ "Iron", 5 },
 						CRecipeItem{ "Wood", 1 },
 						CRecipeItem{ "Basic labour", 3 },
-					},
+					}, 10
 				},
 				CRecipe{
 					"Medium cannon balls",
@@ -35,7 +35,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 						CRecipeItem{ "Wood", 3 },
 						CRecipeItem{ "Basic labour", 3 },
 						CRecipeItem{ "Skilled labour", 2 },
-					},
+					}, 10
 				},
 				CRecipe{
 					"Large cannon balls",
@@ -44,7 +44,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 						CRecipeItem{ "Wood", 4 },
 						CRecipeItem{ "Basic labour", 2 },
 						CRecipeItem{ "Skilled labour", 5 },
-					},
+					}, 10
 				}
 			}
 		},
@@ -59,7 +59,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 						CRecipeItem{ "Grog", 15 },
 						CRecipeItem{ "Skilled labour", 50 },
 						CRecipeItem{ "Basic labour", 5 },
-					},
+					}, 10
 				}
 			}
 		}
@@ -68,30 +68,42 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 			"Recipes": {
 				"Iron Monger": {
 					"Large cannon balls": {
-						"Basic labour": 2,
-						"Iron": 12,
-						"Skilled labour": 5,
-						"Wood": 4
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 2,
+							"Iron": 12,
+							"Skilled labour": 5,
+							"Wood": 4
+						}
 					},
 					"Medium cannon balls": {
-						"Basic labour": 3,
-						"Iron": 8,
-						"Skilled labour": 2,
-						"Wood": 3
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 3,
+							"Iron": 8,
+							"Skilled labour": 2,
+							"Wood": 3
+						}
 					},
 					"Small cannon balls": {
-						"Basic labour": 3,
-						"Iron": 5,
-						"Wood": 1
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 3,
+							"Iron": 5,
+							"Wood": 1
+						}
 					}
 				},
 				"Shipyard": {
 					"Lifeboats": {
-						"Basic labour": 5,
-						"Grog": 15,
-						"Iron": 30,
-						"Skilled labour": 50,
-						"Wood": 85
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 5,
+							"Grog": 15,
+							"Iron": 30,
+							"Skilled labour": 50,
+							"Wood": 85
+						}
 					}
 				}
 			}
@@ -113,30 +125,42 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"	\"Recipes\": {\n"
 		"		\"Iron Monger\": {\n"
 		"			\"Large cannon balls\": {\n"
-		"				\"Basic labour\": 2,\n"
-		"				\"Iron\": 12,\n"
-		"				\"Skilled labour\": 5,\n"
-		"				\"Wood\": 4\n"
+		"				\"Yield\": 10,\n"
+		"				\"Ingredients\": {\n"
+		"					\"Basic labour\": 2,\n"
+		"					\"Iron\": 12,\n"
+		"					\"Skilled labour\": 5,\n"
+		"					\"Wood\": 4\n"
+		"				}\n"
 		"			},\n"
 		"			\"Medium cannon balls\": {\n"
-		"				\"Basic labour\": 3,\n"
-		"				\"Iron\": 8,\n"
-		"				\"Skilled labour\": 2,\n"
-		"				\"Wood\": 3\n"
+		"				\"Yield\": 10,\n"
+		"				\"Ingredients\": {\n"
+		"					\"Basic labour\": 3,\n"
+		"					\"Iron\": 8,\n"
+		"					\"Skilled labour\": 2,\n"
+		"					\"Wood\": 3\n"
+		"				}\n"
 		"			},\n"
 		"			\"Small cannon balls\": {\n"
-		"				\"Basic labour\": 3,\n"
-		"				\"Iron\": 5,\n"
-		"				\"Wood\": 1\n"
+		"				\"Yield\": 10,\n"
+		"				\"Ingredients\": {\n"
+		"					\"Basic labour\": 3,\n"
+		"					\"Iron\": 5,\n"
+		"					\"Wood\": 1\n"
+		"				}\n"
 		"			}\n"
 		"		},\n"
 		"		\"Shipyard\": {\n"
 		"			\"Lifeboats\": {\n"
-		"				\"Basic labour\": 5,\n"
-		"				\"Grog\": 15,\n"
-		"				\"Iron\": 30,\n"
-		"				\"Skilled labour\": 50,\n"
-		"				\"Wood\": 85\n"
+		"				\"Yield\": 10,\n"
+		"				\"Ingredients\": {\n"
+		"					\"Basic labour\": 5,\n"
+		"					\"Grog\": 15,\n"
+		"					\"Iron\": 30,\n"
+		"					\"Skilled labour\": 50,\n"
+		"					\"Wood\": 85\n"
+		"				}\n"
 		"			}\n"
 		"		}\n"
 		"	}\n"
