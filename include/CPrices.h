@@ -18,6 +18,12 @@ protected:
 	using prices_map = types::CPrices::prices_map;
 
 public:
+	/**
+	 * @brief Member constructor.
+	 * @param aPricesMap \copybrief mPricesMap
+	 */
+	explicit CPrices( const prices_map& aPricesMap );
+
 	//! Retrieves the \copybrief mPricesMap
 	const prices_map& GetPricesMap() const noexcept;
 
