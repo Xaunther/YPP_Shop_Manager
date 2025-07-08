@@ -2,6 +2,8 @@
 
 #include "IJsonable.h"
 
+#include "CKeyItem.h"
+
 #include "traits/CPrices.h"
 #include "types/CPrices.h"
 
@@ -23,6 +25,12 @@ public:
 	 * @param aPricesMap \copybrief mPricesMap
 	 */
 	explicit CPrices( const prices_map& aPricesMap );
+
+	/**
+	 * @brief JSON constructor.
+	 * @param aJSON JSON object
+	 */
+	explicit CPrices( const json& aJSON );
 
 	//! Retrieves the \copybrief mPricesMap
 	const prices_map& GetPricesMap() const noexcept;
