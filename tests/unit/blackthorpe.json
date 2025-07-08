@@ -1,0 +1,60 @@
+{
+	"Recipes": {
+		"Iron Monger": {
+			"Small cannon balls": {
+				"Yield": 10,
+				"Ingredients": {
+					"Iron" : 5,
+					"Wood" : 1,
+					"Basic" : 3
+				}
+			},
+			"Medium cannon balls": {
+				"Yield": 10,
+				"Ingredients": {
+					"Iron" : 8,
+					"Wood" : 3,
+					"Basic" : 3,
+					"Skilled" : 2
+				}
+			},
+			"Large cannon balls": {
+				"Yield": 10,
+				"Ingredients": {
+					"Iron" : 12,
+					"Wood" : 4,
+					"Basic" : 2,
+					"Skilled" : 5
+				}
+			},
+			"Foil": {
+				"Ingredients": {
+					"Iron": 1,
+					"Tan enamel": 1,
+					"Blue enamel": 1,
+					"Basic": 15
+				}
+			}
+		},
+		"Distillery": {
+		}
+	},
+
+	"Prices": {
+		"Basic commodities": {
+			"Sugar cane" : 12,
+			"Hemp" : 4,
+			"Iron" : 15,
+			"Wood" : 25,
+			"Stone": 1,
+			"Hemp oil": 35,
+			"Kraken's ink": 6000
+		},
+		"Labour": {
+			"Basic": 20,
+			"Skilled": 30,
+			"Expert": 50
+		}
+
+	}
+}
