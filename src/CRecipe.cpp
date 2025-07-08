@@ -27,6 +27,11 @@ void CRecipe::JSON( json& aJSON ) const noexcept
 		AddToJSONKey( aJSON, item, item.GetKey() );
 }
 
+CRecipe::count CRecipe::GetYield() const noexcept
+{
+	return mYield;
+}
+
 const CRecipe::items& CRecipe::GetItems() const noexcept
 {
 	return mItems;
