@@ -24,6 +24,16 @@ CPrices::CPrices( const json& aJSON ) try
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating from the JSON object " << aJSON.dump() << "." )
 
+void CPrices::JSON( json& aJSON ) const noexcept
+{
+	for( const auto& [ key, prices ] : mPricesMap )
+	{
+		json& keyPricesJSON = aJSON[ key ];
+		for( const auto& price : prices )
+			AddToJSONKey( keyPricesJSON, price, price.GetKey() );
+	}
+}
+
 const CPrices::prices_map& CPrices::GetPricesMap() const noexcept
 {
 	return mPricesMap;

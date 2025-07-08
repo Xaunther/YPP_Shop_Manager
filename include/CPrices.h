@@ -32,6 +32,13 @@ public:
 	 */
 	explicit CPrices( const json& aJSON );
 
+protected:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	void JSON( json& aJSON ) const noexcept override;
+
+public:
 	//! Retrieves the \copybrief mPricesMap
 	const prices_map& GetPricesMap() const noexcept;
 
