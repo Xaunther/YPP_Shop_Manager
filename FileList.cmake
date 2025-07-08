@@ -1,6 +1,7 @@
 # Core external headers
 SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/AKeyable.h
+	include/CKeyItem.h
 	include/CRecipe.h
 	include/CRecipeItem.h
 	include/CRecipes.h
