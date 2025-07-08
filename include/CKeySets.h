@@ -24,7 +24,7 @@ public:
 	 * @brief Member constructor.
 	 * @param aKeySets \copybrief mKeySets
 	 */
-	explicit CKeySets( const key_sets& aKeySets );
+	explicit CKeySets( const key_sets& aKeySets = {} );
 
 	/**
 	 * @brief JSON constructor.
