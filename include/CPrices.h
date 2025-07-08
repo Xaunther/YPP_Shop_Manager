@@ -14,6 +14,16 @@ namespace ypp_sm
  */
 class CPrices : public IJsonable, protected json_traits<CPrices>
 {
+protected:
+	using prices_map = types::CPrices::prices_map;
+
+public:
+	//! Retrieves the \copybrief mPricesMap
+	const prices_map& GetPricesMap() const noexcept;
+
+private:
+	//! Prices map classified by some key.
+	prices_map mPricesMap;
 };
 
 } // ypp_sm namespace
