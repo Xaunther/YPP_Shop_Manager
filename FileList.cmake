@@ -6,6 +6,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/CKeySets.h
 	include/CRecipe.h
 	include/ExceptionUtils.h
+	include/IDescriptable.h
 	include/IJsonable.h
 	include/JsonUtils.h
 	include/NumberUtils.h
@@ -31,6 +32,7 @@ SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
 	src/CDataBase.cpp
 	src/CRecipe.cpp
+	src/IDescriptable.cpp
 	src/IJsonable.cpp
 )
 
