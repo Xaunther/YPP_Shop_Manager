@@ -56,6 +56,14 @@ public:
 	const prices& GetPrices() const noexcept;
 
 	/**
+	 * @brief Adds a new recipe.
+	 * @param aSetName Group where the recipe should be added.
+	 * @param aRecipe Recipe to be added.
+	 * @return Whether the recipe could be added.
+	 */
+	bool AddRecipe( std::string_view aSetName, const CRecipe& aRecipe );
+
+	/**
 	 * @brief Adds a new price.
 	 * @param aSetName Group where the price should be added.
 	 * @param aItemName Name of the item.
