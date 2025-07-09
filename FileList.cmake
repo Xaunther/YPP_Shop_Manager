@@ -25,6 +25,7 @@ SET(YPP_SM_FRONTEND_EXTERNAL_HEADERS
 	include/frontend/CInputArguments.h
 	include/frontend/CMainMenuSelector.h
 	include/frontend/IMenuSelector.h
+	include/frontend/InputUtils.h
 )
 
 # Core source files
@@ -41,7 +42,6 @@ SET(YPP_SM_CORE_SOURCE
 SET(YPP_SM_FRONTEND_SOURCE
 	src/frontend/CInputArguments.cpp
 	src/frontend/CMainMenuSelector.cpp
-	src/frontend/IMenuSelector.cpp
 )
 
 # External headers
