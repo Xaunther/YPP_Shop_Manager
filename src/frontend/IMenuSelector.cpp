@@ -1,43 +1,36 @@
 #include "frontend/IMenuSelector.h"
 
 #include <iostream>
-#include <limits>
 #include <ranges>
+
+#include "frontend/InputUtils.h"
 
 namespace ypp_sm::frontend
 {
 
 void IMenuSelector::operator()( CDataBase& aDataBase, std::string_view aJSONFileName )
 {
+	const auto condition = [&]( const auto& aInput ) {
+		try
+		{
+			return std::stoul( aInput ) < GetOptions().size();
+		}
+		catch( const std::invalid_argument& )
+		{
+			return false;
+		}
+	};
+
 	do
 	{
 		PrintMenu();
-	} while( GetOperations()[ HandleInput() ]( aDataBase, aJSONFileName ) );
+	} while( GetOperations()[ AskInput<unsigned int>( ">", DEFAULT_CONVERSION<unsigned int>, condition ) ]( aDataBase, aJSONFileName ) );
 }
 
 void IMenuSelector::PrintMenu()
 {
-	std::cout << GetIntro() << ":\n";
 	for( const auto& [ index, option ] : std::views::enumerate( GetOptions() ) )
 		std::cout << index << ") " << option << ".\n";
-}
-
-unsigned int IMenuSelector::HandleInput()
-{
-	unsigned int result = 0;
-	while( true )
-	{
-		std::cout << "> ";
-		std::cin >> result;
-		if( std::cin.fail() || result > GetOptions().size() )
-		{
-			std::cin.clear();
-			std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
-			continue;
-		}
-		break;
-	}
-	return result;
 }
 
 } // namespace ypp_sm::frontend

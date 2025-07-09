@@ -33,13 +33,6 @@ private:
 	//! Prints the menu.
 	void PrintMenu();
 
-	/**
-	 * @brief Asks the user for a valid input.
-	 * @return The chosen option index.
-	 */
-	//! Asks the user for a valid input.
-	unsigned int HandleInput();
-
 	//! Retrieves the introductory text.
 	virtual constexpr std::string_view GetIntro() const noexcept = 0;
 
