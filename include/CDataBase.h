@@ -56,6 +56,30 @@ public:
 	const prices& GetPrices() const noexcept;
 
 	/**
+	 * @brief Adds a new recipe.
+	 * @param aSetName Group where the recipe should be added.
+	 * @param aRecipe Recipe to be added.
+	 * @return Whether the recipe could be added.
+	 */
+	bool AddRecipe( std::string_view aSetName, const CRecipe& aRecipe );
+
+	/**
+	 * @brief Removes a recipe.
+	 * @param aSetName Group where the recipe should be removed from.
+	 * @param aItemName Name of the recipe.
+	 * @return Whether the recipe could be removed.
+	 */
+	bool RemoveRecipe( std::string_view aSetName, std::string_view aItemName );
+
+	/**
+	 * @brief Modifies a recipe.
+	 * @param aSetName Group where the recipe to be modified is.
+	 * @param aRecipe Recipe to be added.
+	 * @return Whether the recipe could be modified.
+	 */
+	bool ModifyRecipe( std::string_view aSetName, const CRecipe& aRecipe );
+
+	/**
 	 * @brief Adds a new price.
 	 * @param aSetName Group where the price should be added.
 	 * @param aItemName Name of the item.

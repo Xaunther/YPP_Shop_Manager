@@ -13,6 +13,27 @@ namespace ypp_sm::frontend
 namespace
 {
 
+//! Creates a recipe from user input
+CRecipe CreateRecipeFromInput();
+
+/**
+ * @brief Adds recipe from user input.
+ * @param aDataBase Database to add the recipe to.
+ */
+bool AddRecipe( CDataBase& aDataBase, std::string_view );
+
+/**
+ * @brief Removes recipe from user input.
+ * @param aDataBase Database to remove the recipe from.
+ */
+bool RemoveRecipe( CDataBase& aDataBase, std::string_view );
+
+/**
+ * @brief Modifies recipe from user input.
+ * @param aDataBase Database to modify the recipe at.
+ */
+bool ModifyRecipe( CDataBase& aDataBase, std::string_view );
+
 /**
  * @brief Adds price from user input.
  * @param aDataBase Database to add the price to.
@@ -45,6 +66,9 @@ constexpr std::vector<std::string_view> CMainMenuSelector::GetOptions() const no
 		"List everything",
 		"List recipes",
 		"List prices",
+		"Add recipe",
+		"Remove recipe",
+		"Modify recipe",
 		"Add price",
 		"Remove price",
 		"Modify price",
@@ -59,6 +83,9 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 		[]( CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetRecipes().GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetPrices().GetDescription(); return true; },
+		AddRecipe,
+		RemoveRecipe,
+		ModifyRecipe,
 		AddPrice,
 		RemovePrice,
 		ModifyPrice,
@@ -75,6 +102,43 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 
 namespace
 {
+
+CRecipe CreateRecipeFromInput()
+{
+	auto itemInput = AskInput<std::string>( "Item:" );
+	auto yieldInput = AskInput<unsigned int>( "Yield:" );
+	auto ingredientsCountInput = AskInput<unsigned int>( "Number of ingredients:" );
+	types::CRecipe::items ingredientsInput;
+	while( ingredientsInput.size() < ingredientsCountInput )
+	{
+		auto ingredientInput = AskInput<types::AKeyable::key_type>( "Ingredient " + std::to_string( ingredientsInput.size() + 1 ) + ":" );
+		auto countInput = AskInput<types::CRecipe::count>( ingredientInput + " units:" );
+		ingredientsInput.emplace( ingredientInput, countInput );
+	}
+	return CRecipe{ itemInput, ingredientsInput, yieldInput };
+}
+
+bool AddRecipe( CDataBase& aDataBase, std::string_view )
+{
+	auto setInput = AskInput<std::string>( "Set:" );
+	aDataBase.AddRecipe( setInput, CreateRecipeFromInput() );
+	return true;
+}
+
+bool RemoveRecipe( CDataBase& aDataBase, std::string_view )
+{
+	auto setInput = AskInput<std::string>( "Set:" );
+	auto itemInput = AskInput<std::string>( "Item:" );
+	aDataBase.RemoveRecipe( setInput, itemInput );
+	return true;
+}
+
+bool ModifyRecipe( CDataBase& aDataBase, std::string_view )
+{
+	auto setInput = AskInput<std::string>( "Set:" );
+	aDataBase.ModifyRecipe( setInput, CreateRecipeFromInput() );
+	return true;
+}
 
 bool AddPrice( CDataBase& aDataBase, std::string_view )
 {
