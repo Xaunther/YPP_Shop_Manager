@@ -50,6 +50,14 @@ public:
 	//! Retrieves the \copybrief mKeySets
 	const key_sets& GetKeySets() const noexcept;
 
+	/**
+	 * @brief Adds a new element.
+	 * @param aSetName Set where the element should be added to.
+	 * @param aElement Element to be added.
+	 * @return Whether the element could be added.
+	 */
+	bool AddElement( std::string_view aSetName, const T& aElement );
+
 private:
 	//! Sets classified by some key.
 	key_sets mKeySets;
@@ -109,6 +117,15 @@ template <typename T>
 const CKeySets<T>::key_sets& CKeySets<T>::GetKeySets() const noexcept
 {
 	return mKeySets;
+}
+
+template <typename T>
+bool CKeySets<T>::AddElement( std::string_view aSetName, const T& aElement )
+{
+	auto found = mKeySets.find( aSetName.data() );
+	if( found == mKeySets.end() )
+		return false;
+	return (*found).second.emplace( aElement ).second;
 }
 
 } // ypp_sm namespace

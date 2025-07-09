@@ -49,4 +49,10 @@ const CDataBase::prices& CDataBase::GetPrices() const noexcept
 	return mPrices;
 }
 
+bool CDataBase::AddPrice( std::string_view aSetName, std::string_view aItemName, price aPrice )
+{
+	return mPrices.AddElement( aSetName, CKeyItem{ aItemName, aPrice } );
+}
+}
+
 } // ypp_sm namespace

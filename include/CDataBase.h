@@ -55,6 +55,15 @@ public:
 	//! Retrieves the \copybrief mPrices
 	const prices& GetPrices() const noexcept;
 
+	/**
+	 * @brief Adds a new price.
+	 * @param aSetName Group where the price should be added.
+	 * @param aItemName Name of the item.
+	 * @param aPrice Price of the item.
+	 * @return Whether the price could be added.
+	 */
+	bool AddPrice( std::string_view aSetName, std::string_view aItemName, price aPrice );
+
 private:
 	//! List of recipes, classified by a keyword
 	recipes mRecipes;
