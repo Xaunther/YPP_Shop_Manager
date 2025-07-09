@@ -64,6 +64,14 @@ public:
 	 */
 	bool AddPrice( std::string_view aSetName, std::string_view aItemName, price aPrice );
 
+	/**
+	 * @brief Removes a price.
+	 * @param aSetName Group where the price should be removed from.
+	 * @param aItemName Name of the item.
+	 * @return Whether the price could be removed.
+	 */
+	bool RemovePrice( std::string_view aSetName, std::string_view aItemName );
+
 private:
 	//! List of recipes, classified by a keyword
 	recipes mRecipes;

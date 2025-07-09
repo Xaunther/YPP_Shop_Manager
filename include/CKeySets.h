@@ -58,6 +58,14 @@ public:
 	 */
 	bool AddElement( std::string_view aSetName, const T& aElement );
 
+	/**
+	 * @brief Removes an element.
+	 * @param aSetName Group where the element should be removed from.
+	 * @param aElement Element to be removed.
+	 * @return Whether the element could be removed.
+	 */
+	bool RemoveElement( std::string_view aSetName, const T& aElement );
+
 private:
 	//! Sets classified by some key.
 	key_sets mKeySets;
@@ -126,6 +134,15 @@ bool CKeySets<T>::AddElement( std::string_view aSetName, const T& aElement )
 	if( found == mKeySets.end() )
 		return false;
 	return (*found).second.emplace( aElement ).second;
+}
+
+template <typename T>
+bool CKeySets<T>::RemoveElement( std::string_view aSetName, const T& aElement )
+{
+	auto found = mKeySets.find( aSetName.data() );
+	if( found == mKeySets.end() )
+		return false;
+	return (*found).second.erase( aElement ) > 0;
 }
 
 } // ypp_sm namespace
