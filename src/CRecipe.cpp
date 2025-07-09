@@ -38,6 +38,20 @@ void CRecipe::JSON( json& aJSON ) const noexcept
 	}
 }
 
+std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
+{
+	std::stringstream ss;
+	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << YIELD_KEY << ": " << mYield << "\n";
+	if( !mItems.empty() )
+	{
+		ss << std::string( aIndentDepth + 1, aIndentChar ) << INGREDIENTS_KEY << ":\n";
+		for( const auto& item : mItems )
+			ss << item.GetDescription( aIndentDepth + 2, aIndentChar );
+	}
+	return ss.str();
+}
+
 CRecipe::count CRecipe::GetYield() const noexcept
 {
 	return mYield;

@@ -1,10 +1,14 @@
 #pragma once
 
 #include "AKeyable.h"
+#include "IDescriptable.h"
 #include "IJsonable.h"
+
+#include <sstream>
 
 #include "ExceptionUtils.h"
 #include "JsonUtils.h"
+
 
 namespace ypp_sm
 {
@@ -13,7 +17,7 @@ namespace ypp_sm
  * @brief Class for a price item.
  */
 template <typename T>
-class CKeyItem : public IJsonable, public AKeyable
+class CKeyItem : public IJsonable, public AKeyable, public IDescriptable
 {
 public:
 	/**
@@ -35,6 +39,12 @@ protected:
 	 * @copydoc IJsonable::ToJSON
 	 */
 	void JSON( json& aJSON ) const noexcept override;
+
+private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
 
 public:
 	//! Retrieves the \copybrief mValue
@@ -64,6 +74,14 @@ template <typename T>
 void CKeyItem<T>::JSON( json& aJSON ) const noexcept
 {
 	AddToJSON( aJSON, mValue );
+}
+
+template <typename T>
+std::string CKeyItem<T>::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
+{
+	std::stringstream ss;
+	ss << key_type( aIndentDepth, aIndentChar ) << GetKey() << ": " << mValue << "\n";
+	return ss.str();
 }
 
 template <typename T>
