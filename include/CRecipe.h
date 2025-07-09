@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AKeyable.h"
+#include "IDescriptable.h"
 #include "IJsonable.h"
 
 #include "CKeyItem.h"
@@ -14,7 +15,7 @@ namespace ypp_sm
 /**
  * @brief Class for a recipe.
  */
-class CRecipe : public IJsonable, public AKeyable, protected json_traits<CRecipe>, protected default_traits<CRecipe>
+class CRecipe : public IJsonable, public IDescriptable, public AKeyable, protected json_traits<CRecipe>, protected default_traits<CRecipe>
 {
 protected:
 	using items = types::CRecipe::items;
@@ -41,6 +42,12 @@ protected:
 	 * @copydoc IJsonable::ToJSON
 	 */
 	void JSON( json& aJSON ) const noexcept override;
+
+private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
 
 public:
 	//! Retrieves the \copybrief mItems

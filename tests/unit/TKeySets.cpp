@@ -114,6 +114,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 			} )", "Recipes" ),
 		} )
 		{
+			result.emplace_back( recipes.GetDescription( 0, '\t' ) );
 			ypp_sm::types::IJsonable::json outputJSON;
 			AddToJSONKey( outputJSON, recipes, "Recipes" );
 			result.push_back( outputJSON.dump( 1, '\t' ) );
@@ -167,6 +168,36 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 std::vector<std::string> TRecipes::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
+		"Iron Monger:\n"
+		"	Large cannon balls:\n"
+		"		Yield: 10\n"
+		"		Ingredients:\n"
+		"			Basic labour: 2\n"
+		"			Iron: 12\n"
+		"			Skilled labour: 5\n"
+		"			Wood: 4\n"
+		"	Medium cannon balls:\n"
+		"		Yield: 10\n"
+		"		Ingredients:\n"
+		"			Basic labour: 3\n"
+		"			Iron: 8\n"
+		"			Skilled labour: 2\n"
+		"			Wood: 3\n"
+		"	Small cannon balls:\n"
+		"		Yield: 10\n"
+		"		Ingredients:\n"
+		"			Basic labour: 3\n"
+		"			Iron: 5\n"
+		"			Wood: 1\n"
+		"Shipyard:\n"
+		"	Lifeboats:\n"
+		"		Yield: 10\n"
+		"		Ingredients:\n"
+		"			Basic labour: 5\n"
+		"			Grog: 15\n"
+		"			Iron: 30\n"
+		"			Skilled labour: 50\n"
+		"			Wood: 85\n",
 		"{\n"
 		"	\"Recipes\": {\n"
 		"		\"Iron Monger\": {\n"

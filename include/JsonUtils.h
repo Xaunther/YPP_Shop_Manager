@@ -2,6 +2,8 @@
 
 #include <nlohmann/json.hpp>
 
+#include <fstream>
+
 #include "traits/json.h"
 
 namespace ypp_sm
@@ -88,6 +90,14 @@ inline T ValueFromJSONString( const std::string_view& aJSONString, auto&&... aAr
 */
 template<typename T>
 inline T ValueFromJSONKeyString( const std::string_view& aJSONString, const std::string_view aKeyName = json_traits<T>::KEY, auto&&... aArgs );
+
+/**
+ * @brief Helper function to construct a class from a JSON file.
+ * @param aJSONFileName JSON file name.
+ * @param aArgs Extra arguments to be forwarded to the JSON constructor.
+*/
+template<typename T>
+inline T ValueFromJSONFile( std::string_view aJSONFileName, auto&&... aArgs );
 
 /**
  * @brief Helper function to add a jsonable object to a JSON object.
@@ -202,6 +212,12 @@ template<typename T>
 inline T ValueFromJSONKeyString( const std::string_view& aJSONString, const std::string_view aKeyName, auto&&... aArgs )
 {
 	return ValueFromRequiredJSONKey<T>( nlohmann::json::parse( aJSONString ), aKeyName, std::forward<decltype( aArgs )>( aArgs )... );
+}
+
+template<typename T>
+inline T ValueFromJSONFile( std::string_view aJSONFileName, auto&&... aArgs )
+{
+	return T{ nlohmann::json::parse( std::ifstream{ aJSONFileName.data() } ), std::forward<decltype( aArgs )>( aArgs )... };
 }
 
 inline void AddToJSON( is_json_type auto& aJSON, const is_jsonable auto& aObject, auto&&... aArgs ) noexcept

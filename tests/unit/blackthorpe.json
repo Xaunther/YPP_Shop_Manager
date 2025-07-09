@@ -1,60 +1,65 @@
 {
 	"Recipes": {
-		"Iron Monger": {
-			"Small cannon balls": {
+		"Distillery": {
+			"Grog": {
 				"Yield": 10,
 				"Ingredients": {
-					"Iron" : 5,
-					"Wood" : 1,
-					"Basic" : 3
+					"Sugar cane": 6,
+					"Wood": 3
 				}
-			},
-			"Medium cannon balls": {
-				"Yield": 10,
+			}
+		},
+		"Iron Monger": {
+			"Foil": {
 				"Ingredients": {
-					"Iron" : 8,
-					"Wood" : 3,
-					"Basic" : 3,
-					"Skilled" : 2
+					"Basic": 15,
+					"Blue enamel": 1,
+					"Iron": 1,
+					"Tan enamel": 1
 				}
 			},
 			"Large cannon balls": {
 				"Yield": 10,
 				"Ingredients": {
-					"Iron" : 12,
-					"Wood" : 4,
-					"Basic" : 2,
-					"Skilled" : 5
+					"Basic": 2,
+					"Iron": 12,
+					"Skilled": 5,
+					"Wood": 4
 				}
 			},
-			"Foil": {
+			"Medium cannon balls": {
+				"Yield": 10,
 				"Ingredients": {
-					"Iron": 1,
-					"Tan enamel": 1,
-					"Blue enamel": 1,
-					"Basic": 15
+					"Basic": 3,
+					"Iron": 8,
+					"Skilled": 2,
+					"Wood": 3
+				}
+			},
+			"Small cannon balls": {
+				"Yield": 10,
+				"Ingredients": {
+					"Basic": 3,
+					"Iron": 5,
+					"Wood": 1
 				}
 			}
-		},
-		"Distillery": {
 		}
 	},
-
 	"Prices": {
 		"Basic commodities": {
-			"Sugar cane" : 12,
-			"Hemp" : 4,
-			"Iron" : 15,
-			"Wood" : 25,
-			"Stone": 1,
-			"Hemp oil": 35,
-			"Kraken's ink": 6000
+			"Hemp": 4.0,
+			"Hemp oil": 35.0,
+			"Iron": 15.0,
+			"Kraken's ink": 6000.0,
+			"Stone": 1.0,
+			"Sugar cane": 12.0,
+			"Wood": 25.0
 		},
 		"Labour": {
-			"Basic": 20,
-			"Skilled": 30,
-			"Expert": 50
+			"Basic": 20.0,
+			"Expert": 50.0,
+			"Skilled": 30.0
 		}
-
 	}
 }

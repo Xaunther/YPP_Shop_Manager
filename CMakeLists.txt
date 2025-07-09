@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.22)
 # YPPShopManager project data
 project(YPP_SM DESCRIPTION "A command-line shop manager for Puzzle Pirates" HOMEPAGE_URL "https://github.com/Xaunther/YPP_Shop_Manager" LANGUAGES CXX)
 
-# C++ 20 required
-set(CMAKE_CXX_STANDARD 20)
+# C++ 23 required
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 # Option to build documentation

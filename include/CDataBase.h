@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IDescriptable.h"
 #include "IJsonable.h"
 
 #include "CKeyItem.h"
@@ -15,7 +16,7 @@ namespace ypp_sm
 /**
  * @brief Class for a database.
  */
-class CDataBase : public IJsonable, protected json_traits<CDataBase>
+class CDataBase : public IJsonable, public IDescriptable, protected json_traits<CDataBase>
 {
 protected:
 	using price = types::CDataBase::price;
@@ -41,6 +42,12 @@ protected:
 	 * @copydoc IJsonable::ToJSON
 	 */
 	void JSON( json& aJSON ) const noexcept override;
+
+private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
 
 public:
 	//! Retrieves the \copybrief mRecipes

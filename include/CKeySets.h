@@ -1,5 +1,6 @@
 #pragma once
 
+#include "IDescriptable.h"
 #include "IJsonable.h"
 
 #include "types/CKeySets.h"
@@ -14,7 +15,7 @@ namespace ypp_sm
  * @brief Class for some sets classified by keys.
  */
 template <typename T>
-class CKeySets : public IJsonable
+class CKeySets : public IJsonable, public IDescriptable
 {
 public:
 	using value_type = T;
@@ -38,6 +39,12 @@ protected:
 	 * @copydoc IJsonable::ToJSON
 	 */
 	void JSON( json& aJSON ) const noexcept override;
+
+private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
 
 public:
 	//! Retrieves the \copybrief mKeySets
@@ -73,10 +80,29 @@ void CKeySets<T>::JSON( json& aJSON ) const noexcept
 {
 	for( const auto& [ key, set ] : mKeySets )
 	{
-		json& keyRecipesJSON = aJSON[ key ];
-		for( const auto& setElement : set )
-			AddToJSONKey( keyRecipesJSON, setElement, setElement.GetKey() );
+		if( !set.empty() )
+		{
+			json& keyRecipesJSON = aJSON[ key ];
+			for( const auto& setElement : set )
+				AddToJSONKey( keyRecipesJSON, setElement, setElement.GetKey() );
+		}
 	}
+}
+
+template <typename T>
+std::string CKeySets<T>::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
+{
+	std::stringstream ss;
+	for( const auto& [ key, set ] : mKeySets )
+	{
+		if( !set.empty() )
+		{
+			ss << std::string( aIndentDepth, aIndentChar ) << key << ":\n";
+			for( const auto& setElement : set )
+				ss << setElement.GetDescription( aIndentDepth + 1, aIndentChar );
+		}
+	}
+	return ss.str();
 }
 
 template <typename T>

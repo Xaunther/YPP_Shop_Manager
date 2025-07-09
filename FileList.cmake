@@ -6,6 +6,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/CKeySets.h
 	include/CRecipe.h
 	include/ExceptionUtils.h
+	include/IDescriptable.h
 	include/IJsonable.h
 	include/JsonUtils.h
 	include/NumberUtils.h
@@ -22,6 +23,8 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 # Frontend external headers
 SET(YPP_SM_FRONTEND_EXTERNAL_HEADERS
 	include/frontend/CInputArguments.h
+	include/frontend/CMainMenuSelector.h
+	include/frontend/IMenuSelector.h
 )
 
 # Core source files
@@ -29,6 +32,7 @@ SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
 	src/CDataBase.cpp
 	src/CRecipe.cpp
+	src/IDescriptable.cpp
 	src/IJsonable.cpp
 )
 
@@ -36,6 +40,8 @@ SET(YPP_SM_CORE_SOURCE
 # Frontend source files
 SET(YPP_SM_FRONTEND_SOURCE
 	src/frontend/CInputArguments.cpp
+	src/frontend/CMainMenuSelector.cpp
+	src/frontend/IMenuSelector.cpp
 )
 
 # External headers
