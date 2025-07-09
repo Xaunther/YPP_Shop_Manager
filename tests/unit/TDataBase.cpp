@@ -94,6 +94,7 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 		} )" ),
 	} )
 	{
+		result.emplace_back( database.GetDescription() );
 		ypp_sm::types::IJsonable::json outputJSON;
 		AddToJSON( outputJSON, database );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
@@ -105,7 +106,30 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 std::vector<std::string> TDataBase::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
+		"",
 		"null",
+		"Recipes:\n"
+		" Iron Monger:\n"
+		"  Foil:\n"
+		"   Yield: 1\n"
+		"   Ingredients:\n"
+		"    Black enamel: 1\n"
+		"    Tan enamel: 1\n"
+		"  Small cannon balls:\n"
+		"   Yield: 10\n"
+		"   Ingredients:\n"
+		"    Iron: 5\n"
+		"    Wood: 3\n"
+		" Shipwrightery:\n"
+		"  Lifeboats:\n"
+		"   Yield: 10\n"
+		"   Ingredients:\n"
+		"    Iron: 5\n"
+		"    Wood: 3\n"
+		"Prices:\n"
+		" Basic commodities:\n"
+		"  Iron: 19\n"
+		"  Wood: 11\n",
 		"{\n"
 		"	\"Recipes\": {\n"
 		"		\"Iron Monger\": {\n"

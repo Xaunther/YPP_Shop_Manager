@@ -85,6 +85,7 @@ std::vector<std::string> TRecipe::ObtainedResults() noexcept
 		} )", "Large cannon balls", "Large cannon balls" ),
 	} )
 	{
+		result.emplace_back( recipe.GetDescription() );
 		ypp_sm::types::IJsonable::json outputJSON;
 		AddToJSONKey( outputJSON, recipe, recipe.GetKey() );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
@@ -96,6 +97,12 @@ std::vector<std::string> TRecipe::ObtainedResults() noexcept
 std::vector<std::string> TRecipe::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
+		"Small cannon balls:\n"
+		" Yield: 10\n"
+		" Ingredients:\n"
+		"  Basic labour: 3\n"
+		"  Iron: 5\n"
+		"  Wood: 1\n",
 		"{\n"
 		"	\"Small cannon balls\": {\n"
 		"		\"Yield\": 10,\n"
@@ -106,6 +113,13 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"		}\n"
 		"	}\n"
 		"}",
+		"Medium cannon balls:\n"
+		" Yield: 10\n"
+		" Ingredients:\n"
+		"  Basic labour: 3\n"
+		"  Iron: 8\n"
+		"  Skilled labour: 2\n"
+		"  Wood: 3\n",
 		"{\n"
 		"	\"Medium cannon balls\": {\n"
 		"		\"Yield\": 10,\n"
@@ -117,6 +131,13 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"		}\n"
 		"	}\n"
 		"}",
+		"Large cannon balls:\n"
+		" Yield: 1\n"
+		" Ingredients:\n"
+		"  Basic labour: 2\n"
+		"  Iron: 12\n"
+		"  Skilled labour: 5\n"
+		"  Wood: 4\n",
 		"{\n"
 		"	\"Large cannon balls\": {\n"
 		"		\"Ingredients\": {\n"

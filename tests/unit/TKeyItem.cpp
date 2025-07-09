@@ -35,6 +35,7 @@ std::vector<std::string> TKeyItem::ObtainedResults() noexcept
 	{
 		result.emplace_back( std::string{ recipeItem.GetKey() } + ":" );
 		result.emplace_back( " Quantity: " + std::to_string( recipeItem.GetValue() ) );
+		result.emplace_back( recipeItem.GetDescription() );
 		ypp_sm::types::IJsonable::json outputJSON;
 		AddToJSONKey( outputJSON, recipeItem, recipeItem.GetKey() );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
@@ -48,26 +49,31 @@ std::vector<std::string> TKeyItem::ExpectedResults() noexcept
 	return {
 		"Black paint:",
 		" Quantity: 1",
+		"Black paint: 1\n",
 		"{\n"
 		"	\"Black paint\": 1\n"
 		"}",
 		"Red paint:",
 		" Quantity: 1",
+		"Red paint: 1\n",
 		"{\n"
 		"	\"Red paint\": 1\n"
 		"}",
 		"White paint:",
 		" Quantity: 3",
+		"White paint: 3\n",
 		"{\n"
 		"	\"White paint\": 3\n"
 		"}",
 		"Wood:",
 		" Quantity: 23",
+		"Wood: 23\n",
 		"{\n"
 		"	\"Wood\": 23\n"
 		"}",
 		"Yellow paint:",
 		" Quantity: 2",
+		"Yellow paint: 2\n",
 		"{\n"
 		"	\"Yellow paint\": 2\n"
 		"}",
