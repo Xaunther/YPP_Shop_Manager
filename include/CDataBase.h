@@ -64,6 +64,14 @@ public:
 	bool AddRecipe( std::string_view aSetName, const CRecipe& aRecipe );
 
 	/**
+	 * @brief Removes a recipe.
+	 * @param aSetName Group where the recipe should be removed from.
+	 * @param aItemName Name of the recipe.
+	 * @return Whether the recipe could be removed.
+	 */
+	bool RemoveRecipe( std::string_view aSetName, std::string_view aItemName );
+
+	/**
 	 * @brief Adds a new price.
 	 * @param aSetName Group where the price should be added.
 	 * @param aItemName Name of the item.

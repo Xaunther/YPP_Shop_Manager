@@ -23,6 +23,12 @@ CRecipe CreateRecipeFromInput();
 bool AddRecipe( CDataBase& aDataBase, std::string_view );
 
 /**
+ * @brief Removes recipe from user input.
+ * @param aDataBase Database to remove the price from.
+ */
+bool RemoveRecipe( CDataBase& aDataBase, std::string_view );
+
+/**
  * @brief Adds price from user input.
  * @param aDataBase Database to add the price to.
  */
@@ -55,6 +61,7 @@ constexpr std::vector<std::string_view> CMainMenuSelector::GetOptions() const no
 		"List recipes",
 		"List prices",
 		"Add recipe",
+		"Remove recipe",
 		"Add price",
 		"Remove price",
 		"Modify price",
@@ -70,6 +77,7 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 		[]( CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetRecipes().GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetPrices().GetDescription(); return true; },
 		AddRecipe,
+		RemoveRecipe,
 		AddPrice,
 		RemovePrice,
 		ModifyPrice,
@@ -106,6 +114,14 @@ bool AddRecipe( CDataBase& aDataBase, std::string_view )
 {
 	auto setInput = AskInput<std::string>( "Set:" );
 	aDataBase.AddRecipe( setInput, CreateRecipeFromInput() );
+	return true;
+}
+
+bool RemoveRecipe( CDataBase& aDataBase, std::string_view )
+{
+	auto setInput = AskInput<std::string>( "Set:" );
+	auto itemInput = AskInput<std::string>( "Item:" );
+	aDataBase.RemoveRecipe( setInput, itemInput );
 	return true;
 }
 
