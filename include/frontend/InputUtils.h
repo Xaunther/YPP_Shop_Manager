@@ -44,12 +44,13 @@ template <typename T> bool DEFAULT_CONDITION( const std::string& aInput )
 {
 	try
 	{
-		return ( DEFAULT_CONVERSION<T>( aInput ), true );
+		DEFAULT_CONVERSION<T>( aInput );
 	}
 	catch( const std::invalid_argument& )
 	{
 		return false;
 	}
+	return true;
 }
 
 template <typename T>
