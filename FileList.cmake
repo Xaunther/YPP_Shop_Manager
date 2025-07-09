@@ -42,7 +42,6 @@ SET(YPP_SM_CORE_SOURCE
 SET(YPP_SM_FRONTEND_SOURCE
 	src/frontend/CInputArguments.cpp
 	src/frontend/CMainMenuSelector.cpp
-	src/frontend/InputUtils.cpp
 )
 
 # External headers
