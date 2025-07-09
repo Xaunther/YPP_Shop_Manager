@@ -52,7 +52,7 @@ constexpr std::vector<std::string_view> CMainMenuSelector::GetOptions() const no
 	};
 }
 
-std::vector<std::function<bool( CDataBase&, std::string_view )>> CMainMenuSelector::GetOperations() const noexcept
+CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 {
 	return {
 		[]( CDataBase&, std::string_view ){ return false; },
