@@ -72,6 +72,15 @@ public:
 	 */
 	bool RemovePrice( std::string_view aSetName, std::string_view aItemName );
 
+	/**
+	 * @brief Modifies a price.
+	 * @param aSetName Group where the price to be modified is.
+	 * @param aItemName Name of the item which price will be modified.
+	 * @param aPrice New price for the item.
+	 * @return Whether the price could be modified.
+	 */
+	bool ModifyPrice( std::string_view aSetName, std::string_view aItemName, price aPrice );
+
 private:
 	//! List of recipes, classified by a keyword
 	recipes mRecipes;

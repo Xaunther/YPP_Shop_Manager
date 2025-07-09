@@ -59,4 +59,9 @@ bool CDataBase::RemovePrice( std::string_view aSetName, std::string_view aItemNa
 	return mPrices.RemoveElement( aSetName, CKeyItem{ aItemName, price{} } );
 }
 
+bool CDataBase::ModifyPrice( std::string_view aSetName, std::string_view aItemName, price aPrice )
+{
+	return mPrices.ModifyElement( aSetName, CKeyItem{ aItemName, aPrice } );
+}
+
 } // ypp_sm namespace
