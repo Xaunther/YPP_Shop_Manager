@@ -25,7 +25,7 @@ public:
 	 * @param aName Name of the item.
 	 * @param aValue \copybrief mValue
 	 */
-	explicit CKeyItem( std::string_view aName, const T& aValue );
+	explicit CKeyItem( std::string_view aName, const T& aValue = T{} );
 
 	/**
 	 * @brief JSON constructor.

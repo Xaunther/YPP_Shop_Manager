@@ -52,8 +52,12 @@ private:
 public:
 	//! Retrieves the \copybrief mRecipes
 	const recipes& GetRecipes() const noexcept;
+	//! Retrieves the \copybrief mRecipes
+	recipes& Recipes() noexcept;
 	//! Retrieves the \copybrief mPrices
 	const prices& GetPrices() const noexcept;
+	//! Retrieves the \copybrief mPrices
+	prices& Prices() noexcept;
 
 	/**
 	 * @brief Adds a new recipe.
