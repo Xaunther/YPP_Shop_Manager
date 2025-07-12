@@ -24,6 +24,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 SET(YPP_SM_FRONTEND_EXTERNAL_HEADERS
 	include/frontend/CInputArguments.h
 	include/frontend/CMainMenuSelector.h
+	include/frontend/CSetMenuSelector.h
 	include/frontend/IMenuSelector.h
 	include/frontend/InputUtils.h
 )
