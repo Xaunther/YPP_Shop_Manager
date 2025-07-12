@@ -54,12 +54,12 @@ bool ModifyPrice( CDataBase& aDataBase, std::string_view );
 
 } // anonymous namespace
 
-constexpr std::string_view CMainMenuSelector::GetIntro() const noexcept
+constexpr std::string CMainMenuSelector::GetIntro() const noexcept
 {
 	return "What do you want to do?";
 }
 
-constexpr std::vector<std::string_view> CMainMenuSelector::GetOptions() const noexcept
+constexpr std::vector<std::string> CMainMenuSelector::GetOptions() const noexcept
 {
 	return {
 		"Quit",
