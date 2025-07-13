@@ -11,6 +11,9 @@ template <typename T> using conversion_function = std::function<T( const std::st
 template <typename T> using condition_function = std::function<bool( const std::string& )>;
 
 template <typename T> T DEFAULT_CONVERSION( const std::string& aInput );
+template <> unsigned int DEFAULT_CONVERSION( const std::string& aInput );
+template <> float DEFAULT_CONVERSION( const std::string& aInput );
+
 template <typename T> bool DEFAULT_CONDITION( const std::string& aInput );
 
 /**
@@ -28,16 +31,6 @@ T AskInput( std::string_view aMessage,
 template <typename T> T DEFAULT_CONVERSION( const std::string& aInput )
 {
 	return aInput;
-}
-
-template <> inline unsigned int DEFAULT_CONVERSION( const std::string& aInput )
-{
-	return std::stoul( aInput );
-}
-
-template <> inline float DEFAULT_CONVERSION( const std::string& aInput )
-{
-	return std::stof( aInput );
 }
 
 template <typename T> bool DEFAULT_CONDITION( const std::string& aInput )
