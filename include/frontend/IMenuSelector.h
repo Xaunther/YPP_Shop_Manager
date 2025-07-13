@@ -80,6 +80,7 @@ void IMenuSelector<Args...>::operator()( Args&&... aArgs ) const
 template< typename... Args >
 void IMenuSelector<Args...>::PrintMenu() const
 {
+	std::cout << "\n" << GetIntro() << "\n";
 	for( const auto& [ index, option ] : std::views::enumerate( GetOptions() ) )
 		std::cout << index << ") " << option << ".\n";
 }
