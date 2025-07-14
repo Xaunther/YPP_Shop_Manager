@@ -143,12 +143,9 @@ std::string CKeySets<T>::Description( unsigned int aIndentDepth, char aIndentCha
 	std::stringstream ss;
 	for( const auto& [ key, set ] : mKeySets )
 	{
-		if( !set.empty() )
-		{
-			ss << std::string( aIndentDepth, aIndentChar ) << key << ":\n";
-			for( const auto& setElement : set )
-				ss << setElement.GetDescription( aIndentDepth + 1, aIndentChar );
-		}
+		ss << std::string( aIndentDepth, aIndentChar ) << key << ":\n";
+		for( const auto& setElement : set )
+			ss << setElement.GetDescription( aIndentDepth + 1, aIndentChar );
 	}
 	return ss.str();
 }
