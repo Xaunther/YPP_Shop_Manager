@@ -41,9 +41,6 @@ private:
 	//! Prints the menu.
 	void PrintMenu() const;
 
-	//! Gets the operation to be done.
-	operation GetOperation() const;
-
 	//! Retrieves the introductory text.
 	virtual constexpr std::string GetIntro() const noexcept = 0;
 
