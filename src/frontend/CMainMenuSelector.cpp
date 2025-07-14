@@ -55,11 +55,11 @@ constexpr std::vector<std::string> CMainMenuSelector::GetOptions() const noexcep
 CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 {
 	return {
-		[]( CDataBase&, std::string_view ){ return false; },
-		[]( CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
+		[]( const CDataBase&, std::string_view ){ return false; },
+		[]( const CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CRecipe>{}( aDataBase.Recipes() ); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CKeyItem<types::CDataBase::price>>{}( aDataBase.Prices() ); return true; },
-		[]( CDataBase& aDataBase, std::string_view aJSONFileName )
+		[]( const CDataBase& aDataBase, std::string_view aJSONFileName )
 		{
 			std::ofstream f( aJSONFileName.data() );
 			types::IJsonable::json JSON;

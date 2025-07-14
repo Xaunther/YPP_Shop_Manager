@@ -91,8 +91,8 @@ template <typename T> requires std::derived_from<T, IDescriptable>
 CSetMenuSelector<T>::operations CSetMenuSelector<T>::GetOperations() const noexcept
 {
 	return {
-		[]( std::set<T>& ){ return false; },
-		[]( std::set<T>& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
+		[]( const std::set<T>& ){ return false; },
+		[]( const std::set<T>& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
 		[&]( std::set<T>& aSet ){ aSet.emplace( AskInput<T>( "Item:" ) ); return true; },
 		[&]( std::set<T>& aSet ){ aSet.erase( T{ AskInput<types::AKeyable::key_type>( "Item:" ) } ); return true; },
 		[&]( std::set<T>& aSet )

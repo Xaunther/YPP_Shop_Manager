@@ -49,8 +49,8 @@ template <typename T>
 CKeySetsMenuSelector<T>::operations CKeySetsMenuSelector<T>::GetOperations() const noexcept
 {
 	return {
-		[]( CKeySets<T>& ){ return false; },
-		[]( CKeySets<T>& aKeySets ){ std::cout << aKeySets.GetDescription(); return true; },
+		[]( const CKeySets<T>& ){ return false; },
+		[]( const CKeySets<T>& aKeySets ){ std::cout << aKeySets.GetDescription(); return true; },
 		[]( CKeySets<T>& aKeySets ){ aKeySets.KeySets()[ AskInput<std::string>( "Category:" ) ]; return true; },
 		[]( CKeySets<T>& aKeySets ){ aKeySets.KeySets().erase( AskInput<std::string>( "Category:" ) ); return true; },
 		[]( CKeySets<T>& aKeySets )
