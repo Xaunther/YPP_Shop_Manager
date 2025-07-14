@@ -30,7 +30,7 @@ T AskInput( std::string_view aMessage,
 
 template <typename T> T DEFAULT_CONVERSION( const std::string& aInput )
 {
-	return aInput;
+	return T{ aInput };
 }
 
 template <typename T> bool DEFAULT_CONDITION( const std::string& aInput )
