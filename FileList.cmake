@@ -23,7 +23,9 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 # Frontend external headers
 SET(YPP_SM_FRONTEND_EXTERNAL_HEADERS
 	include/frontend/CInputArguments.h
+	include/frontend/CKeySetsMenuSelector.h
 	include/frontend/CMainMenuSelector.h
+	include/frontend/CSetMenuSelector.h
 	include/frontend/IMenuSelector.h
 	include/frontend/InputUtils.h
 )
@@ -42,6 +44,7 @@ SET(YPP_SM_CORE_SOURCE
 SET(YPP_SM_FRONTEND_SOURCE
 	src/frontend/CInputArguments.cpp
 	src/frontend/CMainMenuSelector.cpp
+	src/frontend/InputUtils.cpp
 )
 
 # External headers

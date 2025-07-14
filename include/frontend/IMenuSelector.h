@@ -2,7 +2,7 @@
 
 #include <functional>
 #include <ranges>
-#include <string_view>
+#include <string>
 #include <vector>
 
 #include "InputUtils.h"
@@ -41,14 +41,11 @@ private:
 	//! Prints the menu.
 	void PrintMenu() const;
 
-	//! Gets the operation to be done.
-	operation GetOperation() const;
-
 	//! Retrieves the introductory text.
-	virtual constexpr std::string_view GetIntro() const noexcept = 0;
+	virtual constexpr std::string GetIntro() const noexcept = 0;
 
 	//! Retrieves the posible options.
-	virtual constexpr std::vector<std::string_view> GetOptions() const noexcept = 0;
+	virtual constexpr std::vector<std::string> GetOptions() const noexcept = 0;
 
 	/**
 	 * @brief Retrieves the posible operations.
@@ -80,6 +77,7 @@ void IMenuSelector<Args...>::operator()( Args&&... aArgs ) const
 template< typename... Args >
 void IMenuSelector<Args...>::PrintMenu() const
 {
+	std::cout << "\n" << GetIntro() << "\n";
 	for( const auto& [ index, option ] : std::views::enumerate( GetOptions() ) )
 		std::cout << index << ") " << option << ".\n";
 }

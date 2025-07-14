@@ -50,6 +50,30 @@ public:
 	//! Retrieves the \copybrief mKeySets
 	const key_sets& GetKeySets() const noexcept;
 
+	//! Retrieves the \copybrief mKeySets
+	key_sets& KeySets() noexcept;
+
+	/**
+	 * @brief Adds a new key.
+	 * @param aKey Key to add.
+	 * @return Whether the element could be added.
+	 */
+	bool AddKey( std::string_view aKey );
+
+	/**
+	 * @brief Removes a key.
+	 * @param aKey Key to remove.
+	 * @return Whether the element could be removed.
+	 */
+	bool RemoveKey( std::string_view aKey );
+
+	/**
+	 * @brief Retrieves the set associated to a key.
+	 * @details If the key is not found, creates a new one.
+	 * @param aKey Key to access.
+	 */
+	std::set<T> Set( std::string_view aKey );
+
 	/**
 	 * @brief Adds a new element.
 	 * @param aSetName Set where the element should be added to.
@@ -119,12 +143,9 @@ std::string CKeySets<T>::Description( unsigned int aIndentDepth, char aIndentCha
 	std::stringstream ss;
 	for( const auto& [ key, set ] : mKeySets )
 	{
-		if( !set.empty() )
-		{
-			ss << std::string( aIndentDepth, aIndentChar ) << key << ":\n";
-			for( const auto& setElement : set )
-				ss << setElement.GetDescription( aIndentDepth + 1, aIndentChar );
-		}
+		ss << std::string( aIndentDepth, aIndentChar ) << key << ":\n";
+		for( const auto& setElement : set )
+			ss << setElement.GetDescription( aIndentDepth + 1, aIndentChar );
 	}
 	return ss.str();
 }
@@ -133,6 +154,30 @@ template <typename T>
 const CKeySets<T>::key_sets& CKeySets<T>::GetKeySets() const noexcept
 {
 	return mKeySets;
+}
+
+template <typename T>
+CKeySets<T>::key_sets& CKeySets<T>::KeySets() noexcept
+{
+	return mKeySets;
+}
+
+template <typename T>
+bool CKeySets<T>::AddKey( std::string_view aKey )
+{
+	return mKeySets.emplace( aKey ).second;
+}
+
+template <typename T>
+bool CKeySets<T>::RemoveKey( std::string_view aKey )
+{
+	return mKeySets.erase( aKey ) > 0;
+}
+
+template <typename T>
+std::set<T> CKeySets<T>::Set( std::string_view aKey )
+{
+	return mKeySets[ aKey ];
 }
 
 template <typename T>

@@ -11,10 +11,10 @@ namespace ypp_sm::frontend
 class CMainMenuSelector : public IMenuSelector<CDataBase&, std::string_view>
 {
 	//! Retrieves the introductory text.
-	constexpr std::string_view GetIntro() const noexcept override;
+	constexpr std::string GetIntro() const noexcept override;
 
 	//! Retrieves the posible options.
-	constexpr std::vector<std::string_view> GetOptions() const noexcept override;
+	constexpr std::vector<std::string> GetOptions() const noexcept override;
 
 	//! Retrieves the posible operations.
 	operations GetOperations() const noexcept override;

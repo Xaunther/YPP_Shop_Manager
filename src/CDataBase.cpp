@@ -44,7 +44,18 @@ const CDataBase::recipes& CDataBase::GetRecipes() const noexcept
 {
 	return mRecipes;
 }
+
+CDataBase::recipes& CDataBase::Recipes() noexcept
+{
+	return mRecipes;
+}
+
 const CDataBase::prices& CDataBase::GetPrices() const noexcept
+{
+	return mPrices;
+}
+
+CDataBase::prices& CDataBase::Prices() noexcept
 {
 	return mPrices;
 }
