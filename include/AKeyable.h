@@ -29,7 +29,8 @@ public:
 	/**
 	 * @brief Define comparison operators.
 	 */
-	auto operator <=>( const AKeyable& ) const = default;
+	auto operator<=>( const AKeyable& ) const = default;
+	auto operator<=>( const key_type& aKey ) const{ return mKey <=> aKey; }
 
 private:
 	//! Key of the class.
