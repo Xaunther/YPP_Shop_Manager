@@ -25,9 +25,10 @@ namespace frontend
  * @brief Class to manage the key sets class menu options.
  */
 template <typename T> requires std::derived_from<T, IDescriptable>
-class CSetMenuSelector : public IMenuSelector<std::set<T>&>
+class CSetMenuSelector : public IMenuSelector<std::set<T,types::AKeyable::SKeyCompare>&>
 {
-	using operations = IMenuSelector<std::set<T>&>::operations;
+	using operations = IMenuSelector<std::set<T,types::AKeyable::SKeyCompare>&>::operations;
+	using set_type = std::set<T,types::AKeyable::SKeyCompare>;
 
 	//! Retrieves the introductory text.
 	constexpr std::string GetIntro() const noexcept override;
@@ -91,11 +92,11 @@ template <typename T> requires std::derived_from<T, IDescriptable>
 CSetMenuSelector<T>::operations CSetMenuSelector<T>::GetOperations() const noexcept
 {
 	return {
-		[]( const std::set<T>& ){ return false; },
-		[]( const std::set<T>& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
-		[&]( std::set<T>& aSet ){ aSet.emplace( AskInput<T>( "Item:" ) ); return true; },
-		[&]( std::set<T>& aSet ){ aSet.erase( T{ AskInput<types::AKeyable::key_type>( "Item:" ) } ); return true; },
-		[&]( std::set<T>& aSet )
+		[]( const set_type& ){ return false; },
+		[]( const set_type& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
+		[&]( set_type& aSet ){ aSet.emplace( AskInput<T>( "Item:" ) ); return true; },
+		[&]( set_type& aSet ){ aSet.erase( T{ AskInput<types::AKeyable::key_type>( "Item:" ) } ); return true; },
+		[&]( set_type& aSet )
 			{
 				auto inputElement = AskInput<T>( "Item:" );
 				if( aSet.extract( inputElement ) )
