@@ -95,7 +95,13 @@ CSetMenuSelector<T>::operations CSetMenuSelector<T>::GetOperations() const noexc
 		[]( const set_type& ){ return false; },
 		[]( const set_type& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
 		[&]( set_type& aSet ){ aSet.emplace( AskInput<T>( "Item:" ) ); return true; },
-		[&]( set_type& aSet ){ aSet.erase( T{ AskInput<types::AKeyable::key_type>( "Item:" ) } ); return true; },
+		[&]( set_type& aSet )
+			{
+				const auto found = aSet.find( AskInput<types::AKeyable::key_type>( "Item:" ) );
+				if( found != aSet.cend() )
+					aSet.erase( found );
+				return true;
+			},
 		[&]( set_type& aSet )
 			{
 				auto inputElement = AskInput<T>( "Item:" );
