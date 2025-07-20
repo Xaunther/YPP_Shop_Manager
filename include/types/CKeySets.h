@@ -21,7 +21,7 @@ namespace types::CKeySets
 template<typename T> concept is_keyable = std::derived_from<T, ypp_sm::AKeyable>;
 
 //! Type for the sets classified by some key.
-template <is_keyable T> using key_sets = std::map<AKeyable::key_type, std::set<T>>;
+template <is_keyable T> using key_sets = std::map<AKeyable::key_type, std::set<T,AKeyable::SKeyCompare>>;
 
 } // types::CKeySets namespace
 
