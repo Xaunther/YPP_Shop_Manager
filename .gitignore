@@ -40,3 +40,6 @@ CMakeSettings.json
 
 # Version file
 VERSION
+
+# Neovim
+.nvim*
