@@ -33,6 +33,13 @@ public:
 	 */
 	explicit CPricesTable( const json& aJSON );
 
+protected:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	void JSON( json& aJSON ) const noexcept override;
+
+public:
 	//! Retrieves the \copybrief mCost
 	price GetCost() const noexcept;
 

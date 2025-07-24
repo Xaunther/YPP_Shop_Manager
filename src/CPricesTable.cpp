@@ -23,6 +23,13 @@ CPricesTable::CPricesTable( const json& aJSON ) try :
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table from JSO from JSON." )
 
+void CPricesTable::JSON( json& aJSON ) const noexcept
+{
+	AddToJSONKey( aJSON, mCost, COST_KEY );
+	AddToJSONKey( aJSON, mUsePrice, USE_PRICE_KEY );
+	AddToOptionalJSONKey( aJSON, mTax, TAX_KEY );
+}
+
 CPricesTable::price CPricesTable::GetCost() const noexcept
 {
 	return mCost;
