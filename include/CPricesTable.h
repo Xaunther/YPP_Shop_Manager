@@ -18,6 +18,14 @@ protected:
 	using int_price = types::CPricesTable::int_price;
 
 public:
+	/**
+	 * @brief Member constructor.
+	 * @param aCost \copybrief mCost
+	 * @param aUsePrice \copybrief mUsePrice
+	 * @param aTax \copybrief mTax
+	 */
+	explicit CPricesTable( price aCost, int_price aUsePrice, price aTax = 0 );
+
 	//! Retrieves the \copybrief mCost
 	price GetCost() const noexcept;
 
