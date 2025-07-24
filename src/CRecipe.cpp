@@ -45,6 +45,7 @@ std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) 
 {
 	std::stringstream ss;
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << DOUBLOONS_KEY << ": " << mDoubloonCount << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << YIELD_KEY << ": " << mYield << "\n";
 	if( !mItems.empty() )
 	{
