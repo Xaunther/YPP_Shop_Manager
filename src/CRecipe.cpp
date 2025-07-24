@@ -18,6 +18,7 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a rec
 
 CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 	AKeyable( aName ),
+	mDoubloonCount( ValueFromOptionalJSONKey<count>( aJSON, DOUBLOONS_KEY ) ),
 	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) )
 {
 	const auto foundIngredients = aJSON.find( INGREDIENTS_KEY );
