@@ -4,6 +4,7 @@
 #include "IJsonable.h"
 
 #include "types/CPricesTable.h"
+#include "traits/CPricesTable.h"
 
 namespace ypp_sm
 {
@@ -11,7 +12,7 @@ namespace ypp_sm
 /**
  * @brief Class for a table of different prices for an item.
  */
-class CPricesTable : public IJsonable, public IDescriptable
+class CPricesTable : public IJsonable, public IDescriptable, protected json_traits<CPricesTable>
 {
 protected:
 	using price = types::CPricesTable::price;
@@ -25,6 +26,12 @@ public:
 	 * @param aTax \copybrief mTax
 	 */
 	explicit CPricesTable( price aCost, int_price aUsePrice, price aTax = 0 );
+
+	/**
+	 * @brief JSON constructor.
+	 * @param aJSON JSON object
+	 */
+	explicit CPricesTable( const json& aJSON );
 
 	//! Retrieves the \copybrief mCost
 	price GetCost() const noexcept;

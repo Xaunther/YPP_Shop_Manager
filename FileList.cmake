@@ -12,6 +12,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/JsonUtils.h
 	include/NumberUtils.h
 	include/traits/CDataBase.h
+	include/traits/CPricesTable.h
 	include/traits/CRecipe.h
 	include/traits/default.h
 	include/traits/json.h

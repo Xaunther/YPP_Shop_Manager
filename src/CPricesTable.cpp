@@ -1,6 +1,7 @@
 #include "CPricesTable.h"
 
 #include "ExceptionUtils.h"
+#include "JsonUtils.h"
 #include "NumberUtils.h"
 
 namespace ypp_sm
@@ -13,6 +14,14 @@ CPricesTable::CPricesTable( price aCost, int_price aUsePrice, price aTax ) try :
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table." )
+
+CPricesTable::CPricesTable( const json& aJSON ) try :
+	CPricesTable( ValueFromRequiredJSONKey<price>( aJSON, COST_KEY ),
+			ValueFromRequiredJSONKey<int_price>( aJSON, USE_PRICE_KEY ),
+			ValueFromOptionalJSONKey<price>( aJSON, TAX_KEY ) )
+{
+}
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table from JSO from JSON." )
 
 CPricesTable::price CPricesTable::GetCost() const noexcept
 {
