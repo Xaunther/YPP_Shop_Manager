@@ -30,6 +30,7 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recip
 
 void CRecipe::JSON( json& aJSON ) const noexcept
 {
+	AddToOptionalJSONKey( aJSON, mDoubloonCount, DOUBLOONS_KEY );
 	AddToOptionalJSONKey( aJSON, mYield, YIELD_KEY, DEFAULT_YIELD );
 
 	if( !mItems.empty() )
