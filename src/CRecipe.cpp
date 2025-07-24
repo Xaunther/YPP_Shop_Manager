@@ -57,6 +57,11 @@ CRecipe::count CRecipe::GetYield() const noexcept
 	return mYield;
 }
 
+CRecipe::count CRecipe::GetDoubloonCount() const noexcept
+{
+	return mDoubloonCount;
+}
+
 const CRecipe::items& CRecipe::GetItems() const noexcept
 {
 	return mItems;
