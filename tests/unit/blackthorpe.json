@@ -11,11 +11,11 @@
 		},
 		"Iron Monger": {
 			"Foil": {
+				"Doubloons": 1,
+				"Yield": 10,
 				"Ingredients": {
-					"Basic": 15,
-					"Blue enamel": 1,
-					"Iron": 1,
-					"Tan enamel": 1
+					"Sugar cane": 6,
+					"Wood": 3
 				}
 			},
 			"Large cannon balls": {
