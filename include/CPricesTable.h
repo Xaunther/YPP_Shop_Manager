@@ -39,6 +39,12 @@ protected:
 	 */
 	void JSON( json& aJSON ) const noexcept override;
 
+private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
+
 public:
 	//! Retrieves the \copybrief mCost
 	price GetCost() const noexcept;

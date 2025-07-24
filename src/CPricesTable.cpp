@@ -30,6 +30,15 @@ void CPricesTable::JSON( json& aJSON ) const noexcept
 	AddToOptionalJSONKey( aJSON, mTax, TAX_KEY );
 }
 
+std::string CPricesTable::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
+{
+	std::stringstream ss;
+	ss << std::string( aIndentDepth, aIndentChar ) << COST_KEY << ": " << mCost << "\n";
+	ss << std::string( aIndentDepth, aIndentChar ) << USE_PRICE_KEY << ": " << mUsePrice << "\n";
+	ss << std::string( aIndentDepth, aIndentChar ) << TAX_KEY << ": " << mTax << "\n";
+	return ss.str();
+}
+
 CPricesTable::price CPricesTable::GetCost() const noexcept
 {
 	return mCost;
