@@ -98,6 +98,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
 		"Small cannon balls:\n"
+		" Doubloons: 0\n",
 		" Yield: 10\n"
 		" Ingredients:\n"
 		"  Basic labour: 3\n"
@@ -114,6 +115,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"	}\n"
 		"}",
 		"Medium cannon balls:\n"
+		" Doubloons: 0\n",
 		" Yield: 10\n"
 		" Ingredients:\n"
 		"  Basic labour: 3\n"
@@ -132,6 +134,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"	}\n"
 		"}",
 		"Large cannon balls:\n"
+		" Doubloons: 0\n",
 		" Yield: 1\n"
 		" Ingredients:\n"
 		"  Basic labour: 2\n"
