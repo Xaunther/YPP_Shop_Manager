@@ -52,6 +52,13 @@ std::vector<std::string> TRecipe::ObtainedResults() noexcept
 			recipe_item{ "Basic labour", 2 },
 			recipe_item{ "Skilled labour", 5 },
 		} },
+		CRecipe{ "Foil",
+		{
+			recipe_item{ "Iron", 1 },
+			recipe_item{ "Tan enamel", 1 },
+			recipe_item{ "White enamel", 1 },
+			recipe_item{ "Basic labour", 15 },
+		}, 1 },
 		ValueFromJSONKeyString<CRecipe>( R"( {
 			"Small cannon balls": {
 				"Yield": 10,
@@ -83,6 +90,17 @@ std::vector<std::string> TRecipe::ObtainedResults() noexcept
 				}
 			}
 		} )", "Large cannon balls", "Large cannon balls" ),
+		ValueFromJSONKeyString<CRecipe>( R"( {
+			"Foil": {
+				"Doubloons": 1,
+				"Ingredients": {
+					"Iron": 1,
+					"Tan enamel": 1,
+					"White enamel": 1,
+					"Basic labour": 15
+				}
+			}
+		} )", "Foil", "Foil" ),
 	} )
 	{
 		result.emplace_back( recipe.GetDescription() );
@@ -98,7 +116,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
 		"Small cannon balls:\n"
-		" Doubloons: 0\n",
+		" Doubloons: 0\n"
 		" Yield: 10\n"
 		" Ingredients:\n"
 		"  Basic labour: 3\n"
@@ -115,7 +133,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"	}\n"
 		"}",
 		"Medium cannon balls:\n"
-		" Doubloons: 0\n",
+		" Doubloons: 0\n"
 		" Yield: 10\n"
 		" Ingredients:\n"
 		"  Basic labour: 3\n"
@@ -134,7 +152,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"	}\n"
 		"}",
 		"Large cannon balls:\n"
-		" Doubloons: 0\n",
+		" Doubloons: 0\n"
 		" Yield: 1\n"
 		" Ingredients:\n"
 		"  Basic labour: 2\n"
@@ -148,6 +166,25 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"			\"Iron\": 12,\n"
 		"			\"Skilled labour\": 5,\n"
 		"			\"Wood\": 4\n"
+		"		}\n"
+		"	}\n"
+		"}",
+		"Foil:\n"
+		" Doubloons: 1\n"
+		" Yield: 1\n"
+		" Ingredients:\n"
+		"  Basic labour: 15\n"
+		"  Iron: 1\n"
+		"  Tan enamel: 1\n"
+		"  White enamel: 1\n",
+		"{\n"
+		"	\"Foil\": {\n"
+		"		\"Doubloons\": 1,\n"
+		"		\"Ingredients\": {\n"
+		"			\"Basic labour\": 15,\n"
+		"			\"Iron\": 1,\n"
+		"			\"Tan enamel\": 1,\n"
+		"			\"White enamel\": 1\n"
 		"		}\n"
 		"	}\n"
 		"}",
