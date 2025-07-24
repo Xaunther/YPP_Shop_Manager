@@ -7,9 +7,10 @@
 namespace ypp_sm
 {
 
-CRecipe::CRecipe( std::string_view aName, const items& aItems, count aYield ) try :
+CRecipe::CRecipe( std::string_view aName, const items& aItems, count aDoubloonCount, count aYield ) try :
 	AKeyable( aName ),
 	mItems( aItems ),
+	mDoubloonCount( aDoubloonCount ),
 	mYield( CheckPositiveness( aYield, "recipe yield" ) )
 {
 }
@@ -17,6 +18,7 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a rec
 
 CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 	AKeyable( aName ),
+	mDoubloonCount( ValueFromOptionalJSONKey<count>( aJSON, DOUBLOONS_KEY ) ),
 	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) )
 {
 	const auto foundIngredients = aJSON.find( INGREDIENTS_KEY );
@@ -28,6 +30,7 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recip
 
 void CRecipe::JSON( json& aJSON ) const noexcept
 {
+	AddToOptionalJSONKey( aJSON, mDoubloonCount, DOUBLOONS_KEY );
 	AddToOptionalJSONKey( aJSON, mYield, YIELD_KEY, DEFAULT_YIELD );
 
 	if( !mItems.empty() )
@@ -42,6 +45,7 @@ std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) 
 {
 	std::stringstream ss;
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << DOUBLOONS_KEY << ": " << mDoubloonCount << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << YIELD_KEY << ": " << mYield << "\n";
 	if( !mItems.empty() )
 	{
@@ -55,6 +59,11 @@ std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) 
 CRecipe::count CRecipe::GetYield() const noexcept
 {
 	return mYield;
+}
+
+CRecipe::count CRecipe::GetDoubloonCount() const noexcept
+{
+	return mDoubloonCount;
 }
 
 const CRecipe::items& CRecipe::GetItems() const noexcept

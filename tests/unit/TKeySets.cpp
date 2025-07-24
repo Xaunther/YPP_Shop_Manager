@@ -30,7 +30,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Iron", 5 },
 							recipe_item{ "Wood", 1 },
 							recipe_item{ "Basic labour", 3 },
-						}, 10
+						}, 0, 10
 					},
 					CRecipe{
 						"Medium cannon balls",
@@ -39,7 +39,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Wood", 3 },
 							recipe_item{ "Basic labour", 3 },
 							recipe_item{ "Skilled labour", 2 },
-						}, 10
+						}, 0, 10
 					},
 					CRecipe{
 						"Large cannon balls",
@@ -48,7 +48,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Wood", 4 },
 							recipe_item{ "Basic labour", 2 },
 							recipe_item{ "Skilled labour", 5 },
-						}, 10
+						}, 0, 10
 					}
 				}
 			},
@@ -63,7 +63,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Grog", 15 },
 							recipe_item{ "Skilled labour", 50 },
 							recipe_item{ "Basic labour", 5 },
-						}, 10
+						}, 0, 10
 					}
 				}
 			}
@@ -170,6 +170,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 	std::vector<std::string> result{
 		"Iron Monger:\n"
 		"	Large cannon balls:\n"
+		"		Doubloons: 0\n"
 		"		Yield: 10\n"
 		"		Ingredients:\n"
 		"			Basic labour: 2\n"
@@ -177,6 +178,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"			Skilled labour: 5\n"
 		"			Wood: 4\n"
 		"	Medium cannon balls:\n"
+		"		Doubloons: 0\n"
 		"		Yield: 10\n"
 		"		Ingredients:\n"
 		"			Basic labour: 3\n"
@@ -184,6 +186,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"			Skilled labour: 2\n"
 		"			Wood: 3\n"
 		"	Small cannon balls:\n"
+		"		Doubloons: 0\n"
 		"		Yield: 10\n"
 		"		Ingredients:\n"
 		"			Basic labour: 3\n"
@@ -191,6 +194,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"			Wood: 1\n"
 		"Shipyard:\n"
 		"	Lifeboats:\n"
+		"		Doubloons: 0\n"
 		"		Yield: 10\n"
 		"		Ingredients:\n"
 		"			Basic labour: 5\n"

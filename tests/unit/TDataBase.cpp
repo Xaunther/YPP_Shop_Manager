@@ -30,12 +30,12 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 					{
 						recipe_item{ "Wood", 3 },
 						recipe_item{ "Iron", 5 }
-					}, 10 },
+					}, 0, 10 },
 					CRecipe{ "Foil",
 					{
 						recipe_item{ "Black enamel", 1 },
 						recipe_item{ "Tan enamel", 1 }
-					}, 1 }
+					}, 0, 1 }
 				}
 			},
 			{
@@ -45,7 +45,7 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 					{
 						recipe_item{ "Wood", 3 },
 						recipe_item{ "Iron", 5 }
-					}, 10 },
+					}, 0, 10 },
 				}
 			} } },
 			prices{ prices::key_sets{
@@ -111,17 +111,20 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"Recipes:\n"
 		" Iron Monger:\n"
 		"  Foil:\n"
+		"   Doubloons: 0\n"
 		"   Yield: 1\n"
 		"   Ingredients:\n"
 		"    Black enamel: 1\n"
 		"    Tan enamel: 1\n"
 		"  Small cannon balls:\n"
+		"   Doubloons: 0\n"
 		"   Yield: 10\n"
 		"   Ingredients:\n"
 		"    Iron: 5\n"
 		"    Wood: 3\n"
 		" Shipwrightery:\n"
 		"  Lifeboats:\n"
+		"   Doubloons: 0\n"
 		"   Yield: 10\n"
 		"   Ingredients:\n"
 		"    Iron: 5\n"
