@@ -16,6 +16,7 @@ template <> inline CRecipe AskInput( std::string_view aMessage,
 {
 	auto itemInput = AskInput<std::string>( aMessage );
 	auto yieldInput = AskInput<unsigned int>( "Yield:" );
+	auto doubloonInput = AskInput<unsigned int>( "Doubloons:" );
 	auto ingredientsCountInput = AskInput<unsigned int>( "Number of ingredients:" );
 	types::CRecipe::items ingredientsInput;
 	while( ingredientsInput.size() < ingredientsCountInput )
@@ -24,7 +25,7 @@ template <> inline CRecipe AskInput( std::string_view aMessage,
 		auto countInput = AskInput<types::CRecipe::count>( ingredientInput + " units:" );
 		ingredientsInput.emplace( ingredientInput, countInput );
 	}
-	return CRecipe{ itemInput, ingredientsInput, yieldInput };
+	return CRecipe{ itemInput, ingredientsInput, doubloonInput, yieldInput };
 }
 
 template <> inline CKeyItem<types::CDataBase::price> AskInput( std::string_view aMessage,

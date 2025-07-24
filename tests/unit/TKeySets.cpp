@@ -30,7 +30,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Iron", 5 },
 							recipe_item{ "Wood", 1 },
 							recipe_item{ "Basic labour", 3 },
-						}, 10
+						}, 0, 10
 					},
 					CRecipe{
 						"Medium cannon balls",
@@ -39,7 +39,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Wood", 3 },
 							recipe_item{ "Basic labour", 3 },
 							recipe_item{ "Skilled labour", 2 },
-						}, 10
+						}, 0, 10
 					},
 					CRecipe{
 						"Large cannon balls",
@@ -48,7 +48,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Wood", 4 },
 							recipe_item{ "Basic labour", 2 },
 							recipe_item{ "Skilled labour", 5 },
-						}, 10
+						}, 0, 10
 					}
 				}
 			},
@@ -63,7 +63,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ "Grog", 15 },
 							recipe_item{ "Skilled labour", 50 },
 							recipe_item{ "Basic labour", 5 },
-						}, 10
+						}, 0, 10
 					}
 				}
 			}

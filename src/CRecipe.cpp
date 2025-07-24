@@ -7,9 +7,10 @@
 namespace ypp_sm
 {
 
-CRecipe::CRecipe( std::string_view aName, const items& aItems, count aYield ) try :
+CRecipe::CRecipe( std::string_view aName, const items& aItems, count aDoubloonCount, count aYield ) try :
 	AKeyable( aName ),
 	mItems( aItems ),
+	mDoubloonCount( aDoubloonCount ),
 	mYield( CheckPositiveness( aYield, "recipe yield" ) )
 {
 }
