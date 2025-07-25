@@ -6,8 +6,8 @@
 #include <set>
 #include <string>
 
+#include "CPricesTable.h"
 #include "CRecipe.h"
-#include "CKeyItem.h"
 
 #include "InputUtils.h"
 #include "types/AKeyable.h"
@@ -59,7 +59,7 @@ constexpr std::string CSetMenuSelector<CRecipe>::GetSingularElementName() const 
 }
 
 template <>
-constexpr std::string CSetMenuSelector<CKeyItem<types::CDataBase::price>>::GetSingularElementName() const noexcept
+constexpr std::string CSetMenuSelector<CPricesTable>::GetSingularElementName() const noexcept
 {
 	return "price";
 }

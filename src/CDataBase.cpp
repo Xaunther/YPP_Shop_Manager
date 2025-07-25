@@ -32,7 +32,7 @@ std::string CDataBase::Description( unsigned int aIndentDepth, char aIndentChar 
 		ss << std::string( aIndentDepth, aIndentChar ) << RECIPES_KEY << ":\n";
 		ss << mRecipes.GetDescription( aIndentDepth + 1, aIndentChar );
 	}
-if( !mPrices.GetKeySets().empty() )
+	if( !mPrices.GetKeySets().empty() )
 	{
 		ss << std::string( aIndentDepth, aIndentChar ) << PRICES_KEY << ":\n";
 		ss << mPrices.GetDescription( aIndentDepth + 1, aIndentChar );

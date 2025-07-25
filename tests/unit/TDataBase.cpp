@@ -52,8 +52,8 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 			{
 				"Basic commodities",
 				{
-					price_item{ "Wood", 11 },
-					price_item{ "Iron", 19 }
+					price_item{ "Wood", 11, 15, 2.1 },
+					price_item{ "Iron", 19, 21, 3.0 }
 				}
 			}
 		} } },
@@ -87,8 +87,16 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 			},
 			"Prices": {
 				"Basic commodities": {
-					"Wood": 11,
-					"Iron": 19
+					"Wood": {
+						"Cost": 11,
+						"Use price": 15,
+						"Tax": 2.1
+					},
+					"Iron": {
+						"Cost": 19,
+						"Use price": 21,
+						"Tax": 3.0
+					}
 				}
 			}
 		} )" ),
@@ -131,8 +139,14 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"    Wood: 3\n"
 		"Prices:\n"
 		" Basic commodities:\n"
-		"  Iron: 19\n"
-		"  Wood: 11\n",
+		"  Iron:\n"
+		"   Cost: 19\n"
+		"   Use price: 21\n"
+		"   Tax: 3\n"
+		"  Wood:\n"
+		"   Cost: 11\n"
+		"   Use price: 15\n"
+		"   Tax: 2.1\n",
 		"{\n"
 		"	\"Recipes\": {\n"
 		"		\"Iron Monger\": {\n"
@@ -162,8 +176,16 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"	},\n"
 		"	\"Prices\": {\n"
 		"		\"Basic commodities\": {\n"
-		"			\"Iron\": 19.0,\n"
-		"			\"Wood\": 11.0\n"
+		"			\"Iron\": {\n"
+		"				\"Cost\": 19.0,\n"
+		"				\"Use price\": 21,\n"
+		"				\"Tax\": 3.0\n"
+		"			},\n"
+		"			\"Wood\": {\n"
+		"				\"Cost\": 11.0,\n"
+		"				\"Use price\": 15,\n"
+		"				\"Tax\": 2.0999999046325684\n"
+		"			}\n"
 		"		}\n"
 		"	}\n"
 		"}"
