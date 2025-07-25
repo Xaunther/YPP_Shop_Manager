@@ -29,7 +29,7 @@ public:
 	 * @param aDoubloonCount \copybrief mDoubloonCount
 	 * @param aYield \copybrief mYield
 	 */
-	explicit CRecipe( std::string_view aName, const items& aItems = {}, count aDoubloonCount = 0, count aYield = DEFAULT_YIELD );
+	explicit CRecipe( std::string_view aName, const items& aItems, count aDoubloonCount = 0, count aYield = DEFAULT_YIELD );
 
 	/**
 	 * @brief JSON constructor.
