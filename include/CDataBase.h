@@ -5,6 +5,7 @@
 
 #include "CKeyItem.h"
 #include "CKeySets.h"
+#include "CPricesTable.h"
 #include "CRecipe.h"
 
 #include "traits/CDataBase.h"
@@ -19,7 +20,6 @@ namespace ypp_sm
 class CDataBase : public IJsonable, public IDescriptable, protected json_traits<CDataBase>
 {
 protected:
-	using price = types::CDataBase::price;
 	using recipes = types::CDataBase::recipes;
 	using prices = types::CDataBase::prices;
 

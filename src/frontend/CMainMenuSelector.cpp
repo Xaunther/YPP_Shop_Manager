@@ -28,13 +28,20 @@ template <> inline CRecipe AskInput( std::string_view aMessage,
 	return CRecipe{ itemInput, ingredientsInput, doubloonInput, yieldInput };
 }
 
-template <> inline CKeyItem<types::CDataBase::price> AskInput( std::string_view aMessage,
-		const conversion_function<CKeyItem<types::CDataBase::price>>&,
-		const condition_function<CKeyItem<types::CDataBase::price>>& )
+template <> CPricesTable DEFAULT_CONVERSION( const std::string& aInput )
+{
+	return CPricesTable{ aInput, 0, 0 };
+}
+
+template <> inline CPricesTable AskInput( std::string_view aMessage,
+		const conversion_function<CPricesTable>&,
+		const condition_function<CPricesTable>& )
 {
 	auto itemInput = AskInput<std::string>( aMessage );
-	auto priceInput = AskInput<float>( "Price:" );
-	return CKeyItem<types::CDataBase::price>{ itemInput, priceInput };
+	auto costInput = AskInput<types::CPricesTable::price>( "Cost:" );
+	auto usePriceInput = AskInput<types::CPricesTable::int_price>( "Use price:" );
+	auto taxInput = AskInput<types::CPricesTable::price>( "Tax:" );
+	return CPricesTable{ itemInput, costInput, usePriceInput, taxInput };
 }
 
 constexpr std::string CMainMenuSelector::GetIntro() const noexcept
@@ -59,7 +66,7 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 		[]( const CDataBase&, std::string_view ){ return false; },
 		[]( const CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CRecipe>{}( aDataBase.Recipes() ); return true; },
-		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CKeyItem<types::CDataBase::price>>{}( aDataBase.Prices() ); return true; },
+		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CPricesTable>{}( aDataBase.Prices() ); return true; },
 		[]( const CDataBase& aDataBase, std::string_view aJSONFileName )
 		{
 			std::ofstream f( aJSONFileName.data() );
