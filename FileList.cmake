@@ -4,6 +4,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/CDataBase.h
 	include/CKeyItem.h
 	include/CKeySets.h
+	include/CPricesTable.h
 	include/CRecipe.h
 	include/ExceptionUtils.h
 	include/IDescriptable.h
@@ -11,11 +12,13 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/JsonUtils.h
 	include/NumberUtils.h
 	include/traits/CDataBase.h
+	include/traits/CPricesTable.h
 	include/traits/CRecipe.h
 	include/traits/default.h
 	include/traits/json.h
 	include/types/CDataBase.h
 	include/types/CKeySets.h
+	include/types/CPricesTable.h
 	include/types/CRecipe.h
 	include/types/IJsonable.h
 )
@@ -34,6 +37,7 @@ SET(YPP_SM_FRONTEND_EXTERNAL_HEADERS
 SET(YPP_SM_CORE_SOURCE
 	src/AKeyable.cpp
 	src/CDataBase.cpp
+	src/CPricesTable.cpp
 	src/CRecipe.cpp
 	src/IDescriptable.cpp
 	src/IJsonable.cpp
