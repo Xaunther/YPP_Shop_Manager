@@ -1,5 +1,6 @@
 #pragma once
 
+#include "AKeyable.h"
 #include "IDescriptable.h"
 #include "IJsonable.h"
 
@@ -12,7 +13,7 @@ namespace ypp_sm
 /**
  * @brief Class for a table of different prices for an item.
  */
-class CPricesTable : public IJsonable, public IDescriptable, protected json_traits<CPricesTable>
+class CPricesTable : public IJsonable, public IDescriptable, public AKeyable, protected json_traits<CPricesTable>
 {
 protected:
 	using price = types::CPricesTable::price;
@@ -21,17 +22,19 @@ protected:
 public:
 	/**
 	 * @brief Member constructor.
+	 * @param aName Name of the prices table.
 	 * @param aCost \copybrief mCost
 	 * @param aUsePrice \copybrief mUsePrice
 	 * @param aTax \copybrief mTax
 	 */
-	explicit CPricesTable( price aCost, int_price aUsePrice, price aTax = 0 );
+	explicit CPricesTable( std::string_view aName, price aCost, int_price aUsePrice, price aTax = 0 );
 
 	/**
 	 * @brief JSON constructor.
 	 * @param aJSON JSON object
+	 * @param aName Name of the item.
 	 */
-	explicit CPricesTable( const json& aJSON );
+	explicit CPricesTable( const json& aJSON, std::string_view aName );
 
 protected:
 	/**
