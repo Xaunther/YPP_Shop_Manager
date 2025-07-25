@@ -82,9 +82,8 @@ constexpr std::vector<std::string> CSetMenuSelector<T>::GetOptions() const noexc
 	return {
 		"Back",
 		"List " + GetPluralElementName(),
-		"Add " + GetSingularElementName(),
+		"Add or modify " + GetSingularElementName(),
 		"Remove " + GetSingularElementName(),
-		"Modify " + GetSingularElementName(),
 	};
 }
 
@@ -94,7 +93,13 @@ CSetMenuSelector<T>::operations CSetMenuSelector<T>::GetOperations() const noexc
 	return {
 		[]( const set_type& ){ return false; },
 		[]( const set_type& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
-		[&]( set_type& aSet ){ aSet.emplace( AskInput<T>( "Item:" ) ); return true; },
+		[&]( set_type& aSet )
+			{
+				auto inputElement = AskInput<T>( "Item:" );
+				aSet.extract( inputElement );
+				aSet.emplace( std::move( inputElement ) );
+				return true;
+			},
 		[&]( set_type& aSet )
 			{
 				const auto found = aSet.find( AskInput<types::AKeyable::key_type>( "Item:" ) );
@@ -102,13 +107,6 @@ CSetMenuSelector<T>::operations CSetMenuSelector<T>::GetOperations() const noexc
 					aSet.erase( found );
 				return true;
 			},
-		[&]( set_type& aSet )
-			{
-				auto inputElement = AskInput<T>( "Item:" );
-				if( aSet.extract( inputElement ) )
-					aSet.emplace( std::move( inputElement ) );
-				return true;
-			}
 	};
 }
 
