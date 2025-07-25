@@ -7,7 +7,8 @@
 namespace ypp_sm
 {
 
-CPricesTable::CPricesTable( price aCost, int_price aUsePrice, price aTax ) try :
+CPricesTable::CPricesTable( std::string_view aName, price aCost, int_price aUsePrice, price aTax ) try :
+	AKeyable( aName ),
 	mCost( CheckNonNegativeness( aCost, "average cost" ) ),
 	mUsePrice( aUsePrice ),
 	mTax( CheckNonNegativeness( aTax, "tax" ) )
@@ -15,8 +16,8 @@ CPricesTable::CPricesTable( price aCost, int_price aUsePrice, price aTax ) try :
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table." )
 
-CPricesTable::CPricesTable( const json& aJSON ) try :
-	CPricesTable( ValueFromRequiredJSONKey<price>( aJSON, COST_KEY ),
+CPricesTable::CPricesTable( const json& aJSON, std::string_view aName ) try :
+	CPricesTable( aName, ValueFromRequiredJSONKey<price>( aJSON, COST_KEY ),
 			ValueFromRequiredJSONKey<int_price>( aJSON, USE_PRICE_KEY ),
 			ValueFromOptionalJSONKey<price>( aJSON, TAX_KEY ) )
 {
@@ -33,9 +34,10 @@ void CPricesTable::JSON( json& aJSON ) const noexcept
 std::string CPricesTable::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
 {
 	std::stringstream ss;
-	ss << std::string( aIndentDepth, aIndentChar ) << COST_KEY << ": " << mCost << "\n";
-	ss << std::string( aIndentDepth, aIndentChar ) << USE_PRICE_KEY << ": " << mUsePrice << "\n";
-	ss << std::string( aIndentDepth, aIndentChar ) << TAX_KEY << ": " << mTax << "\n";
+	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << COST_KEY << ": " << mCost << "\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << USE_PRICE_KEY << ": " << mUsePrice << "\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << TAX_KEY << ": " << mTax << "\n";
 	return ss.str();
 }
 
