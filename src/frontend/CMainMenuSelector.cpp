@@ -10,9 +10,7 @@
 namespace ypp_sm::frontend
 {
 
-template <> inline CRecipe AskInput( std::string_view aMessage,
-		const conversion_function<CRecipe>&,
-		const condition_function<CRecipe>& )
+template <> inline CRecipe AskInput( std::string_view aMessage )
 {
 	auto itemInput = AskInput<std::string>( aMessage );
 	auto yieldInput = AskInput<unsigned int>( "Yield:" );
@@ -28,14 +26,7 @@ template <> inline CRecipe AskInput( std::string_view aMessage,
 	return CRecipe{ itemInput, ingredientsInput, doubloonInput, yieldInput };
 }
 
-template <> CPricesTable DEFAULT_CONVERSION( const std::string& aInput )
-{
-	return CPricesTable{ aInput, 0, 0 };
-}
-
-template <> inline CPricesTable AskInput( std::string_view aMessage,
-		const conversion_function<CPricesTable>&,
-		const condition_function<CPricesTable>& )
+template <> inline CPricesTable AskInput( std::string_view aMessage )
 {
 	auto itemInput = AskInput<std::string>( aMessage );
 	auto costInput = AskInput<types::CPricesTable::price>( "Cost:" );

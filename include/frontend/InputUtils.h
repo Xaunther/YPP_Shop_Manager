@@ -18,15 +18,20 @@ template <typename T> bool DEFAULT_CONDITION( const std::string& aInput );
 
 /**
  * @brief Asks user for an input.
+ * @details Uses default condition and conversion.
+ * @param aMessage Message before user input.
+ */
+template <typename T> T AskInput( std::string_view aMessage );
+
+/**
+ * @brief Asks user for an input.
  * @details It keeps asking until an input satisfying the condition given is passed.
  * @param aMessage Message before user input.
  * @param aConvert Conversion from the input string to the input type.
  * @param aCondition Condition that the input must pass.
  */
 template <typename T>
-T AskInput( std::string_view aMessage,
-		const conversion_function<T>& aConvert = DEFAULT_CONVERSION<T>,
-		const condition_function<T>& aCondition = DEFAULT_CONDITION<T> );
+T AskInput( std::string_view aMessage, const conversion_function<T>& aConvert, const condition_function<T>& aCondition );
 
 template <typename T> T DEFAULT_CONVERSION( const std::string& aInput )
 {
@@ -44,6 +49,11 @@ template <typename T> bool DEFAULT_CONDITION( const std::string& aInput )
 		return false;
 	}
 	return true;
+}
+
+template <typename T> T AskInput( std::string_view aMessage )
+{
+	return AskInput<T>( aMessage, DEFAULT_CONVERSION<T>, DEFAULT_CONDITION<T> );
 }
 
 template <typename T>
