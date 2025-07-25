@@ -77,7 +77,7 @@ std::vector<std::string> TPricesTable::ObtainedResults() noexcept
 	{
 		result.emplace_back( pricesTable.GetDescription() );
 		ypp_sm::types::IJsonable::json outputJSON;
-		AddToJSON( outputJSON, pricesTable );
+		AddToJSONKey( outputJSON, pricesTable, pricesTable.GetKey() );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
 	}
 
@@ -87,13 +87,16 @@ std::vector<std::string> TPricesTable::ObtainedResults() noexcept
 std::vector<std::string> TPricesTable::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
-		"Cost: 11\n"
-		"Use price: 15\n"
-		"Tax: 2.1\n",
+		"Wood:\n"
+		" Cost: 11\n"
+		" Use price: 15\n"
+		" Tax: 2.1\n",
 		"{\n"
-		"	\"Cost\": 11.0,\n"
-		"	\"Use price\": 15,\n"
-		"	\"Tax\": 2.0999999046325684\n"
+		"	\"Wood\": {\n"
+		"		\"Cost\": 11.0,\n"
+		"		\"Use price\": 15,\n"
+		"		\"Tax\": 2.0999999046325684\n"
+		"	}\n"
 		"}",
 	};
 	result.reserve( 2 * result.size() );
