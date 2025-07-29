@@ -6,6 +6,7 @@ SET(YPP_SM_TESTS_UNIT_CORE_SOURCE
 	unit/TDataBase.cpp
 	unit/TPricesTable.cpp
 	unit/TProductPrice.cpp
+	unit/TProductPrices.cpp
 	unit/TRecipe.cpp
 	unit/TKeyItem.cpp
 	unit/TKeySets.cpp
