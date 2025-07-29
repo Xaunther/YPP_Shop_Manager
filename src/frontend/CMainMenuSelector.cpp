@@ -1,6 +1,7 @@
 #include "frontend/CMainMenuSelector.h"
 
 #include "CDataBase.h"
+#include "CProductPrices.h"
 
 #include <iostream>
 #include <fstream>
@@ -44,6 +45,7 @@ constexpr std::vector<std::string> CMainMenuSelector::GetOptions() const noexcep
 {
 	return {
 		"Quit",
+		"Calculate costs",
 		"List database",
 		"Explore recipes",
 		"Explore prices",
@@ -55,6 +57,7 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 {
 	return {
 		[]( const CDataBase&, std::string_view ){ return false; },
+		[]( const CDataBase& aDataBase, std::string_view ){ std::cout << CProductPrices{ aDataBase }.GetDescription(); ;return true; },
 		[]( const CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CRecipe>{}( aDataBase.Recipes() ); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CPricesTable>{}( aDataBase.Prices() ); return true; },
