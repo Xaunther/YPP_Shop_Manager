@@ -6,6 +6,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/CKeySets.h
 	include/CPricesTable.h
 	include/CProductPrice.h
+	include/CProductPrices.h
 	include/CRecipe.h
 	include/ExceptionUtils.h
 	include/IDescriptable.h
@@ -40,6 +41,7 @@ SET(YPP_SM_CORE_SOURCE
 	src/CDataBase.cpp
 	src/CPricesTable.cpp
 	src/CProductPrice.cpp
+	src/CProductPrices.cpp
 	src/CRecipe.cpp
 	src/IDescriptable.cpp
 	src/IJsonable.cpp
