@@ -16,6 +16,13 @@ class CProductPrices : public IDescriptable
 protected:
 	using product_prices = types::CKeySets::key_sets<CProductPrice>;
 
+public:
+	/**
+	 * @brief Constructor to calculate the product price from its recipe and a database.
+	 * @param aDataBase Database with other recipes and ingredient prices.
+	 */
+	explicit CProductPrices( const CDataBase& aDataBase );
+
 private:
 	/**
 	 * @copydoc IJsonable::ToJSON
