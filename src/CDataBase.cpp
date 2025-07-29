@@ -12,7 +12,8 @@ CDataBase::CDataBase( const recipes& aRecipes, const prices& aPrices, const int_
 
 CDataBase::CDataBase( const json& aJSON ) try :
 	mRecipes( ValueFromOptionalJSONKey<recipes>( aJSON, RECIPES_KEY ) ),
-	mPrices( ValueFromOptionalJSONKey<prices>( aJSON, PRICES_KEY ) )
+	mPrices( ValueFromOptionalJSONKey<prices>( aJSON, PRICES_KEY ) ),
+	mDoubloonPrice( ValueFromRequiredJSONKey<int_price>( aJSON, DOUBLOON_PRICE_KEY ) )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() << "." )
