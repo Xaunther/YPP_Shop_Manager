@@ -42,6 +42,11 @@ CProductPrice::int_price CProductPrice::GetOrderPrice() const noexcept
 	return mOrderPrice;
 }
 
+CProductPrice::price CProductPrice::GetCost() const noexcept
+{
+	return mCost;
+}
+
 std::string CProductPrice::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
 {
 	std::stringstream ss;
