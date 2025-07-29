@@ -3,6 +3,8 @@
 #include "AKeyable.h"
 #include "IDescriptable.h"
 
+#include "types/CPricesTable.h"
+
 namespace ypp_sm
 {
 
@@ -11,6 +13,16 @@ namespace ypp_sm
  */
 class CProductPrice : public IDescriptable, public AKeyable
 {
+protected:
+	using int_price = types::CPricesTable::int_price;
+
+public:
+	//! Retrieves the \copybrief mOrderPrice
+	int_price GetOrderPrice() const noexcept;
+
+private:
+	//! Price shown in the Order Commodities menu.
+	int_price mOrderPrice;
 };
 
 } // ypp_sm namespace
