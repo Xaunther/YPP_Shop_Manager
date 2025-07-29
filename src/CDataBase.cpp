@@ -3,15 +3,17 @@
 namespace ypp_sm
 {
 
-CDataBase::CDataBase( const recipes& aRecipes, const prices& aPrices ) :
+CDataBase::CDataBase( const recipes& aRecipes, const prices& aPrices, const int_price& aDoubloonPrice ) :
 	mRecipes( aRecipes ),
-	mPrices( aPrices )
+	mPrices( aPrices ),
+	mDoubloonPrice( aDoubloonPrice )
 {
 }
 
 CDataBase::CDataBase( const json& aJSON ) try :
 	mRecipes( ValueFromOptionalJSONKey<recipes>( aJSON, RECIPES_KEY ) ),
-	mPrices( ValueFromOptionalJSONKey<prices>( aJSON, PRICES_KEY ) )
+	mPrices( ValueFromOptionalJSONKey<prices>( aJSON, PRICES_KEY ) ),
+	mDoubloonPrice( ValueFromRequiredJSONKey<int_price>( aJSON, DOUBLOON_PRICE_KEY ) )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() << "." )
@@ -22,6 +24,7 @@ void CDataBase::JSON( json& aJSON ) const noexcept
 		AddToJSONKey( aJSON, mRecipes, RECIPES_KEY );
 	if( !mPrices.GetKeySets().empty() )
 		AddToJSONKey( aJSON, mPrices, PRICES_KEY );
+	AddToJSONKey( aJSON, mDoubloonPrice, DOUBLOON_PRICE_KEY );
 }
 
 std::string CDataBase::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
@@ -37,6 +40,7 @@ std::string CDataBase::Description( unsigned int aIndentDepth, char aIndentChar 
 		ss << std::string( aIndentDepth, aIndentChar ) << PRICES_KEY << ":\n";
 		ss << mPrices.GetDescription( aIndentDepth + 1, aIndentChar );
 	}
+	ss << std::string( aIndentDepth, aIndentChar ) << DOUBLOON_PRICE_KEY << ": " << mDoubloonPrice << "\n";
 	return ss.str();
 }
 
@@ -58,6 +62,11 @@ const CDataBase::prices& CDataBase::GetPrices() const noexcept
 CDataBase::prices& CDataBase::Prices() noexcept
 {
 	return mPrices;
+}
+
+CDataBase::int_price CDataBase::GetDoubloonPrice() const noexcept
+{
+	return mDoubloonPrice;
 }
 
 } // ypp_sm namespace

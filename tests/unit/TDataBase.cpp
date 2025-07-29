@@ -9,6 +9,11 @@ INITIALIZE_TEST( TDataBase )
 
 void TDataBase::TestExceptions()
 {
+	// Test member constructor
+	CheckException( []()
+	{
+		ValueFromJSONString<CDataBase>( R"( {} )" );
+	}, "key 'Doubloon price' not found" );
 }
 
 std::vector<std::string> TDataBase::ObtainedResults() noexcept
@@ -20,7 +25,7 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 	std::vector<std::string> result;
 
 	for( const auto& database : {
-		CDataBase{ recipes{}, prices{} },
+		CDataBase{ recipes{}, prices{}, 2000 },
 		CDataBase{ recipes{
 			recipes::key_sets{
 			{
@@ -56,8 +61,10 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 					price_item{ "Iron", 19, 21, 3.0 }
 				}
 			}
-		} } },
-		ValueFromJSONString<CDataBase>( R"( {} )" ),
+		} }, 3000 },
+		ValueFromJSONString<CDataBase>( R"( {
+			"Doubloon price": 2000
+		} )" ),
 		ValueFromJSONString<CDataBase>( R"( {
 			"Recipes": {
 				"Iron Monger": {
@@ -98,7 +105,8 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 						"Tax": 3.0
 					}
 				}
-			}
+			},
+			"Doubloon price": 3000
 		} )" ),
 	} )
 	{
@@ -114,8 +122,10 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 std::vector<std::string> TDataBase::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
-		"",
-		"null",
+		"Doubloon price: 2000\n",
+		"{\n"
+		"	\"Doubloon price\": 2000\n"
+		"}",
 		"Recipes:\n"
 		" Iron Monger:\n"
 		"  Foil:\n"
@@ -146,7 +156,8 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"  Wood:\n"
 		"   Cost: 11\n"
 		"   Use price: 15\n"
-		"   Tax: 2.1\n",
+		"   Tax: 2.1\n"
+		"Doubloon price: 3000\n",
 		"{\n"
 		"	\"Recipes\": {\n"
 		"		\"Iron Monger\": {\n"
@@ -187,7 +198,8 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"				\"Tax\": 2.0999999046325684\n"
 		"			}\n"
 		"		}\n"
-		"	}\n"
+		"	},\n"
+		"	\"Doubloon price\": 3000\n"
 		"}"
 	};
 	result.reserve( 2 * result.size() );
