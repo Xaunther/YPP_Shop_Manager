@@ -31,6 +31,19 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			}
 		},
 		{
+			"Distillery",
+			{
+				CRecipe{ "Grog",
+				{
+					recipe_item{ "Sugar cane", 10 },
+					recipe_item{ "Wood", 5 },
+					recipe_item{ "Iron", 1 },
+					recipe_item{ "Basic", 2 },
+					recipe_item{ "Skilled", 2 },
+				}, 0, 10 },
+			}
+		},
+		{
 			"Shipwrightery",
 			{
 				CRecipe{ "Lifeboats",
@@ -55,6 +68,7 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			{
 				price_item{ "Wood", 15, 15, 2.1 },
 				price_item{ "Iron", 19, 19, 3.0 },
+				price_item{ "Sugar cane", 5, 5, 0.5 },
 			},
 		},
 		{
@@ -93,6 +107,8 @@ std::vector<std::string> TProductPrice::ObtainedResults() noexcept
 	{
 		result.emplace_back( std::string{ productPrice.GetKey() } + " order price: "
 				+ std::to_string( productPrice.GetOrderPrice() ) );
+		result.emplace_back( std::string{ productPrice.GetKey() } + " cost: "
+				+ std::to_string( productPrice.GetCost() ) );
 	}
 
 	return result;
@@ -102,7 +118,9 @@ std::vector<std::string> TProductPrice::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
 		"Lifeboats order price: 4158",
+		"Lifeboats cost: 371.000000",
 		"Small cannon balls order price: 196",
+		"Small cannon balls cost: 19.610001",
 	};
 	return result;
 }
