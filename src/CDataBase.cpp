@@ -24,6 +24,7 @@ void CDataBase::JSON( json& aJSON ) const noexcept
 		AddToJSONKey( aJSON, mRecipes, RECIPES_KEY );
 	if( !mPrices.GetKeySets().empty() )
 		AddToJSONKey( aJSON, mPrices, PRICES_KEY );
+	AddToJSONKey( aJSON, mDoubloonPrice, DOUBLOON_PRICE_KEY );
 }
 
 std::string CDataBase::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
