@@ -105,10 +105,7 @@ std::vector<std::string> TProductPrice::ObtainedResults() noexcept
 				EXAMPLE_DATABASE() },
 	} )
 	{
-		result.emplace_back( std::string{ productPrice.GetKey() } + " order price: "
-				+ std::to_string( productPrice.GetOrderPrice() ) );
-		result.emplace_back( std::string{ productPrice.GetKey() } + " cost: "
-				+ std::to_string( productPrice.GetCost() ) );
+		result.emplace_back( productPrice.GetDescription() );
 	}
 
 	return result;
@@ -117,10 +114,12 @@ std::vector<std::string> TProductPrice::ObtainedResults() noexcept
 std::vector<std::string> TProductPrice::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
-		"Lifeboats order price: 4158",
-		"Lifeboats cost: 371.000000",
-		"Small cannon balls order price: 196",
-		"Small cannon balls cost: 19.610001",
+		"Lifeboats:\n"
+		" Order price: 4158\n"
+		" Unit cost: 371\n",
+		"Small cannon balls:\n"
+		" Order price: 196\n"
+		" Unit cost: 19.61\n",
 	};
 	return result;
 }
