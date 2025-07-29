@@ -65,7 +65,7 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 				price_item{ "Expert", 50, 50, 5.0 },
 			},
 		}
-	} } };
+	} }, 3000 };
 	return dataBase;
 }
 

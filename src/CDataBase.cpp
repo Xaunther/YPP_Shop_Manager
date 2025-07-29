@@ -3,9 +3,10 @@
 namespace ypp_sm
 {
 
-CDataBase::CDataBase( const recipes& aRecipes, const prices& aPrices ) :
+CDataBase::CDataBase( const recipes& aRecipes, const prices& aPrices, const int_price& aDoubloonPrice ) :
 	mRecipes( aRecipes ),
-	mPrices( aPrices )
+	mPrices( aPrices ),
+	mDoubloonPrice( aDoubloonPrice )
 {
 }
 

@@ -20,7 +20,7 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 	std::vector<std::string> result;
 
 	for( const auto& database : {
-		CDataBase{ recipes{}, prices{} },
+		CDataBase{ recipes{}, prices{}, 2000 },
 		CDataBase{ recipes{
 			recipes::key_sets{
 			{
@@ -56,7 +56,7 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 					price_item{ "Iron", 19, 21, 3.0 }
 				}
 			}
-		} } },
+		} }, 3000 },
 		ValueFromJSONString<CDataBase>( R"( {} )" ),
 		ValueFromJSONString<CDataBase>( R"( {
 			"Recipes": {

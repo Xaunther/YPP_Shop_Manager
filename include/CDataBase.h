@@ -28,8 +28,9 @@ public:
 	 * @brief Member constructor.
 	 * @param aRecipes \copybrief mRecipes
 	 * @param aPrices \copybrief mPrices
+	 * @param aDoubloonPrice \copybrief mDoubloonPrice
 	 */
-	explicit CDataBase( const recipes& aRecipes, const prices& aPrices );
+	explicit CDataBase( const recipes& aRecipes, const prices& aPrices, const int_price& aDoubloonPrice );
 
 	/**
 	 * @brief JSON constructor.
