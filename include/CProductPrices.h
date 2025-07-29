@@ -2,6 +2,9 @@
 
 #include "IDescriptable.h"
 
+#include "CKeySets.h"
+#include "CProductPrice.h"
+
 namespace ypp_sm
 {
 
@@ -10,6 +13,8 @@ namespace ypp_sm
  */
 class CProductPrices : public IDescriptable
 {
+protected:
+	using product_prices = types::CKeySets::key_sets<CProductPrice>;
 };
 
 } // ypp_sm namespace
