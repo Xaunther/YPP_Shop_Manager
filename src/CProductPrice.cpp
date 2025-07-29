@@ -72,6 +72,7 @@ std::string CProductPrice::Description( unsigned int aIndentDepth, char aIndentC
 	std::stringstream ss;
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << "Order price: " << mOrderPrice << "\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << "Unit cost: " << mCost << "\n";
 	return ss.str();
 }
 
