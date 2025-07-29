@@ -1,6 +1,7 @@
 #include "frontend/CMainMenuSelector.h"
 
 #include "CDataBase.h"
+#include "CProductPrices.h"
 
 #include <iostream>
 #include <fstream>
@@ -44,6 +45,8 @@ constexpr std::vector<std::string> CMainMenuSelector::GetOptions() const noexcep
 {
 	return {
 		"Quit",
+		"Calculate costs",
+		"Calculate costs for a category",
 		"List database",
 		"Explore recipes",
 		"Explore prices",
@@ -55,6 +58,28 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 {
 	return {
 		[]( const CDataBase&, std::string_view ){ return false; },
+		[]( const CDataBase& aDataBase, std::string_view )
+		{
+			try
+			{
+				std::cout << CProductPrices{ aDataBase }.GetDescription();
+			}
+			catch( const std::invalid_argument& )
+			{
+			}
+			return true;
+		},
+		[]( const CDataBase& aDataBase, std::string_view )
+		{
+			try
+			{
+				std::cout << CProductPrices{ aDataBase, AskInput<types::AKeyable::key_type>( "Category:" ) }.GetDescription();
+			}
+			catch( const std::invalid_argument& )
+			{
+			}
+			return true;
+		},
 		[]( const CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CRecipe>{}( aDataBase.Recipes() ); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CPricesTable>{}( aDataBase.Prices() ); return true; },

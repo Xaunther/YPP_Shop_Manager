@@ -18,10 +18,17 @@ protected:
 
 public:
 	/**
-	 * @brief Constructor to calculate the product price from its recipe and a database.
-	 * @param aDataBase Database with other recipes and ingredient prices.
+	 * @brief Constructor to calculate all the product prices from a database.
+	 * @param aDataBase Database.
 	 */
 	explicit CProductPrices( const CDataBase& aDataBase );
+
+	/**
+	 * @brief Constructor to calculate the product prices of one key in a database.
+	 * @param aDataBase Database with other recipes and ingredient prices.
+	 * @param aKey Name of the key to use.
+	 */
+	explicit CProductPrices( const CDataBase& aDataBase, std::string_view aKey );
 
 private:
 	/**
