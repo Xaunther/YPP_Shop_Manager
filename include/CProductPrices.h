@@ -16,6 +16,12 @@ class CProductPrices : public IDescriptable
 protected:
 	using product_prices = types::CKeySets::key_sets<CProductPrice>;
 
+private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
+
 public:
 	//! Retrieves the \copybrief mPrices
 	product_prices GetPrices() const noexcept;
