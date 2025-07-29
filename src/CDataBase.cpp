@@ -40,6 +40,7 @@ std::string CDataBase::Description( unsigned int aIndentDepth, char aIndentChar 
 		ss << std::string( aIndentDepth, aIndentChar ) << PRICES_KEY << ":\n";
 		ss << mPrices.GetDescription( aIndentDepth + 1, aIndentChar );
 	}
+	ss << std::string( aIndentDepth, aIndentChar ) << DOUBLOON_PRICE_KEY << ": " << mDoubloonPrice << "\n";
 	return ss.str();
 }
 
