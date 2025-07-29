@@ -21,6 +21,11 @@ public:
 	int_price GetOrderPrice() const noexcept;
 
 private:
+	/**
+	 * @copydoc IJsonable::ToJSON
+	 */
+	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
+
 	//! Price shown in the Order Commodities menu.
 	int_price mOrderPrice;
 };
