@@ -18,6 +18,7 @@ class CProductPrice : public IDescriptable, public AKeyable
 {
 protected:
 	using int_price = types::CPricesTable::int_price;
+	using price = types::CPricesTable::price;
 
 public:
 	/**
@@ -37,9 +38,14 @@ public:
 	//! Retrieves the \copybrief mOrderPrice
 	int_price GetOrderPrice() const noexcept;
 
+	//! Retrieves the \copybrief mCost
+	price GetCost() const noexcept;
+
 private:
 	//! Price shown in the Order Commodities menu.
 	int_price mOrderPrice;
+	//! Cost of a single item.
+	price mCost;
 };
 
 } // ypp_sm namespace
