@@ -1,21 +1,34 @@
 {
 	"Recipes": {
+		"Apothecary": {
+			"White enamel": {
+				"Yield": 7,
+				"Ingredients": {
+					"Basic": 2,
+					"Iron": 4,
+					"Yarrow": 6
+				}
+			}
+		},
 		"Distillery": {
 			"Grog": {
 				"Yield": 10,
 				"Ingredients": {
-					"Sugar cane": 6,
-					"Wood": 3
+					"Basic": 2,
+					"Iron": 1,
+					"Skilled": 2,
+					"Sugar cane": 10,
+					"Wood": 5
 				}
 			}
 		},
 		"Iron Monger": {
 			"Foil": {
 				"Doubloons": 1,
-				"Yield": 10,
 				"Ingredients": {
-					"Sugar cane": 6,
-					"Wood": 3
+					"Basic": 15,
+					"Iron": 1,
+					"White enamel": 2
 				}
 			},
 			"Large cannon balls": {
@@ -56,50 +69,65 @@
 			"Hemp oil": {
 				"Cost": 35.0,
 				"Use price": 40,
-				"Tax": 3.2
+				"Tax": 3.200000047683716
 			},
 			"Iron": {
 				"Cost": 15.0,
 				"Use price": 17,
-				"Tax": 1.1
+				"Tax": 1.100000023841858
 			},
 			"Kraken's ink": {
 				"Cost": 6000.0,
 				"Use price": 6500,
-				"Tax": 58.4
+				"Tax": 58.400001525878906
 			},
 			"Stone": {
 				"Cost": 1.0,
 				"Use price": 1,
-				"Tax": 0.2
+				"Tax": 0.20000000298023224
 			},
 			"Sugar cane": {
 				"Cost": 12.0,
 				"Use price": 14,
-				"Tax": 0.6
+				"Tax": 0.6000000238418579
 			},
 			"Wood": {
-				"Cost": 25,
+				"Cost": 25.0,
 				"Use price": 28,
-				"Tax": 2.2
+				"Tax": 2.200000047683716
+			}
+		},
+		"Enamel": {
+			"White enamel": {
+				"Cost": 2635.0,
+				"Use price": 2700,
+				"Tax": 274.29998779296875
+			}
+		},
+		"Herbs": {
+			"Yarrow": {
+				"Cost": 2767.0,
+				"Use price": 2800,
+				"Tax": 252.0
 			}
 		},
 		"Labour": {
 			"Basic": {
 				"Cost": 20.0,
 				"Use price": 22,
-				"Tax": 3
+				"Tax": 3.0
 			},
 			"Expert": {
 				"Cost": 50.0,
 				"Use price": 55,
-				"Tax": 5
+				"Tax": 5.0
 			},
 			"Skilled": {
-				"Cost": 30,
+				"Cost": 30.0,
 				"Use price": 33,
-				"Tax": 4
+				"Tax": 4.0
 			}
 		}
-	}
+	},
+	"Doubloon price": 3000
 }
