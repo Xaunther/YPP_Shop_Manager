@@ -60,4 +60,9 @@ CDataBase::prices& CDataBase::Prices() noexcept
 	return mPrices;
 }
 
+CDataBase::int_price CDataBase::GetDoubloonPrice() const noexcept
+{
+	return mDoubloonPrice;
+}
+
 } // ypp_sm namespace

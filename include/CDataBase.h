@@ -21,6 +21,7 @@ class CDataBase : public IJsonable, public IDescriptable, protected json_traits<
 protected:
 	using recipes = types::CDataBase::recipes;
 	using prices = types::CDataBase::prices;
+	using int_price = types::CPricesTable::int_price;
 
 public:
 	/**
@@ -58,11 +59,16 @@ public:
 	//! Retrieves the \copybrief mPrices
 	prices& Prices() noexcept;
 
+	//! Retrieves the \copybrief mDoubloonPrice
+	int_price GetDoubloonPrice() const noexcept;
+
 private:
 	//! List of recipes, classified by a keyword
 	recipes mRecipes;
 	//! List of prices, classified by a keyword
 	prices mPrices;
+	//! Doubloon exchange price.
+	int_price mDoubloonPrice;
 };
 
 } // ypp_sm namespace
