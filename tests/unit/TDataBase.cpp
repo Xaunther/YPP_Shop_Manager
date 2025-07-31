@@ -69,25 +69,43 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 			"Recipes": {
 				"Iron Monger": {
 					"Small cannon balls": {
-						"Ingredients": {
-							"Wood": 3,
-							"Iron": 5
-						},
+						"Ingredients": [
+							{
+								"Ingredient": [ "Wood" ],
+								"Count": 3
+							},
+							{
+								"Ingredient": [ "Iron" ],
+								"Count": 5
+							}
+						],
 						"Yield": 10
 					},
 					"Foil": {
-						"Ingredients": {
-							"Black enamel": 1,
-							"Tan enamel": 1
-						}
+						"Ingredients": [
+							{
+								"Ingredient": [ "Black enamel" ],
+								"Count": 1
+							},
+							{
+								"Ingredient": [ "Tan enamel" ],
+								"Count": 1
+							}
+						]
 					}
 				},
 				"Shipwrightery": {
 					"Lifeboats": {
-						"Ingredients": {
-							"Wood": 3,
-							"Iron": 5
-						},
+						"Ingredients": [
+							{
+								"Ingredient": [ "Wood" ],
+								"Count": 3
+							},
+							{
+								"Ingredient": [ "Iron" ],
+								"Count": 5
+							}
+						],
 						"Yield": 10
 					}
 				}
@@ -135,21 +153,27 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"   Doubloons: 0\n"
 		"   Yield: 1\n"
 		"   Ingredients:\n"
-		"    Black enamel: 1\n"
-		"    Tan enamel: 1\n"
+		"    1 of:\n"
+		"     Black enamel\n"
+		"    1 of:\n"
+		"     Tan enamel\n"
 		"  Small cannon balls:\n"
 		"   Doubloons: 0\n"
 		"   Yield: 10\n"
 		"   Ingredients:\n"
-		"    Iron: 5\n"
-		"    Wood: 3\n"
+		"    3 of:\n"
+		"     Wood\n"
+		"    5 of:\n"
+		"     Iron\n"
 		" Shipwrightery:\n"
 		"  Lifeboats:\n"
 		"   Doubloons: 0\n"
 		"   Yield: 10\n"
 		"   Ingredients:\n"
-		"    Iron: 5\n"
-		"    Wood: 3\n"
+		"    3 of:\n"
+		"     Wood\n"
+		"    5 of:\n"
+		"     Iron\n"
 		"Prices:\n"
 		" Basic commodities:\n"
 		"  Iron:\n"
@@ -165,26 +189,56 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"	\"Recipes\": {\n"
 		"		\"Iron Monger\": {\n"
 		"			\"Foil\": {\n"
-		"				\"Ingredients\": {\n"
-		"					\"Black enamel\": 1,\n"
-		"					\"Tan enamel\": 1\n"
-		"				}\n"
+		"				\"Ingredients\": [\n"
+		"					{\n"
+		"						\"Ingredient\": [\n"
+		"							\"Black enamel\"\n"
+		"						],\n"
+		"						\"Count\": 1\n"
+		"					},\n"
+		"					{\n"
+		"						\"Ingredient\": [\n"
+		"							\"Tan enamel\"\n"
+		"						],\n"
+		"						\"Count\": 1\n"
+		"					}\n"
+		"				]\n"
 		"			},\n"
 		"			\"Small cannon balls\": {\n"
 		"				\"Yield\": 10,\n"
-		"				\"Ingredients\": {\n"
-		"					\"Iron\": 5,\n"
-		"					\"Wood\": 3\n"
-		"				}\n"
+		"				\"Ingredients\": [\n"
+		"					{\n"
+		"						\"Ingredient\": [\n"
+		"							\"Wood\"\n"
+		"						],\n"
+		"						\"Count\": 3\n"
+		"					},\n"
+		"					{\n"
+		"						\"Ingredient\": [\n"
+		"							\"Iron\"\n"
+		"						],\n"
+		"						\"Count\": 5\n"
+		"					}\n"
+		"				]\n"
 		"			}\n"
 		"		},\n"
 		"		\"Shipwrightery\": {\n"
 		"			\"Lifeboats\": {\n"
 		"				\"Yield\": 10,\n"
-		"				\"Ingredients\": {\n"
-		"					\"Iron\": 5,\n"
-		"					\"Wood\": 3\n"
-		"				}\n"
+		"				\"Ingredients\": [\n"
+		"					{\n"
+		"						\"Ingredient\": [\n"
+		"							\"Wood\"\n"
+		"						],\n"
+		"						\"Count\": 3\n"
+		"					},\n"
+		"					{\n"
+		"						\"Ingredient\": [\n"
+		"							\"Iron\"\n"
+		"						],\n"
+		"						\"Count\": 5\n"
+		"					}\n"
+		"				]\n"
 		"			}\n"
 		"		}\n"
 		"	},\n"
