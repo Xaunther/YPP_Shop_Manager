@@ -53,6 +53,12 @@ public:
 	//! Retrieves the \copybrief mKeySets
 	key_sets& KeySets() noexcept;
 
+	/*
+	 * @brief Returns if the given item is present in any of the sets.
+	 * @detauls The item must be comparable to the items in the sets.
+	 * @param aItem item to find.
+	 */
+	template <typename U> bool Contains( const U& aItem ) const;
 private:
 	//! Sets classified by some key.
 	key_sets mKeySets;
@@ -120,6 +126,15 @@ template <typename T>
 CKeySets<T>::key_sets& CKeySets<T>::KeySets() noexcept
 {
 	return mKeySets;
+}
+
+template <typename T>
+template <typename U> bool CKeySets<T>::Contains( const U& aItem ) const
+{
+	for( const auto& [ key, set ] : mKeySets )
+		if( set.contains( aItem ) )
+			return true;
+	return false;
 }
 
 namespace detail
