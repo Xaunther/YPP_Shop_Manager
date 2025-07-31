@@ -1,5 +1,6 @@
 #include "ATest.h"
 
+#include "CKeyItem.h"
 #include "CKeySets.h"
 #include "CRecipe.h"
 #include "JsonUtils.h"
@@ -20,15 +21,15 @@ void TRecipes::TestExceptions()
 		{
 			"Furnisher",
 			{
-				CRecipe{ "Small cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
-				CRecipe{ "Large cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
+				CRecipe{ "Small cannon balls", { recipe_item{ { "Basic labour" }, 3 }, }, 0, 10 },
+				CRecipe{ "Large cannon balls", { recipe_item{ { "Basic labour" }, 3 }, }, 0, 10 },
 			},
 		},
 		{
 			"Iron Monger",
 			{
-				CRecipe{ "Small cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
-				CRecipe{ "Large cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
+				CRecipe{ "Small cannon balls", { recipe_item{ { "Basic labour" }, 3 }, }, 0, 10 },
+				CRecipe{ "Large cannon balls", { recipe_item{ { "Basic labour" }, 3 }, }, 0, 10 },
 			}
 		},
 	} };
@@ -84,27 +85,27 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 					CRecipe{
 						"Small cannon balls",
 						{
-							recipe_item{ "Iron", 5 },
-							recipe_item{ "Wood", 1 },
-							recipe_item{ "Basic labour", 3 },
+							recipe_item{ { "Iron" }, 5 },
+							recipe_item{ { "Wood" }, 1 },
+							recipe_item{ { "Basic labour" }, 3 },
 						}, 0, 10
 					},
 					CRecipe{
 						"Medium cannon balls",
 						{
-							recipe_item{ "Iron", 8 },
-							recipe_item{ "Wood", 3 },
-							recipe_item{ "Basic labour", 3 },
-							recipe_item{ "Skilled labour", 2 },
+							recipe_item{ { "Iron" }, 8 },
+							recipe_item{ { "Wood" }, 3 },
+							recipe_item{ { "Basic labour" }, 3 },
+							recipe_item{ { "Skilled labour" }, 2 },
 						}, 0, 10
 					},
 					CRecipe{
 						"Large cannon balls",
 						{
-							recipe_item{ "Iron", 12 },
-							recipe_item{ "Wood", 4 },
-							recipe_item{ "Basic labour", 2 },
-							recipe_item{ "Skilled labour", 5 },
+							recipe_item{ { "Iron" }, 12 },
+							recipe_item{ { "Wood" }, 4 },
+							recipe_item{ { "Basic labour" }, 2 },
+							recipe_item{ { "Skilled labour" }, 5 },
 						}, 0, 10
 					}
 				}
@@ -115,11 +116,11 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 					CRecipe{
 						"Lifeboats",
 						{
-							recipe_item{ "Iron", 30 },
-							recipe_item{ "Wood", 85 },
-							recipe_item{ "Grog", 15 },
-							recipe_item{ "Skilled labour", 50 },
-							recipe_item{ "Basic labour", 5 },
+							recipe_item{ { "Iron" }, 30 },
+							recipe_item{ { "Wood" }, 85 },
+							recipe_item{ { "Grog" }, 15 },
+							recipe_item{ { "Skilled labour" }, 50 },
+							recipe_item{ { "Basic labour" }, 5 },
 						}, 0, 10
 					}
 				}

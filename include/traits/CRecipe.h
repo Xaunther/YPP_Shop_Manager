@@ -29,6 +29,10 @@ template <> struct json_traits<CRecipe>
 	static inline constexpr std::string_view DOUBLOONS_KEY = "Doubloons";
 	//! JSON key for the \copybrief CRecipe::mItems
 	static inline constexpr std::string_view INGREDIENTS_KEY = "Ingredients";
+	//! JSON key for an ingredient.
+	static inline constexpr std::string_view INGREDIENT_KEY = "Ingredient";
+	//! JSON key for an ingredient count
+	static inline constexpr std::string_view COUNT_KEY = "Count";
 };
 
 } // ypp_sm namespace

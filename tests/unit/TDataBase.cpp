@@ -33,13 +33,13 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 				{
 					CRecipe{ "Small cannon balls",
 					{
-						recipe_item{ "Wood", 3 },
-						recipe_item{ "Iron", 5 }
+						recipe_item{ { "Wood" }, 3 },
+						recipe_item{ { "Iron" }, 5 }
 					}, 0, 10 },
 					CRecipe{ "Foil",
 					{
-						recipe_item{ "Black enamel", 1 },
-						recipe_item{ "Tan enamel", 1 }
+						recipe_item{ { "Black enamel" }, 1 },
+						recipe_item{ { "Tan enamel" }, 1 }
 					}, 0, 1 }
 				}
 			},
@@ -48,8 +48,8 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 				{
 					CRecipe{ "Lifeboats",
 					{
-						recipe_item{ "Wood", 3 },
-						recipe_item{ "Iron", 5 }
+						recipe_item{ { "Wood" }, 3 },
+						recipe_item{ { "Iron" }, 5 }
 					}, 0, 10 },
 				}
 			} } },

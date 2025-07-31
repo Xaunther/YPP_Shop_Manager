@@ -22,7 +22,7 @@ using optional_recipe = std::optional<std::reference_wrapper<const CRecipe>>;
  * @param aItem Item to find.
  * @param aPrices Prices to look for the item price.
  */
-const CPricesTable& GetPricesTable( const types::CRecipe::items::value_type& aItem, const types::CDataBase::prices& aPrices );
+const CPricesTable& GetPricesTable( const types::CRecipe::ingredients_type::value_type& aItem, const types::CDataBase::prices& aPrices );
 
 /*
  * @brief Find the prices table of an item.
@@ -30,7 +30,7 @@ const CPricesTable& GetPricesTable( const types::CRecipe::items::value_type& aIt
  * @param aItem Item to find.
  * @param aRecipes Recipes to look for the item recipe.
  */
-optional_recipe GetRecipe( const types::CRecipe::items::value_type& aItem, const types::CDataBase::recipes& aRecipes );
+optional_recipe GetRecipe( const types::CRecipe::ingredients_type::value_type& aItem, const types::CDataBase::recipes& aRecipes );
 
 /*
  * @brief Calculates the order price of a recipe.
@@ -79,22 +79,22 @@ std::string CProductPrice::Description( unsigned int aIndentDepth, char aIndentC
 namespace
 {
 
-const CPricesTable& GetPricesTable( const types::CRecipe::items::value_type& aItem, const types::CDataBase::prices& aPrices )
+const CPricesTable& GetPricesTable( const types::CRecipe::ingredients_type::value_type& aItem, const types::CDataBase::prices& aPrices )
 {
 	for( const auto& [ key, pricesTables ] : aPrices.GetKeySets() )
 	{
-		const auto found = pricesTables.find( types::AKeyable::key_type{ aItem.GetKey() } );
+		const auto found = pricesTables.find( aItem );
 		if( found != pricesTables.cend() )
 			return *found;
 	}
-	throw std::invalid_argument{ std::string{ aItem.GetKey() } + " price table not found." };
+	throw std::invalid_argument{ aItem + " price table not found." };
 }
 
-optional_recipe GetRecipe( const types::CRecipe::items::value_type& aItem, const types::CDataBase::recipes& aRecipes )
+optional_recipe GetRecipe( const types::CRecipe::ingredients_type::value_type& aItem, const types::CDataBase::recipes& aRecipes )
 {
 	for( const auto& [ key, recipes ] : aRecipes.GetKeySets() )
 	{
-		const auto found = recipes.find( types::AKeyable::key_type{ aItem.GetKey() } );
+		const auto found = recipes.find( types::AKeyable::key_type{ aItem } );
 		if( found != recipes.cend() )
 			return *found;
 	}
@@ -108,9 +108,9 @@ types::CPricesTable::int_price CalculateOrderPrice( const CRecipe& aRecipe, cons
 
 	for( const auto& ingredient : aRecipe.GetItems() )
 	{
-		const auto& priceTable = GetPricesTable( ingredient, aDataBase.GetPrices() );
+		const auto& priceTable = GetPricesTable( *ingredient.ingredients.cbegin(), aDataBase.GetPrices() );
 		result += ( priceTable.GetTax() + static_cast<price>( priceTable.GetUsePrice() ) )
-				* static_cast<price>( ingredient.GetValue() );
+				* static_cast<price>( ingredient.ingredient_count );
 	}
 
 	return static_cast<types::CPricesTable::int_price>( result );
@@ -124,12 +124,12 @@ types::CPricesTable::price CalculateCost( const CRecipe& aRecipe, const CDataBas
 
 	for( const auto& ingredient : aRecipe.GetItems() )
 	{
-		if( const auto recipe = GetRecipe( ingredient, aDataBase.GetRecipes() ) )
+		if( const auto recipe = GetRecipe( *ingredient.ingredients.cbegin(), aDataBase.GetRecipes() ) )
 			result += CalculateCost( *recipe, aDataBase ) * static_cast<price>( (*recipe).get().GetYield() );
 		else
 		{
-			const auto& priceTable = GetPricesTable( ingredient, aDataBase.GetPrices() );
-			result += ( priceTable.GetTax() + priceTable.GetCost() ) * static_cast<price>( ingredient.GetValue() );
+			const auto& priceTable = GetPricesTable( *ingredient.ingredients.cbegin(), aDataBase.GetPrices() );
+			result += ( priceTable.GetTax() + priceTable.GetCost() ) * static_cast<price>( ingredient.ingredient_count );
 		}
 	}
 	result += static_cast<price>( aRecipe.GetDoubloonCount() * aDataBase.GetDoubloonPrice() );

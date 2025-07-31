@@ -24,9 +24,9 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			{
 				CRecipe{ "Small cannon balls",
 				{
-					recipe_item{ "Wood", 1 },
-					recipe_item{ "Iron", 5 },
-					recipe_item{ "Basic", 3 },
+					recipe_item{ { "Wood" }, 1 },
+					recipe_item{ { "Iron" }, 5 },
+					recipe_item{ { "Basic" }, 3 },
 				}, 0, 10 },
 			}
 		},
@@ -35,11 +35,11 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			{
 				CRecipe{ "Grog",
 				{
-					recipe_item{ "Sugar cane", 10 },
-					recipe_item{ "Wood", 5 },
-					recipe_item{ "Iron", 1 },
-					recipe_item{ "Basic", 2 },
-					recipe_item{ "Skilled", 2 },
+					recipe_item{ { "Sugar cane" }, 10 },
+					recipe_item{ { "Wood" }, 5 },
+					recipe_item{ { "Iron" }, 1 },
+					recipe_item{ { "Basic" }, 2 },
+					recipe_item{ { "Skilled" }, 2 },
 				}, 0, 10 },
 			}
 		},
@@ -48,11 +48,11 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			{
 				CRecipe{ "Lifeboats",
 				{
-					recipe_item{ "Wood", 85 },
-					recipe_item{ "Iron", 30 },
-					recipe_item{ "Grog", 15 },
-					recipe_item{ "Basic", 50 },
-					recipe_item{ "Skilled", 5 },
+					recipe_item{ { "Wood" }, 85 },
+					recipe_item{ { "Iron" }, 30 },
+					recipe_item{ { "Grog" }, 15 },
+					recipe_item{ { "Basic" }, 50 },
+					recipe_item{ { "Skilled" }, 5 },
 				}, 0, 10 },
 			}
 		} } },
@@ -90,7 +90,7 @@ void TProductPrice::TestExceptions()
 	// Test member constructor
 	CheckException( []()
 	{
-		CProductPrice{ CRecipe{ "Deez balls", { recipe_item{ "A", 3 } } }, EXAMPLE_DATABASE() };
+		CProductPrice{ CRecipe{ "Deez balls", { recipe_item{ { "A" }, 3 } } }, EXAMPLE_DATABASE() };
 	}, "A price table not found." );
 }
 

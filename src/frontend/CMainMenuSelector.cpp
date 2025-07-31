@@ -22,9 +22,9 @@ template <> inline CRecipe AskInput( std::string_view aMessage )
 
 template <> inline types::CRecipe::items::value_type AskInput( std::string_view aMessage )
 {
-	auto itemInput = AskInput<std::string>( aMessage );
-	auto countInput = AskInput<types::CRecipe::count>( itemInput + " units:" );
-	return types::CRecipe::items::value_type{ itemInput, countInput };
+	auto ingredientsInput = AskInput<types::CRecipe::ingredients_type>( aMessage );
+	auto countInput = AskInput<types::CRecipe::count>( "Units:" );
+	return types::CRecipe::items::value_type{ ingredientsInput, countInput };
 }
 
 template <> inline CPricesTable AskInput( std::string_view aMessage )
