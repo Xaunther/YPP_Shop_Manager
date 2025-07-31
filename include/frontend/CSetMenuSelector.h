@@ -6,6 +6,7 @@
 #include <set>
 #include <string>
 
+#include "CKeySets.h"
 #include "CPricesTable.h"
 #include "CRecipe.h"
 
@@ -25,9 +26,9 @@ namespace frontend
  * @brief Class to manage the key sets class menu options.
  */
 template <typename T> requires std::derived_from<T, IDescriptable>
-class CSetMenuSelector : public IMenuSelector<std::set<T,types::AKeyable::SKeyCompare>&>
+class CSetMenuSelector : public IMenuSelector<std::set<T,types::AKeyable::SKeyCompare>&, const CKeySets<T>&>
 {
-	using operations = IMenuSelector<std::set<T,types::AKeyable::SKeyCompare>&>::operations;
+	using operations = IMenuSelector<std::set<T,types::AKeyable::SKeyCompare>&, const CKeySets<T>&>::operations;
 	using set_type = std::set<T,types::AKeyable::SKeyCompare>;
 
 	//! Retrieves the introductory text.
@@ -91,16 +92,18 @@ template <typename T> requires std::derived_from<T, IDescriptable>
 CSetMenuSelector<T>::operations CSetMenuSelector<T>::GetOperations() const noexcept
 {
 	return {
-		[]( const set_type& ){ return false; },
-		[]( const set_type& aSet ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
-		[&]( set_type& aSet )
+		[]( const set_type&, const CKeySets<T>& ){ return false; },
+		[]( const set_type& aSet, const CKeySets<T>& ){ for( const auto& element : aSet ) std::cout << element.GetDescription(); return true; },
+		[&]( set_type& aSet, const CKeySets<T>& aKeySets )
 			{
 				auto inputElement = AskInput<T>( "Item:" );
-				aSet.extract( inputElement );
-				aSet.emplace( std::move( inputElement ) );
+				if( aSet.extract( inputElement ) || !aKeySets.Contains( inputElement ) )
+					aSet.emplace( std::move( inputElement ) );
+				else
+					std::cout << "\nItem " << inputElement.GetKey() << " was not added because it already exists in a different category.\n";
 				return true;
 			},
-		[&]( set_type& aSet )
+		[&]( set_type& aSet, const CKeySets<T>& )
 			{
 				const auto found = aSet.find( AskInput<types::AKeyable::key_type>( "Item:" ) );
 				if( found != aSet.cend() )

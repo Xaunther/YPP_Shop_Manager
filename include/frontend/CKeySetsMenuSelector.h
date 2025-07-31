@@ -57,7 +57,7 @@ CKeySetsMenuSelector<T>::operations CKeySetsMenuSelector<T>::GetOperations() con
 			{
 				const auto found = aKeySets.KeySets().find( AskInput<std::string>( "Category:" ) );
 				if( found != aKeySets.KeySets().end() )
-					CSetMenuSelector<T>{}( (*found).second );
+					CSetMenuSelector<T>{}( (*found).second, aKeySets );
 				return true;
 			},
 	};

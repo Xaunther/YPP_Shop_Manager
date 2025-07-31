@@ -53,28 +53,39 @@ public:
 	//! Retrieves the \copybrief mKeySets
 	key_sets& KeySets() noexcept;
 
+	/*
+	 * @brief Returns if the given item is present in any of the sets.
+	 * @detauls The item must be comparable to the items in the sets.
+	 * @param aItem item to find.
+	 */
+	template <typename U> bool Contains( const U& aItem ) const;
 private:
 	//! Sets classified by some key.
 	key_sets mKeySets;
 };
 
+namespace detail
+{
+
+template <typename T>
+CKeySets<T>::key_sets CreateKeySets( const types::IJsonable::json& aJSON );
+
+template <typename T>
+const CKeySets<T>::key_sets& CheckUniqueness( const typename CKeySets<T>::key_sets& aKeySets );
+
+} // detail namespace
+
 template <typename T>
 CKeySets<T>::CKeySets( const key_sets& aKeySets ) try :
-	mKeySets( aKeySets )
+	mKeySets( detail::CheckUniqueness<T>( aKeySets ) )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating key sets." )
 
 template <typename T>
-CKeySets<T>::CKeySets( const json& aJSON ) try
+CKeySets<T>::CKeySets( const json& aJSON ) try :
+	mKeySets( detail::CheckUniqueness<T>( detail::CreateKeySets<T>( aJSON ) ) )
 {
-	for( const auto& keySetsJSON : aJSON.items() )
-	{
-		typename key_sets::mapped_type set;
-		for( const auto& setJSON : keySetsJSON.value().items() )
-			set.emplace( setJSON.value(), setJSON.key() );
-		mKeySets.emplace( keySetsJSON.key(), std::move( set ) );
-	}
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating from the JSON object " << aJSON.dump() << "." )
 
@@ -116,5 +127,56 @@ CKeySets<T>::key_sets& CKeySets<T>::KeySets() noexcept
 {
 	return mKeySets;
 }
+
+template <typename T>
+template <typename U> bool CKeySets<T>::Contains( const U& aItem ) const
+{
+	for( const auto& [ key, set ] : mKeySets )
+		if( set.contains( aItem ) )
+			return true;
+	return false;
+}
+
+namespace detail
+{
+
+template <typename T>
+CKeySets<T>::key_sets CreateKeySets( const types::IJsonable::json& aJSON )
+{
+	typename CKeySets<T>::key_sets result;
+	for( const auto& keySetsJSON : aJSON.items() )
+	{
+		typename CKeySets<T>::key_sets::mapped_type set;
+		for( const auto& setJSON : keySetsJSON.value().items() )
+			set.emplace( setJSON.value(), setJSON.key() );
+		result.emplace( keySetsJSON.key(), std::move( set ) );
+	}
+	return result;
+}
+
+template <typename T>
+const CKeySets<T>::key_sets& CheckUniqueness( const typename CKeySets<T>::key_sets& aKeySets )
+{
+	std::set<T> repeatedItems;
+	for( auto it1 = aKeySets.cbegin(); it1 != aKeySets.cend(); ++it1 )
+	{
+		for( auto it2 = aKeySets.cbegin(); it2 != it1; ++it2 )
+			std::ranges::set_intersection( (*it1).second, (*it2).second, std::inserter( repeatedItems, repeatedItems.end() ) );
+
+	}
+	if( !repeatedItems.empty() )
+	{
+		auto itemIt = repeatedItems.cbegin();
+		std::stringstream ss;
+		ss << "The following items are repeated: " << (*itemIt).GetKey();
+		for( ++itemIt; itemIt != repeatedItems.cend(); ++itemIt )
+			ss << ", " << (*itemIt).GetKey();
+		ss << ".";
+		throw( std::invalid_argument{ ss.str() } );
+	}
+	return aKeySets;
+}
+
+} // detail namespace
 
 } // ypp_sm namespace
