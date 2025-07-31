@@ -8,17 +8,74 @@ using namespace ypp_sm;
 
 INITIALIZE_TEST( TRecipes )
 
+using recipes = CKeySets<CRecipe>;
+using recipe_item = types::CRecipe::items::value_type;
+
 void TRecipes::TestExceptions()
 {
+	// Test member constructor
+	CheckException( []()
+	{
+		recipes{ {
+		{
+			"Furnisher",
+			{
+				CRecipe{ "Small cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
+				CRecipe{ "Large cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
+			},
+		},
+		{
+			"Iron Monger",
+			{
+				CRecipe{ "Small cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
+				CRecipe{ "Large cannon balls", { recipe_item{ "Basic labour", 3 }, }, 0, 10 },
+			}
+		},
+	} };
+	}, "The following items are repeated: Large cannon balls, Small cannon balls" );
+
+	// Test JSON constructor
+	CheckException( []()
+	{
+		ValueFromJSONKeyString<recipes>( R"( {
+			"Recipes": {
+				"Furnisher": {
+					"Large cannon balls": {
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 2
+						}
+					},
+					"Small cannon balls": {
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 3
+						}
+					}
+				},
+				"Iron Monger": {
+					"Large cannon balls": {
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 2
+						}
+					},
+					"Small cannon balls": {
+						"Yield": 10,
+						"Ingredients": {
+							"Basic labour": 3
+						}
+					}
+				}
+			}
+		} )", "Recipes" );
+	}, "The following items are repeated: Large cannon balls, Small cannon balls" );
 }
 
 std::vector<std::string> TRecipes::ObtainedResults() noexcept
 {
 	std::vector<std::string> result;
 	{
-		using recipes = CKeySets<CRecipe>;
-		using recipe_item = types::CRecipe::items::value_type;
-
 		for( const auto& recipes : {
 			recipes{ {
 			{
