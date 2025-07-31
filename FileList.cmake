@@ -21,6 +21,7 @@ SET(YPP_SM_CORE_EXTERNAL_HEADERS
 	include/types/CDataBase.h
 	include/types/CKeySets.h
 	include/types/CPricesTable.h
+	include/types/CProductPrice.h
 	include/types/CRecipe.h
 	include/types/IJsonable.h
 )
