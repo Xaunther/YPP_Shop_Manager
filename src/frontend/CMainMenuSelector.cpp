@@ -50,6 +50,7 @@ constexpr std::vector<std::string> CMainMenuSelector::GetOptions() const noexcep
 		"List database",
 		"Explore recipes",
 		"Explore prices",
+		"Modify doubloon price",
 		"Save JSON"
 	};
 }
@@ -83,6 +84,12 @@ CMainMenuSelector::operations CMainMenuSelector::GetOperations() const noexcept
 		[]( const CDataBase& aDataBase, std::string_view ){ std::cout << aDataBase.GetDescription(); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CRecipe>{}( aDataBase.Recipes() ); return true; },
 		[]( CDataBase& aDataBase, std::string_view ){ CKeySetsMenuSelector<CPricesTable>{}( aDataBase.Prices() ); return true; },
+		[]( CDataBase& aDataBase, std::string_view )
+		{
+			aDataBase.SetDoubloonPrice( AskInput<types::CPricesTable::int_price>(
+					std::string{ json_traits<CDataBase>::DOUBLOON_PRICE_KEY } + ":" ) );
+			return true;
+		},
 		[]( const CDataBase& aDataBase, std::string_view aJSONFileName )
 		{
 			std::ofstream f( aJSONFileName.data() );

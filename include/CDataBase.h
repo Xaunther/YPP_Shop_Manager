@@ -63,6 +63,12 @@ public:
 	//! Retrieves the \copybrief mDoubloonPrice
 	int_price GetDoubloonPrice() const noexcept;
 
+	/*
+	 * @brief Sets the \copybrief mDoubloonPrice
+	 * @param aDoubloonPrice \copybrief mDoubloonPrice
+	 */
+	void SetDoubloonPrice( const int_price& aDoubloonPrice ) noexcept;
+
 private:
 	//! List of recipes, classified by a keyword
 	recipes mRecipes;

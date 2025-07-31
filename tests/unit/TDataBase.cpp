@@ -24,7 +24,7 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 	using price_item = prices::value_type;
 	std::vector<std::string> result;
 
-	for( const auto& database : {
+	for( auto database : {
 		CDataBase{ recipes{}, prices{}, 2000 },
 		CDataBase{ recipes{
 			recipes::key_sets{
@@ -114,6 +114,8 @@ std::vector<std::string> TDataBase::ObtainedResults() noexcept
 		ypp_sm::types::IJsonable::json outputJSON;
 		AddToJSON( outputJSON, database );
 		result.push_back( outputJSON.dump( 1, '\t' ) );
+		database.SetDoubloonPrice( database.GetDoubloonPrice() + 100 );
+		result.push_back( std::to_string( database.GetDoubloonPrice() ) );
 	}
 
 	return result;
@@ -126,6 +128,7 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"{\n"
 		"	\"Doubloon price\": 2000\n"
 		"}",
+		"2100",
 		"Recipes:\n"
 		" Iron Monger:\n"
 		"  Foil:\n"
@@ -200,7 +203,8 @@ std::vector<std::string> TDataBase::ExpectedResults() noexcept
 		"		}\n"
 		"	},\n"
 		"	\"Doubloon price\": 3000\n"
-		"}"
+		"}",
+		"3100",
 	};
 	result.reserve( 2 * result.size() );
 	result.insert( result.cend(), result.cbegin(), result.cend() );
