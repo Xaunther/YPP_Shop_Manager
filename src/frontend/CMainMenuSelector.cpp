@@ -16,15 +16,15 @@ template <> inline CRecipe AskInput( std::string_view aMessage )
 	auto itemInput = AskInput<std::string>( aMessage );
 	auto yieldInput = AskInput<unsigned int>( "Yield:" );
 	auto doubloonInput = AskInput<unsigned int>( "Doubloons:" );
-	auto ingredientsCountInput = AskInput<unsigned int>( "Number of ingredients:" );
-	types::CRecipe::items ingredientsInput;
-	while( ingredientsInput.size() < ingredientsCountInput )
-	{
-		auto ingredientInput = AskInput<types::AKeyable::key_type>( "Ingredient " + std::to_string( ingredientsInput.size() + 1 ) + ":" );
-		auto countInput = AskInput<types::CRecipe::count>( ingredientInput + " units:" );
-		ingredientsInput.emplace( ingredientInput, countInput );
-	}
+	auto ingredientsInput = AskInput<types::CRecipe::items>( "Ingredient" );
 	return CRecipe{ itemInput, ingredientsInput, doubloonInput, yieldInput };
+}
+
+template <> inline types::CRecipe::items::value_type AskInput( std::string_view aMessage )
+{
+	auto itemInput = AskInput<std::string>( aMessage );
+	auto countInput = AskInput<types::CRecipe::count>( itemInput + " units:" );
+	return types::CRecipe::items::value_type{ itemInput, countInput };
 }
 
 template <> inline CPricesTable AskInput( std::string_view aMessage )
