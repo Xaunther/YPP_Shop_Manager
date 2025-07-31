@@ -69,4 +69,9 @@ CDataBase::int_price CDataBase::GetDoubloonPrice() const noexcept
 	return mDoubloonPrice;
 }
 
+void CDataBase::SetDoubloonPrice( const int_price& aDoubloonPrice ) noexcept
+{
+	mDoubloonPrice = aDoubloonPrice;
+}
+
 } // ypp_sm namespace
