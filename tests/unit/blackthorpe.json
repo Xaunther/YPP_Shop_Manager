@@ -1,61 +1,239 @@
 {
 	"Recipes": {
 		"Apothecary": {
+			"Tan enamel": {
+				"Yield": 7,
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 4
+					},
+					{
+						"Ingredient": [
+							"Old man's beard"
+						],
+						"Count": 6
+					},
+					{
+						"Ingredient": [
+							"Iris root"
+						],
+						"Count": 6
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 1
+					},
+					{
+						"Ingredient": [
+							"Skilled"
+						],
+						"Count": 1
+					}
+				]
+			},
 			"White enamel": {
 				"Yield": 7,
-				"Ingredients": {
-					"Basic": 2,
-					"Iron": 4,
-					"Yarrow": 6
-				}
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 4
+					},
+					{
+						"Ingredient": [
+							"Yarrow"
+						],
+						"Count": 6
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 2
+					}
+				]
+			},
+			"Yellow enamel": {
+				"Yield": 7,
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 4
+					},
+					{
+						"Ingredient": [
+							"Weld"
+						],
+						"Count": 6
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 2
+					}
+				]
 			}
 		},
 		"Distillery": {
 			"Grog": {
 				"Yield": 10,
-				"Ingredients": {
-					"Basic": 2,
-					"Iron": 1,
-					"Skilled": 2,
-					"Sugar cane": 10,
-					"Wood": 5
-				}
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 1
+					},
+					{
+						"Ingredient": [
+							"Wood"
+						],
+						"Count": 5
+					},
+					{
+						"Ingredient": [
+							"Sugar cane"
+						],
+						"Count": 10
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 2
+					},
+					{
+						"Ingredient": [
+							"Skilled"
+						],
+						"Count": 2
+					}
+				]
 			}
 		},
 		"Iron Monger": {
 			"Foil": {
 				"Doubloons": 1,
-				"Ingredients": {
-					"Basic": 15,
-					"Iron": 1,
-					"White enamel": 2
-				}
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 1
+					},
+					{
+						"Ingredient": [
+							"Tan enamel",
+							"White enamel",
+							"Yellow enamel"
+						],
+						"Count": 1
+					},
+					{
+						"Ingredient": [
+							"Tan enamel",
+							"White enamel",
+							"Yellow enamel"
+						],
+						"Count": 1
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 15
+					}
+				]
 			},
 			"Large cannon balls": {
 				"Yield": 10,
-				"Ingredients": {
-					"Basic": 2,
-					"Iron": 12,
-					"Skilled": 5,
-					"Wood": 4
-				}
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 12
+					},
+					{
+						"Ingredient": [
+							"Wood"
+						],
+						"Count": 4
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 2
+					},
+					{
+						"Ingredient": [
+							"Skilled"
+						],
+						"Count": 5
+					}
+				]
 			},
 			"Medium cannon balls": {
 				"Yield": 10,
-				"Ingredients": {
-					"Basic": 3,
-					"Iron": 8,
-					"Skilled": 2,
-					"Wood": 3
-				}
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 8
+					},
+					{
+						"Ingredient": [
+							"Wood"
+						],
+						"Count": 3
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 3
+					},
+					{
+						"Ingredient": [
+							"Skilled"
+						],
+						"Count": 2
+					}
+				]
 			},
 			"Small cannon balls": {
 				"Yield": 10,
-				"Ingredients": {
-					"Basic": 3,
-					"Iron": 5,
-					"Wood": 1
-				}
+				"Ingredients": [
+					{
+						"Ingredient": [
+							"Iron"
+						],
+						"Count": 5
+					},
+					{
+						"Ingredient": [
+							"Wood"
+						],
+						"Count": 1
+					},
+					{
+						"Ingredient": [
+							"Basic"
+						],
+						"Count": 3
+					}
+				]
 			}
 		}
 	},
@@ -98,13 +276,38 @@
 			}
 		},
 		"Enamel": {
+			"Tan enamel": {
+				"Cost": 89.0,
+				"Use price": 89,
+				"Tax": 7.900000095367432
+			},
 			"White enamel": {
 				"Cost": 2635.0,
 				"Use price": 2700,
 				"Tax": 274.29998779296875
+			},
+			"Yellow enamel": {
+				"Cost": 100.0,
+				"Use price": 100,
+				"Tax": 10.100000381469727
 			}
 		},
 		"Herbs": {
+			"Iris root": {
+				"Cost": 63.0,
+				"Use price": 63,
+				"Tax": 4.900000095367432
+			},
+			"Old man's beard": {
+				"Cost": 11.0,
+				"Use price": 11,
+				"Tax": 0.8999999761581421
+			},
+			"Weld": {
+				"Cost": 106.0,
+				"Use price": 106,
+				"Tax": 7.099999904632568
+			},
 			"Yarrow": {
 				"Cost": 2767.0,
 				"Use price": 2800,

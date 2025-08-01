@@ -21,11 +21,11 @@ CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 	mDoubloonCount( ValueFromOptionalJSONKey<count>( aJSON, DOUBLOONS_KEY ) ),
 	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) )
 {
-	const auto foundIngredients = aJSON.find( INGREDIENTS_KEY );
-	if( foundIngredients != aJSON.cend() )
-		for( const auto& itemJSON : (*foundIngredients).items() )
-			mItems.emplace( itemJSON.value(), itemJSON.key() );
+	for( const auto& ingredientJSON : aJSON[ INGREDIENTS_KEY ].items() )
+		mItems.emplace_back( types::CRecipe::item{ ValueFromRequiredJSONKey<types::CRecipe::ingredients_type>(
+				ingredientJSON.value(), INGREDIENT_KEY ), ValueFromRequiredJSONKey<count>( ingredientJSON.value(), COUNT_KEY ) } );
 }
+
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() <<"." )
 
 void CRecipe::JSON( json& aJSON ) const noexcept
@@ -37,7 +37,12 @@ void CRecipe::JSON( json& aJSON ) const noexcept
 	{
 		auto& ingredientsJSON = aJSON[ INGREDIENTS_KEY ];
 		for( const auto& item : mItems )
-			AddToJSONKey( ingredientsJSON, item, item.GetKey() );
+		{
+			json ingredientJSON;
+			AddToJSONKey( ingredientJSON, item.ingredients, INGREDIENT_KEY );
+			AddToJSONKey( ingredientJSON, item.ingredient_count, COUNT_KEY );
+			ingredientsJSON.push_back( ingredientJSON );
+		}
 	}
 }
 
@@ -51,7 +56,11 @@ std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) 
 	{
 		ss << std::string( aIndentDepth + 1, aIndentChar ) << INGREDIENTS_KEY << ":\n";
 		for( const auto& item : mItems )
-			ss << item.GetDescription( aIndentDepth + 2, aIndentChar );
+		{
+			ss << std::string( aIndentDepth + 2, aIndentChar ) << item.ingredient_count << " of:\n";
+			for( const auto& ingredient : item.ingredients )
+				ss << std::string( aIndentDepth + 3, aIndentChar ) << ingredient << "\n";
+		}
 	}
 	return ss.str();
 }

@@ -3,7 +3,7 @@
 #include "AKeyable.h"
 #include "IDescriptable.h"
 
-#include "types/CPricesTable.h"
+#include "types/CProductPrice.h"
 
 namespace ypp_sm
 {
@@ -17,8 +17,7 @@ class CRecipe;
 class CProductPrice : public IDescriptable, public AKeyable
 {
 protected:
-	using int_price = types::CPricesTable::int_price;
-	using price = types::CPricesTable::price;
+	using product_price_set = types::CProductPrice::product_price_set;
 
 public:
 	/**
@@ -35,17 +34,12 @@ private:
 	std::string Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept override;
 
 public:
-	//! Retrieves the \copybrief mOrderPrice
-	int_price GetOrderPrice() const noexcept;
-
-	//! Retrieves the \copybrief mCost
-	price GetCost() const noexcept;
+	//! Retrieves the \copybrief mProductPriceSet
+	const product_price_set& GetProductPriceSet() const noexcept;
 
 private:
-	//! Price shown in the Order Commodities menu.
-	int_price mOrderPrice;
-	//! Cost of a single item.
-	price mCost;
+	//! Prices of all ingredient combinations.
+	product_price_set mProductPriceSet;
 };
 
 } // ypp_sm namespace

@@ -4,8 +4,6 @@
 #include "IDescriptable.h"
 #include "IJsonable.h"
 
-#include "CKeyItem.h"
-
 #include "traits/CRecipe.h"
 #include "types/CRecipe.h"
 
