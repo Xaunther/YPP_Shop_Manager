@@ -24,11 +24,13 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a rec
 CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 	AKeyable( aName ),
 	mDoubloonCount( ValueFromOptionalJSONKey<count>( aJSON, DOUBLOONS_KEY ) ),
-	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) )
+	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) ),
+	mPriceAdjustment( ValueFromOptionalJSONKey<int_price>( aJSON, PRICE_ADJUSTMENT_KEY ) )
 {
 	for( const auto& ingredientJSON : aJSON[ INGREDIENTS_KEY ].items() )
-		mItems.emplace_back( types::CRecipe::item{ ValueFromRequiredJSONKey<types::CRecipe::ingredients_type>(
-				ingredientJSON.value(), INGREDIENT_KEY ), ValueFromRequiredJSONKey<count>( ingredientJSON.value(), COUNT_KEY ) } );
+		mItems.emplace_back( types::CRecipe::item{
+				.ingredients = ValueFromRequiredJSONKey<types::CRecipe::ingredients_type>( ingredientJSON.value(), INGREDIENT_KEY ),
+				.ingredient_count = ValueFromRequiredJSONKey<count>( ingredientJSON.value(), COUNT_KEY ) } );
 }
 
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() <<"." )
