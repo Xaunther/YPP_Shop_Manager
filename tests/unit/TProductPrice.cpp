@@ -111,6 +111,7 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			"Ship supplies",
 			{
 				price_item{ "Grog", 44, 44, 4.3 },
+				price_item{ "Fine rum", {}, 75 },
 			},
 		},
 		{
@@ -143,6 +144,10 @@ void TProductPrice::TestExceptions()
 	{
 		CProductPrice{ CRecipe{ "Deez balls", { recipe_item{ { "A" }, 3 } } }, EXAMPLE_DATABASE() };
 	}, "A price table not found." );
+	CheckException( []()
+	{
+		CProductPrice{ CRecipe{ "Deez balls", { recipe_item{ { "Fine rum" }, 3 } } }, EXAMPLE_DATABASE() };
+	}, "Cannot find cost for Fine rum" );
 }
 
 std::vector<std::string> TProductPrice::ObtainedResults() noexcept
