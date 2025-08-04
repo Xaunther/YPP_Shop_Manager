@@ -17,7 +17,7 @@ CPricesTable::CPricesTable( std::string_view aName, optional_price aCost, int_pr
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table." )
 
 CPricesTable::CPricesTable( const json& aJSON, std::string_view aName ) try :
-	CPricesTable( aName, ValueFromRequiredJSONKey<price>( aJSON, COST_KEY ),
+	CPricesTable( aName, ValueFromOptionalJSONKey<optional_price>( aJSON, COST_KEY ),
 			ValueFromRequiredJSONKey<int_price>( aJSON, USE_PRICE_KEY ),
 			ValueFromOptionalJSONKey<price>( aJSON, TAX_KEY ) )
 {
