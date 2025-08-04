@@ -17,6 +17,7 @@ class CPricesTable : public IJsonable, public IDescriptable, public AKeyable, pr
 {
 protected:
 	using price = types::CPricesTable::price;
+	using optional_price = types::CPricesTable::optional_price;
 	using int_price = types::CPricesTable::int_price;
 
 public:
@@ -27,7 +28,7 @@ public:
 	 * @param aUsePrice \copybrief mUsePrice
 	 * @param aTax \copybrief mTax
 	 */
-	explicit CPricesTable( std::string_view aName, price aCost, int_price aUsePrice, price aTax = 0 );
+	explicit CPricesTable( std::string_view aName, optional_price aCost, int_price aUsePrice, price aTax = 0 );
 
 	/**
 	 * @brief JSON constructor.
@@ -50,7 +51,7 @@ private:
 
 public:
 	//! Retrieves the \copybrief mCost
-	price GetCost() const noexcept;
+	optional_price GetCost() const noexcept;
 
 	//! Retrieves the \copybrief mUsePrice
 	int_price GetUsePrice() const noexcept;
@@ -60,7 +61,7 @@ public:
 
 private:
 	//! Average cost.
-	price mCost;
+	optional_price mCost;
 	//! Use price.
 	int_price mUsePrice;
 	//! Tax.

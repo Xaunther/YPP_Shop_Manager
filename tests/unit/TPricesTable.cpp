@@ -24,15 +24,6 @@ void TPricesTable::TestExceptions()
 	{
 		ValueFromJSONKeyString<CPricesTable>( R"( {
 			"Grog": {
-				"Use price": 0,
-				"Tax": 0
-			}
-		} )", "Grog", "Grog" );
-	}, "key 'Cost' not found" );
-	CheckException( []()
-	{
-		ValueFromJSONKeyString<CPricesTable>( R"( {
-			"Grog": {
 				"Cost": 0,
 				"Tax": 0
 			}
@@ -66,6 +57,7 @@ std::vector<std::string> TPricesTable::ObtainedResults() noexcept
 
 	for( const auto& pricesTable : {
 		CPricesTable{ "Wood", 11, 15, 2.1 },
+		CPricesTable{ "Grog", {}, 25, 4.3 },
 		ValueFromJSONKeyString<CPricesTable>( R"( {
 			"Wood": {
 				"Cost": 11,
@@ -73,6 +65,12 @@ std::vector<std::string> TPricesTable::ObtainedResults() noexcept
 				"Tax": 2.1
 			}
 		} )", "Wood", "Wood" ),
+		ValueFromJSONKeyString<CPricesTable>( R"( {
+			"Grog": {
+				"Use price": 25,
+				"Tax": 4.3
+			}
+		} )", "Grog", "Grog" ),
 	} )
 	{
 		result.emplace_back( pricesTable.GetDescription() );
@@ -96,6 +94,15 @@ std::vector<std::string> TPricesTable::ExpectedResults() noexcept
 		"		\"Cost\": 11.0,\n"
 		"		\"Use price\": 15,\n"
 		"		\"Tax\": 2.0999999046325684\n"
+		"	}\n"
+		"}",
+		"Grog:\n"
+		" Use price: 25\n"
+		" Tax: 4.3\n",
+		"{\n"
+		"	\"Grog\": {\n"
+		"		\"Use price\": 25,\n"
+		"		\"Tax\": 4.300000190734863\n"
 		"	}\n"
 		"}",
 	};

@@ -7,9 +7,9 @@
 namespace ypp_sm
 {
 
-CPricesTable::CPricesTable( std::string_view aName, price aCost, int_price aUsePrice, price aTax ) try :
+CPricesTable::CPricesTable( std::string_view aName, optional_price aCost, int_price aUsePrice, price aTax ) try :
 	AKeyable( aName ),
-	mCost( CheckNonNegativeness( aCost, "average cost" ) ),
+	mCost( aCost.transform( []( const auto& aCost ){ return CheckNonNegativeness( aCost, "average cost" ); } ) ),
 	mUsePrice( aUsePrice ),
 	mTax( CheckNonNegativeness( aTax, "tax" ) )
 {
@@ -17,16 +17,17 @@ CPricesTable::CPricesTable( std::string_view aName, price aCost, int_price aUseP
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table." )
 
 CPricesTable::CPricesTable( const json& aJSON, std::string_view aName ) try :
-	CPricesTable( aName, ValueFromRequiredJSONKey<price>( aJSON, COST_KEY ),
+	CPricesTable( aName, ValueFromOptionalJSONKey<optional_price>( aJSON, COST_KEY ),
 			ValueFromRequiredJSONKey<int_price>( aJSON, USE_PRICE_KEY ),
 			ValueFromOptionalJSONKey<price>( aJSON, TAX_KEY ) )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table from JSO from JSON." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table from JSON." )
 
 void CPricesTable::JSON( json& aJSON ) const noexcept
 {
-	AddToJSONKey( aJSON, mCost, COST_KEY );
+	if( mCost )
+		AddToJSONKey( aJSON, *mCost, COST_KEY );
 	AddToJSONKey( aJSON, mUsePrice, USE_PRICE_KEY );
 	AddToOptionalJSONKey( aJSON, mTax, TAX_KEY );
 }
@@ -35,13 +36,14 @@ std::string CPricesTable::Description( unsigned int aIndentDepth, char aIndentCh
 {
 	std::stringstream ss;
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
-	ss << std::string( aIndentDepth + 1, aIndentChar ) << COST_KEY << ": " << mCost << "\n";
+	if( mCost )
+		ss << std::string( aIndentDepth + 1, aIndentChar ) << COST_KEY << ": " << *mCost << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << USE_PRICE_KEY << ": " << mUsePrice << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << TAX_KEY << ": " << mTax << "\n";
 	return ss.str();
 }
 
-CPricesTable::price CPricesTable::GetCost() const noexcept
+CPricesTable::optional_price CPricesTable::GetCost() const noexcept
 {
 	return mCost;
 }
