@@ -26,7 +26,8 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a pri
 
 void CPricesTable::JSON( json& aJSON ) const noexcept
 {
-	AddToJSONKey( aJSON, mCost, COST_KEY );
+	if( mCost )
+		AddToJSONKey( aJSON, *mCost, COST_KEY );
 	AddToJSONKey( aJSON, mUsePrice, USE_PRICE_KEY );
 	AddToOptionalJSONKey( aJSON, mTax, TAX_KEY );
 }
