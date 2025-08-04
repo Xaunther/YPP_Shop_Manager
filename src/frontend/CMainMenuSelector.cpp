@@ -16,8 +16,9 @@ template <> inline CRecipe AskInput( std::string_view aMessage )
 	auto itemInput = AskInput<std::string>( aMessage );
 	auto yieldInput = AskInput<unsigned int>( "Yield:" );
 	auto doubloonInput = AskInput<unsigned int>( "Doubloons:" );
+	auto priceAdjustmentInput = AskInput<types::CPricesTable::int_price>( std::string{ json_traits<CRecipe>::PRICE_ADJUSTMENT_KEY } + ":" );
 	auto ingredientsInput = AskInput<types::CRecipe::items>( "Ingredient" );
-	return CRecipe{ itemInput, ingredientsInput, doubloonInput, yieldInput };
+	return CRecipe{ itemInput, ingredientsInput, doubloonInput, yieldInput, priceAdjustmentInput };
 }
 
 template <> inline types::CRecipe::items::value_type AskInput( std::string_view aMessage )
