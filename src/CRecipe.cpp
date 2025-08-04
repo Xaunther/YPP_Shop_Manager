@@ -75,6 +75,11 @@ CRecipe::count CRecipe::GetDoubloonCount() const noexcept
 	return mDoubloonCount;
 }
 
+CRecipe::int_price CRecipe::GetPriceAdjustment() const noexcept
+{
+	return mPriceAdjustment;
+}
+
 const CRecipe::items& CRecipe::GetItems() const noexcept
 {
 	return mItems;
