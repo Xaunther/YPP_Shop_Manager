@@ -60,6 +60,7 @@ std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) 
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << DOUBLOONS_KEY << ": " << mDoubloonCount << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << YIELD_KEY << ": " << mYield << "\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << PRICE_ADJUSTMENT_KEY << ": " << mPriceAdjustment << "\n";
 	if( !mItems.empty() )
 	{
 		ss << std::string( aIndentDepth + 1, aIndentChar ) << INGREDIENTS_KEY << ":\n";
