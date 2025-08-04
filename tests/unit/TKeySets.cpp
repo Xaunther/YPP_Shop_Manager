@@ -133,7 +133,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 							recipe_item{ { "Grog" }, 15 },
 							recipe_item{ { "Skilled labour" }, 50 },
 							recipe_item{ { "Basic labour" }, 5 },
-						}, 0, 10
+						}, 0, 10, 250
 					}
 				}
 			}
@@ -204,6 +204,7 @@ std::vector<std::string> TRecipes::ObtainedResults() noexcept
 					"Shipyard": {
 						"Lifeboats": {
 							"Yield": 10,
+							"Price adjustment": 250,
 							"Ingredients": [
 								{
 									"Ingredient": [ "Iron" ],
@@ -290,6 +291,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"	Large cannon balls:\n"
 		"		Doubloons: 0\n"
 		"		Yield: 10\n"
+		"		Price adjustment: 0\n"
 		"		Ingredients:\n"
 		"			12 of:\n"
 		"				Iron\n"
@@ -302,6 +304,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"	Medium cannon balls:\n"
 		"		Doubloons: 0\n"
 		"		Yield: 10\n"
+		"		Price adjustment: 0\n"
 		"		Ingredients:\n"
 		"			8 of:\n"
 		"				Iron\n"
@@ -314,6 +317,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"	Small cannon balls:\n"
 		"		Doubloons: 0\n"
 		"		Yield: 10\n"
+		"		Price adjustment: 0\n"
 		"		Ingredients:\n"
 		"			5 of:\n"
 		"				Iron\n"
@@ -325,6 +329,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"	Lifeboats:\n"
 		"		Doubloons: 0\n"
 		"		Yield: 10\n"
+		"		Price adjustment: 250\n"
 		"		Ingredients:\n"
 		"			30 of:\n"
 		"				Iron\n"
@@ -424,6 +429,7 @@ std::vector<std::string> TRecipes::ExpectedResults() noexcept
 		"		\"Shipyard\": {\n"
 		"			\"Lifeboats\": {\n"
 		"				\"Yield\": 10,\n"
+		"				\"Price adjustment\": 250,\n"
 		"				\"Ingredients\": [\n"
 		"					{\n"
 		"						\"Ingredient\": [\n"

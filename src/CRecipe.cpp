@@ -7,11 +7,16 @@
 namespace ypp_sm
 {
 
-CRecipe::CRecipe( std::string_view aName, const items& aItems, count aDoubloonCount, count aYield ) try :
+CRecipe::CRecipe( std::string_view aName,
+		const items& aItems,
+		count aDoubloonCount,
+		count aYield,
+		int_price aPriceAdjustment ) try :
 	AKeyable( aName ),
 	mItems( aItems ),
 	mDoubloonCount( aDoubloonCount ),
-	mYield( CheckPositiveness( aYield, "recipe yield" ) )
+	mYield( CheckPositiveness( aYield, "recipe yield" ) ),
+	mPriceAdjustment( aPriceAdjustment )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a recipe." )
@@ -19,11 +24,13 @@ YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a rec
 CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 	AKeyable( aName ),
 	mDoubloonCount( ValueFromOptionalJSONKey<count>( aJSON, DOUBLOONS_KEY ) ),
-	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) )
+	mYield( CheckPositiveness( ValueFromOptionalJSONKey( aJSON, YIELD_KEY, DEFAULT_YIELD ), "recipe yield" ) ),
+	mPriceAdjustment( ValueFromOptionalJSONKey<int_price>( aJSON, PRICE_ADJUSTMENT_KEY ) )
 {
 	for( const auto& ingredientJSON : aJSON[ INGREDIENTS_KEY ].items() )
-		mItems.emplace_back( types::CRecipe::item{ ValueFromRequiredJSONKey<types::CRecipe::ingredients_type>(
-				ingredientJSON.value(), INGREDIENT_KEY ), ValueFromRequiredJSONKey<count>( ingredientJSON.value(), COUNT_KEY ) } );
+		mItems.emplace_back( types::CRecipe::item{
+				.ingredients = ValueFromRequiredJSONKey<types::CRecipe::ingredients_type>( ingredientJSON.value(), INGREDIENT_KEY ),
+				.ingredient_count = ValueFromRequiredJSONKey<count>( ingredientJSON.value(), COUNT_KEY ) } );
 }
 
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() <<"." )
@@ -32,6 +39,7 @@ void CRecipe::JSON( json& aJSON ) const noexcept
 {
 	AddToOptionalJSONKey( aJSON, mDoubloonCount, DOUBLOONS_KEY );
 	AddToOptionalJSONKey( aJSON, mYield, YIELD_KEY, DEFAULT_YIELD );
+	AddToOptionalJSONKey( aJSON, mPriceAdjustment, PRICE_ADJUSTMENT_KEY );
 
 	if( !mItems.empty() )
 	{
@@ -52,6 +60,7 @@ std::string CRecipe::Description( unsigned int aIndentDepth, char aIndentChar ) 
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << DOUBLOONS_KEY << ": " << mDoubloonCount << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << YIELD_KEY << ": " << mYield << "\n";
+	ss << std::string( aIndentDepth + 1, aIndentChar ) << PRICE_ADJUSTMENT_KEY << ": " << mPriceAdjustment << "\n";
 	if( !mItems.empty() )
 	{
 		ss << std::string( aIndentDepth + 1, aIndentChar ) << INGREDIENTS_KEY << ":\n";
@@ -73,6 +82,11 @@ CRecipe::count CRecipe::GetYield() const noexcept
 CRecipe::count CRecipe::GetDoubloonCount() const noexcept
 {
 	return mDoubloonCount;
+}
+
+CRecipe::int_price CRecipe::GetPriceAdjustment() const noexcept
+{
+	return mPriceAdjustment;
 }
 
 const CRecipe::items& CRecipe::GetItems() const noexcept

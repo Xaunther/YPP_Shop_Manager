@@ -44,7 +44,7 @@ std::vector<std::string> TRecipe::ObtainedResults() noexcept
 			recipe_item{ { "Wood" }, 3 },
 			recipe_item{ { "Basic labour" }, 3 },
 			recipe_item{ { "Skilled labour" }, 2 },
-		}, 0, 10 },
+		}, 0, 10, 100 },
 		CRecipe{ "Large cannon balls",
 		{
 			recipe_item{ { "Iron" }, 12 },
@@ -81,6 +81,7 @@ std::vector<std::string> TRecipe::ObtainedResults() noexcept
 		ValueFromJSONKeyString<CRecipe>( R"( {
 			"Medium cannon balls": {
 				"Yield": 10,
+				"Price adjustment": 100,
 				"Ingredients": [
 					{
 						"Ingredient": [ "Iron" ],
@@ -163,6 +164,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"Small cannon balls:\n"
 		" Doubloons: 0\n"
 		" Yield: 10\n"
+		" Price adjustment: 0\n"
 		" Ingredients:\n"
 		"  5 of:\n"
 		"   Iron\n"
@@ -198,6 +200,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"Medium cannon balls:\n"
 		" Doubloons: 0\n"
 		" Yield: 10\n"
+		" Price adjustment: 100\n"
 		" Ingredients:\n"
 		"  8 of:\n"
 		"   Iron\n"
@@ -210,6 +213,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"{\n"
 		"	\"Medium cannon balls\": {\n"
 		"		\"Yield\": 10,\n"
+		"		\"Price adjustment\": 100,\n"
 		"		\"Ingredients\": [\n"
 		"			{\n"
 		"				\"Ingredient\": [\n"
@@ -241,6 +245,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"Large cannon balls:\n"
 		" Doubloons: 0\n"
 		" Yield: 1\n"
+		" Price adjustment: 0\n"
 		" Ingredients:\n"
 		"  12 of:\n"
 		"   Iron\n"
@@ -283,6 +288,7 @@ std::vector<std::string> TRecipe::ExpectedResults() noexcept
 		"Foil:\n"
 		" Doubloons: 1\n"
 		" Yield: 1\n"
+		" Price adjustment: 0\n"
 		" Ingredients:\n"
 		"  1 of:\n"
 		"   Iron\n"

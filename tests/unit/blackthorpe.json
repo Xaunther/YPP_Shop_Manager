@@ -214,6 +214,7 @@
 			},
 			"Small cannon balls": {
 				"Yield": 10,
+				"Price adjustment": 10,
 				"Ingredients": [
 					{
 						"Ingredient": [
