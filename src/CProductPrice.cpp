@@ -225,7 +225,7 @@ types::CPricesTable::int_price CalculateOrderPrice( const CRecipe& aRecipe, cons
 				* static_cast<price>( ingredient.ingredient_count );
 	}
 
-	return static_cast<types::CPricesTable::int_price>( result );
+	return static_cast<types::CPricesTable::int_price>( result ) + aRecipe.GetPriceAdjustment();
 }
 
 // NOLINTNEXTLINE(misc-no-recursion)
