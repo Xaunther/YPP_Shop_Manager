@@ -62,6 +62,12 @@ void ATest::CheckException( const std::function<void()>& aFunction, const std::s
 	throw std::invalid_argument{ ss.str() };
 }
 
+const std::filesystem::path& ATest::TESTS_PATH()
+{
+	const static std::filesystem::path result{ std::filesystem::current_path().parent_path().parent_path() / "tests" };
+	return result;
+}
+
 void ATest::CheckResults( const std::vector<std::string>& aObtained, const std::vector<std::string>& aExpected )
 {
 	if( aObtained != aExpected )
