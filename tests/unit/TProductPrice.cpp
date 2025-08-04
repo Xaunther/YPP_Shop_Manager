@@ -60,7 +60,7 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 					recipe_item{ { "Grog" }, 15 },
 					recipe_item{ { "Basic" }, 50 },
 					recipe_item{ { "Skilled" }, 5 },
-				}, 0, 10 },
+				}, 0, 10, 250 },
 			}
 		},
 		{
@@ -173,7 +173,7 @@ std::vector<std::string> TProductPrice::ExpectedResults() noexcept
 {
 	std::vector<std::string> result{
 		"Lifeboats:\n"
-		" Order price: 4158\n"
+		" Order price: 4408\n"
 		" Unit cost: 371\n",
 		"Small cannon balls (Iron):\n"
 		" Order price: 196\n"
