@@ -39,6 +39,7 @@ void CRecipe::JSON( json& aJSON ) const noexcept
 {
 	AddToOptionalJSONKey( aJSON, mDoubloonCount, DOUBLOONS_KEY );
 	AddToOptionalJSONKey( aJSON, mYield, YIELD_KEY, DEFAULT_YIELD );
+	AddToOptionalJSONKey( aJSON, mPriceAdjustment, PRICE_ADJUSTMENT_KEY );
 
 	if( !mItems.empty() )
 	{
