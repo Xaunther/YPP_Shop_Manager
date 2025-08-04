@@ -35,13 +35,14 @@ std::string CPricesTable::Description( unsigned int aIndentDepth, char aIndentCh
 {
 	std::stringstream ss;
 	ss << std::string( aIndentDepth, aIndentChar ) << GetKey() << ":\n";
-	ss << std::string( aIndentDepth + 1, aIndentChar ) << COST_KEY << ": " << mCost << "\n";
+	if( mCost )
+		ss << std::string( aIndentDepth + 1, aIndentChar ) << COST_KEY << ": " << *mCost << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << USE_PRICE_KEY << ": " << mUsePrice << "\n";
 	ss << std::string( aIndentDepth + 1, aIndentChar ) << TAX_KEY << ": " << mTax << "\n";
 	return ss.str();
 }
 
-CPricesTable::price CPricesTable::GetCost() const noexcept
+CPricesTable::optional_price CPricesTable::GetCost() const noexcept
 {
 	return mCost;
 }

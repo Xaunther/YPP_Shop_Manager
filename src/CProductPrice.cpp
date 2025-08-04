@@ -243,7 +243,9 @@ types::CPricesTable::price CalculateCost( const CRecipe& aRecipe, const CDataBas
 		else
 		{
 			const auto& priceTable = GetPricesTable( aIngredientIterators[ index ], aDataBase.GetPrices() );
-			result += ( priceTable.GetTax() + priceTable.GetCost() ) * static_cast<price>( ingredient.ingredient_count );
+			if( !priceTable.GetCost() )
+				throw( std::invalid_argument{ "Cannot find cost for " + aIngredientIterators[ index ] + "." } );
+			result += ( priceTable.GetTax() + *priceTable.GetCost() ) * static_cast<price>( ingredient.ingredient_count );
 		}
 	}
 	result += static_cast<price>( aRecipe.GetDoubloonCount() * aDataBase.GetDoubloonPrice() );
