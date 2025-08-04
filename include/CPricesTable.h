@@ -28,7 +28,7 @@ public:
 	 * @param aUsePrice \copybrief mUsePrice
 	 * @param aTax \copybrief mTax
 	 */
-	explicit CPricesTable( std::string_view aName, price aCost, int_price aUsePrice, price aTax = 0 );
+	explicit CPricesTable( std::string_view aName, optional_price aCost, int_price aUsePrice, price aTax = 0 );
 
 	/**
 	 * @brief JSON constructor.

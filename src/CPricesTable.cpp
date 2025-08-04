@@ -7,9 +7,9 @@
 namespace ypp_sm
 {
 
-CPricesTable::CPricesTable( std::string_view aName, price aCost, int_price aUsePrice, price aTax ) try :
+CPricesTable::CPricesTable( std::string_view aName, optional_price aCost, int_price aUsePrice, price aTax ) try :
 	AKeyable( aName ),
-	mCost( CheckNonNegativeness( aCost, "average cost" ) ),
+	mCost( aCost.transform( []( const auto& aCost ){ return CheckNonNegativeness( aCost, "average cost" ); } ) ),
 	mUsePrice( aUsePrice ),
 	mTax( CheckNonNegativeness( aTax, "tax" ) )
 {
