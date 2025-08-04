@@ -28,8 +28,13 @@ public:
 	 * @param aItems \copybrief mItems
 	 * @param aDoubloonCount \copybrief mDoubloonCount
 	 * @param aYield \copybrief mYield
+	 * @param aPriceAdjustment \copybrief mPriceAdjustment
 	 */
-	explicit CRecipe( std::string_view aName, const items& aItems, count aDoubloonCount = 0, count aYield = DEFAULT_YIELD );
+	explicit CRecipe( std::string_view aName,
+			const items& aItems,
+			count aDoubloonCount = 0,
+			count aYield = DEFAULT_YIELD,
+			int_price aPriceAdjustment = 0 );
 
 	/**
 	 * @brief JSON constructor.

@@ -7,11 +7,16 @@
 namespace ypp_sm
 {
 
-CRecipe::CRecipe( std::string_view aName, const items& aItems, count aDoubloonCount, count aYield ) try :
+CRecipe::CRecipe( std::string_view aName,
+		const items& aItems,
+		count aDoubloonCount,
+		count aYield,
+		int_price aPriceAdjustment ) try :
 	AKeyable( aName ),
 	mItems( aItems ),
 	mDoubloonCount( aDoubloonCount ),
-	mYield( CheckPositiveness( aYield, "recipe yield" ) )
+	mYield( CheckPositiveness( aYield, "recipe yield" ) ),
+	mPriceAdjustment( aPriceAdjustment )
 {
 }
 YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a recipe." )
