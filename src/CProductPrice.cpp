@@ -242,7 +242,7 @@ types::CPricesTable::price CalculateCost( const CRecipe& aRecipe, const CDataBas
 					* static_cast<price>( (*recipe).get().GetYield() );
 		else
 		{
-			const auto& priceTable = GetPricesTable( *ingredient.ingredients.cbegin(), aDataBase.GetPrices() );
+			const auto& priceTable = GetPricesTable( aIngredientIterators[ index ], aDataBase.GetPrices() );
 			result += ( priceTable.GetTax() + priceTable.GetCost() ) * static_cast<price>( ingredient.ingredient_count );
 		}
 	}
