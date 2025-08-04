@@ -25,7 +25,7 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 				CRecipe{ "Small cannon balls",
 				{
 					recipe_item{ { "Wood" }, 1 },
-					recipe_item{ { "Iron" }, 5 },
+					recipe_item{ { "Iron", "Market Iron" }, 5 },
 					recipe_item{ { "Basic" }, 3 },
 				}, 0, 10 },
 				CRecipe{ "Foil",
@@ -118,6 +118,7 @@ const CDataBase& EXAMPLE_DATABASE() noexcept
 			{
 				price_item{ "Wood", 15, 15, 2.1 },
 				price_item{ "Iron", 19, 19, 3.0 },
+				price_item{ "Market Iron", 11, 11, 3.0 },
 				price_item{ "Sugar cane", 5, 5, 0.5 },
 			},
 		},
@@ -169,9 +170,12 @@ std::vector<std::string> TProductPrice::ExpectedResults() noexcept
 		"Lifeboats:\n"
 		" Order price: 4158\n"
 		" Unit cost: 371\n",
-		"Small cannon balls:\n"
+		"Small cannon balls (Iron):\n"
 		" Order price: 196\n"
-		" Unit cost: 19.61\n",
+		" Unit cost: 19.61\n"
+		"Small cannon balls (Market Iron):\n"
+		" Order price: 156\n"
+		" Unit cost: 15.61\n",
 		"Foil (Tan enamel, Tan enamel):\n"
 		" Order price: 560\n"
 		" Unit cost: 161.46\n"
