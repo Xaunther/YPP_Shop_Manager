@@ -1,5 +1,6 @@
 #pragma once
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <functional>
@@ -31,6 +32,11 @@ public:
 	 * @brief Exception checker.
 	*/
 	static void CheckException( const std::function<void()>& aFunction, const std::string_view aExpectedErrorMsg );
+
+	/**
+	 * @brief Returns test path.
+	 */
+	static const std::filesystem::path& TESTS_PATH();
 
 private:
 	/**
