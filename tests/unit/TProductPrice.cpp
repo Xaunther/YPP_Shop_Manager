@@ -143,11 +143,11 @@ void TProductPrice::TestExceptions()
 	CheckException( []()
 	{
 		CProductPrice{ CRecipe{ "Deez balls", { recipe_item{ { "A" }, 3 } } }, EXAMPLE_DATABASE() };
-	}, "A price table not found." );
+	}, "'A' price table not found." );
 	CheckException( []()
 	{
 		CProductPrice{ CRecipe{ "Deez balls", { recipe_item{ { "Fine rum" }, 3 } } }, EXAMPLE_DATABASE() };
-	}, "Cannot find cost for Fine rum" );
+	}, "Cannot find cost for 'Fine rum'" );
 }
 
 std::vector<std::string> TProductPrice::ObtainedResults() noexcept

@@ -14,7 +14,7 @@ CPricesTable::CPricesTable( std::string_view aName, optional_price aCost, int_pr
 	mTax( CheckNonNegativeness( aTax, "tax" ) )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating '" << aName << "' prices table." )
 
 CPricesTable::CPricesTable( const json& aJSON, std::string_view aName ) try :
 	CPricesTable( aName, ValueFromOptionalJSONKey<optional_price>( aJSON, COST_KEY ),
@@ -22,7 +22,7 @@ CPricesTable::CPricesTable( const json& aJSON, std::string_view aName ) try :
 			ValueFromOptionalJSONKey<price>( aJSON, TAX_KEY ) )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a prices table from JSON." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating '" << aName << "' prices table from JSON." )
 
 void CPricesTable::JSON( json& aJSON ) const noexcept
 {

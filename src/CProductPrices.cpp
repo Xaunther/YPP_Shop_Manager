@@ -20,7 +20,7 @@ CProductPrices::CProductPrices( const CDataBase& aDataBase, std::string_view aKe
 		productPrices.emplace( recipe, aDataBase );
 	mPrices.emplace( aKey, std::move( productPrices ) );
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating the product prices from " << aKey << "category." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating the product prices from '" << aKey << "' category." )
 
 std::string CProductPrices::Description( unsigned int aIndentDepth, char aIndentChar ) const noexcept
 {

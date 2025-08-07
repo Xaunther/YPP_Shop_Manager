@@ -61,14 +61,14 @@ CKeyItem<T>::CKeyItem( std::string_view aName, const T& aValue ) try :
 	mValue( aValue )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating key item." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating key item '" << aName << "'." )
 
 template <typename T>
 CKeyItem<T>::CKeyItem( const json& aJSON, std::string_view aName ) try :
 	CKeyItem( aName, ValueFromJSON<T>( aJSON ) )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating key item from JSON " << aJSON.dump() )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating key item '" << aName << "' from JSON " << aJSON.dump() )
 
 template <typename T>
 void CKeyItem<T>::JSON( json& aJSON ) const noexcept
