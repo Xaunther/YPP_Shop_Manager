@@ -87,7 +87,7 @@ CKeySets<T>::CKeySets( const json& aJSON ) try :
 	mKeySets( detail::CheckUniqueness<T>( detail::CreateKeySets<T>( aJSON ) ) )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating from the JSON object " << aJSON.dump() << "." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating key sets from the JSON object " << aJSON.dump() << "." )
 
 template <typename T>
 void CKeySets<T>::JSON( json& aJSON ) const noexcept

@@ -19,7 +19,7 @@ CRecipe::CRecipe( std::string_view aName,
 	mPriceAdjustment( aPriceAdjustment )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating a recipe." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating '" << aName << "' recipe." )
 
 CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 	AKeyable( aName ),
@@ -33,7 +33,7 @@ CRecipe::CRecipe( const json& aJSON, std::string_view aName ) try :
 				.ingredient_count = ValueFromRequiredJSONKey<count>( ingredientJSON.value(), COUNT_KEY ) } );
 }
 
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating recipe from JSON " << aJSON.dump() <<"." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating '" << aName << "' recipe from JSON " << aJSON.dump() <<"." )
 
 void CRecipe::JSON( json& aJSON ) const noexcept
 {

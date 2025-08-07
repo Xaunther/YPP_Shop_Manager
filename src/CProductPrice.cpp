@@ -102,7 +102,7 @@ CProductPrice::CProductPrice( const CRecipe& aRecipe, const CDataBase& aDataBase
 	mProductPriceSet( CalculateProductPriceSet( aRecipe, aDataBase ) )
 {
 }
-YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating " << aRecipe.GetKey() << " product price." )
+YPP_SM_CATCH_AND_RETHROW_EXCEPTION( std::invalid_argument, "Error creating '" << aRecipe.GetKey() << "' product price." )
 
 const CProductPrice::product_price_set& CProductPrice::GetProductPriceSet() const noexcept
 {
@@ -184,7 +184,7 @@ const CPricesTable& GetPricesTable( const types::CRecipe::ingredients_type::valu
 		if( found != pricesTables.cend() )
 			return *found;
 	}
-	throw std::invalid_argument{ aItem + " price table not found." };
+	throw std::invalid_argument{ "'" + aItem + "' price table not found." };
 }
 
 optional_recipe GetRecipe( const types::CRecipe::ingredients_type::value_type& aItem, const types::CDataBase::recipes& aRecipes )
@@ -244,7 +244,7 @@ types::CPricesTable::price CalculateCost( const CRecipe& aRecipe, const CDataBas
 		{
 			const auto& priceTable = GetPricesTable( aIngredientIterators[ index ], aDataBase.GetPrices() );
 			if( !priceTable.GetCost() )
-				throw( std::invalid_argument{ "Cannot find cost for " + aIngredientIterators[ index ] + "." } );
+				throw( std::invalid_argument{ "Cannot find cost for '" + aIngredientIterators[ index ] + "'." } );
 			result += ( priceTable.GetTax() + *priceTable.GetCost() ) * static_cast<price>( ingredient.ingredient_count );
 		}
 	}
